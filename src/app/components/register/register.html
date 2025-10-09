@@ -4,6 +4,8 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.x/dist/tailwind.min.css" rel="stylesheet">
 
 <!-- MODIFICARE LE GRANDEZZE A SECONDA DELLE DIMENSIONI DELLO SCHERMO -->
+  <!-- DA SISTEMARE  IL CONTROLLO DEL FORM -->
+
 
 <section class="register-page">
     <div class="register-container inline-flex" >
@@ -13,7 +15,7 @@
             </div>
             <div class="register-formGroup">
                 <p class="form-title">Create your account</p>
-                <div class="register-form flex min-h-full flex-col justify-center ">  <!-- MODIFICARE A SECONDA DELLE DIMENSIONI DELLO SCHERMO-->
+                <div class="register-form flex min-h-full flex-col justify-center "> 
                     <!-- START FORM -->
                      <div class="flex w-full  justify-center mt-10">
                     <form action="#" class=" w-full space-y-4">
@@ -40,7 +42,7 @@
                        </div>
                        <!-- BUTTONS -->
                         <div class="space-y-3">
-                          <button type="submit" class="w-full h-9 justify-center rounded-md  px-3 py-4  bg-orange-500  text-white hover:bg-orange-400 text-sm/6 register-btn" (click)="goToDashboard()">Register</button>
+                          <button type="submit" class="w-full h-9 justify-center rounded-md  px-3 py-4  bg-orange-500  text-white hover:bg-orange-400 text-sm/6 register-btn" >Register</button>
                           <p>Already have an account? <a routerLink="/login" class=" text-red-600 italic ">Login</a></p>
                         </div>
 

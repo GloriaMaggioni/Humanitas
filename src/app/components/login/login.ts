@@ -14,29 +14,30 @@ import { error } from 'node:console';
 })
 export class Login {
 
-  private route = Inject(ActivatedRoute);
-  form  = new FormGroup({
-    email: new FormControl ('', Validators.required),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)])
+  //private route = Inject(ActivatedRoute);
+//   form  = new FormGroup({
+//     email: new FormControl ('', Validators.required),
+//     password: new FormControl('', [Validators.required, Validators.minLength(8)])
 
-  })
- private router = Inject (Router);
+//   })
+//  private router = Inject (Router);
 
  
-  goToDashboard(){    //NON FUNZIONA: CAPIRE CHE COSA È SBAGLIATO: COMPARE SOLO L'ALERT SIA CHE COMPILO O MENO I CAMBI DEL
-    if(this.form.valid){
-          this.route.navigate[('/src/app/components/dashboard/dashboard.html')]
-          console.log(this.form.value)
+//   goToDashboard() : void{    
+//     if(this.form.valid){
+//           this.router.navigate[('/dashboard')]
+//           console.log(this.form.value)
 
-    }else if(this.form.invalid){                 
-      alert('Compilare tutti i campi obbligatori') 
-    }
-  }
+//     }else if(this.form.invalid){                 
+//       alert('Compilare tutti i campi obbligatori') 
+//     }
+//   }
 
 
-  goToRegisterPage(){
-    this.route.navigate[('/register/register.html')]
-    console.log(this.goToRegisterPage())
-  }
+//   goToRegisterPage(){
+//     this.router.navigate[('/register/register.html')];
+//     console.log('navigazione a register richiesta')
+  
+//   }
 
 }
