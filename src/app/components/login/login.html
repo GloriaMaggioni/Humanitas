@@ -1,69 +1,57 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+<link href="https://fonts.googleapis.com/css2?family=Alice&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.x/dist/tailwind.min.css" rel="stylesheet">
+
+
+<!-- MODIFICARE LE GRANDEZZE A SECONDA DELLE DIMENSIONI DELLO SCHERMO -->
+ <!-- DA SISTEMARE  IL CONTROLLO DEL FORM -->
 
 
 
-
-<section class="login " >
+<section class="login-page " >
     <div class="login-container">
       <div class="login-image-container">
           <div class="image-rectangle">
             <img src="assets/images/marcoaurelio.png" alt="">
-            <p class="login-image-text">	“La felicità della tua vita dipende dalla qualità dei tuoi pensieri...
+            <p class="login-image-text absolute z-3 text-sm/7 text-white ">	“La felicità della tua vita dipende dalla qualità dei tuoi pensieri...
               abbi cura di non coltivare nozioni inadatte alla virtù e di natura ragionevole.” </p>
           </div>
       </div>
-      <div class="login-form-container">
-        <div class="logo">
-          <img src="assets/images/logo-blackGold.png" alt=""> 
+      <div class="login-form-container"> 
+        <div class="logo-container">
+          <img src="/assets/images/logo-blackGold.png" alt="" class="logo">
         </div>
-        <div class="login-form">
-               <div class="form-title">Welcome</div>
-               <div class="form">
-                    <!-- INIZIO FORM -->
-                  <div class="flex min-h-full flex-row justify-center px-6 py-12 lg:px-8 ">
-                      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                          <form action="#" method="POST" class="space-y-6">
-                            <!-- FULL NAME INPUT -->
-                            <div class="space-y-2">
-                                <label for="email" class="block text-sm/6 font-medium text-gray-900">Full Name</label>
-                                <div class="mt-2">
-                                   <input id="email" type="email" name="email" required autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500 sm:text-sm/6" />
-                                </div>
-                             </div>
-                              <!-- EMAIL INPUT -->
-                             <div class="space-y-2" >
-                                <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
-                                <div class="mt-2">
-                                   <input id="email" type="email" name="email" required autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500 sm:text-sm/6" />
-                                </div>
-                             </div>
-                             <div>
-                              <!-- PASSWORD INPUT -->
-                               <div class="flex items-center justify-between">
-                                  <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
-                               </div>
-                               <div class="mt-3 space-y-2">
-                                 <input id="password" type="password" name="password" required autocomplete="current-password" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500 sm:text-sm/6" />
-                               </div>
-                             </div>
-                              <!-- BUTTONS  -->
-                             <div class="btn mt-3 ">
-                                 <button type="submit" class="flex w-full justify-center rounded-md bg-orange-500 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-orange-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500">Sign in</button>
-                                 <p>Oppure</p>
-                                 <button type="submit" class="flex w-full justify-center rounded-md bg-orange-500 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-orange-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500">Sign in</button>
+        <div class="formGroup-container">
+          <div class="form-title  ">Welcome</div>
+          <div class="login-form flex min-h-full flex-col justify-center px-6 py-12 lg:px-8" >
+            <!-- START FORM  -->
+                   <div class="flex w-full  justify-center mt-10">
+                    <form action="#" class=" w-full space-y-4">
+                   
+                        <div >
+                          <label for="email" class="block  text-sm/6">Email*</label>
+                         <input type="email" name="email" required autocomplete="email"  class=" block w-full h-9 rounded-md px-3 py-3  bg-white outline-1 -outlone-offset-1 outline-gray-300 text-base focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500" >
+                       </div>
+                  
+                         <div >
+                          <label for="password" class="block  text-sm/6">Password*</label>
+                         <input type="password" name="password" required autocomplete="current-password" class="block w-full h-9 rounded-md px-3 py-3   bg-white outline-1 -outlone-offset-1 outline-gray-300 text-base focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500" >
+                       </div>
+                     
+                        <div class="space-y-3">
+                          <button type="submit" class="w-full h-9 justify-center rounded-md  px-3 py-4  bg-orange-500  text-white hover:bg-orange-400 text-sm/6 login-btn" >Login</button>
+                          <p class="text-gray-500 text-center">Oppure</p>
+                          <button type="submit" class="w-full h-9 justify-center rounded-md px-3 py-4  bg-white  text-black outline-1 -outlone-offset-1 outline-gray-300  hover:bg-gray-100 text-sm/6 register-btn" >Register</button>
+                        </div>
 
-                              </div>
-                              
-                          </form>
-                      </div>
-                  </div> 
-                    <!-- FINE FORM -->
 
-               </div>       
+                    </form>
+                   </div>
+             <!-- FINISH FORM -->
+          </div>
         </div>
+   
       </div>
   
     </div>
@@ -72,4 +60,5 @@
 
 
 
-   
+
+ 

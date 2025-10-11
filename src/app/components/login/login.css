@@ -1,16 +1,17 @@
 
+ /* MODIFICARE LE GRANDEZZE A SECONDA DELLE DIMENSIONI DELLO SCHERMO  */
 
 
 
-.login{
-    border: 1px solid red;
-    width: 100%;
-     background-color: black;
+.login-page{
+    /* border: 1px solid red; */
+     width: 100%;
+    
     
 }
 
 .login-container{
-    border: 2px solid blue;
+    /* border: 1px solid blue; */
     width: 80%;
     height: 80%;
    position: absolute;
@@ -20,15 +21,16 @@
    display: flex;
 }
 .login-image-container{
-    border:2px solid purple;
+    /* border:2px solid purple; */
     width: 50%;
 
 }
 .login-image-container .image-rectangle {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: fit-content;
     height:100%;
-   margin: auto;
+    /* margin:auto; */
+   margin-left: 10%;
    position: relative;
 }
 
@@ -37,40 +39,81 @@
 }
 .login-image-text{
     /* border: 1px solid orange; */
-    width:85%;
-    z-index: 3;
-    position: absolute;
+    width:90%;
     bottom:5%;
     left:5%;
-    color:white;
-    font-size:25px;
-    font-family: "Alice", serif;
+    font-size:28px;
+    font-family: "Arvo", serif;
     font-weight: 400;
     font-style: italic;
 }
 .login-form-container{
-    border:1px solid darkgoldenrod;
+    /* border:1px solid orange; */
     width: 50%;
-
+    position: relative;
 }
 
-
-.login-form-container .logo {
-    border: 1px solid green;
-    width: 200px;
-    margin-top: 20px;
-    margin-left: 20px;
+.logo-container{
+     /* border: 1px solid red;  */
+    width: 30%;
+    height:fit-content;
+    z-index: 5;
+    position:absolute;
+    right:80%
+   
+}
+.formGroup-container{
+    /* border: 1px solid blue; */
+    width: 55%;
+    height: fit-content;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+.form-title{
+    /* border: 1px solid green; */
+    width: fit-content;
+    margin: auto;
+    font-size: 40px;
+    font-family: "Inknut Antiqua", serif;
+    font-weight: 500;
+    font-style: normal;
 }
 .login-form{
-    border: 3px solid black;
-    width: 100%;
-    height: 100%;
+    /* border: 1px solid brown; */
+    height: 80%;
+   margin-top: 25px;
+}
+.login-form label {
+    margin-top: 30px;
+    font-size: 15px
 }
 
-.login-form-container .form{
-    border: 1px solid magenta;
-    width: 100%;
-    height: 100%;
-    margin: auto;
+.login-form p {
+    /* border:1px solid green; */
+   text-align: center;
+   margin-top: 15px;
+}
+.login-form input{
+    margin-top: 5px;
+    padding-left: 10px;
+}
+.login-form .login-btn {
+     margin-top: 30px;
+    font-size: 15px
+
+}
+
+.login-form .register-btn {
+    margin-top: 20px;
+    font-size: 15px;
+
+}
+
+.login-form .login-btn:hover, 
+.login-form .register-btn:hover {
+    cursor:pointer
 }
 

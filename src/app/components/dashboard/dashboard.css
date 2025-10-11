@@ -1,0 +1,6 @@
+.dashboard-page{
+    border:1px solid red;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(245, 245, 245, 1);
+}
