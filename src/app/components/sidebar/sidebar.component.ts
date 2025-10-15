@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-sidebar',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+ 
 
 }

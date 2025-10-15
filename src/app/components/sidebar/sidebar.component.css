@@ -6,7 +6,7 @@
     
 }
 .logo-container{
-    border:1px solid red;
+    /* border:1px solid red; */
     width:fit-content;
     margin-top:20px;
     
@@ -17,7 +17,7 @@
 }
 
 .menu-icon {
-    border:1px solid blue;
+    /* border:1px solid blue; */
     width: 15%;
     /* height:15%; */
     margin-left: 80%;
@@ -26,10 +26,6 @@
 .menu-icon img {
     width: 100%;
     /* color: #000000; */
-}
-
-.menu-icon:hover{
-    cursor:pointer;
 }
 
 
@@ -42,19 +38,15 @@
     flex-direction: column;
     align-items: end;
     justify-content: center;
-
-
 }
 .sections-container ul{
-    border: 1px solid blue;
     width:90%;
     height:fit-content;
-
 }
 
 
 .sections-container li {
-    border:1px solid purple;
+    /* border:1px solid purple; */
     width:100%;
     margin-top:10%;
     text-decoration: none;
@@ -64,6 +56,8 @@
     font-size:16px;
     text-align:center;
     border-radius: 5px;
+    /* background-color: #d9d9d9; */
+    
 }
 .sections-container img{
     /* border:1px solid red; */
@@ -71,8 +65,20 @@
     margin-right:5px
 
 }
+.menu-icon:hover,
+.sections-container li:hover,
+.settingsBtn-container:hover,
+.log-btn-container:hover{
+    cursor:pointer;
+   
+}
+.sections-container li:hover,
+.sections-container li img:hover{
+     /* background-color: #e66a0c; */
+    /* color:white; */
+
+}
 .setting-log-container{
-    border:1px solid black;
     text-align:center;
     margin-top:80%;
     font-size:14px;
@@ -81,12 +87,13 @@
 
 .settingsBtn-container{
     border:1px solid blue;
-        
-
+}
+.settingsBtn-container img{
+    width:20%
 }
 
 .log-btn-container{
-    border:1px solid green;
+    /* border:1px solid green; */
    margin-top:5%
 
 }
