@@ -8,10 +8,11 @@ import { EventsPage } from './components/events-page/events-page';
 export const routes: Routes = [    
     {path: 'dashboard', component: Dashboard ,children: [
         {path: 'sidebar', component: SidebarComponent},
-        {path: 'events', component: EventsPage}
     ]},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
+    {path: 'events', component: EventsPage},
+
     {path: '', redirectTo: 'dashboard', pathMatch: 'full'}, 
 
     

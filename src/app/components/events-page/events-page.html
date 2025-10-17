@@ -1,1 +1,54 @@
-<p>events-page works!</p>
+<!-- <p>events-page works!</p> -->
+
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    @if (showFiller) {
+      <p>Lorem, ipsum dolor sit amet consectetur.</p>
+    }
+    <button (click)="showFiller = !showFiller" matButton="elevated">
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" matButton (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+
+</mat-drawer-container>
+
+
+<!-- 
+<div class="miaBarra-container" autosize>
+    <mat-drawer  #drawer2 class="miaBarra">
+     <p>Barra dinamica</p>
+      @if (mostra) {
+      <p>Ciao</p>
+    }
+     <button (click)="mostra = !mostra" matButton="elevated">
+        Altro testo
+     </button>
+    </mat-drawer>
+    <div class="barra-contenuto">
+        <button type="button" matButton (click)="drawer2.toggle()">Bottone </button>
+    </div>
+</div> -->
+<mat-drawer-container class="miaBarra-container" autosize>
+     <mat-drawer  #pippo class="miaBarra">
+     <p>Barra dinamica</p>
+      @if (mostra) {
+      <p>Ciao</p>
+    }
+     <button (click)="mostra = !mostra" matButton="elevated">
+        Altro testo
+     </button>
+    </mat-drawer>
+    <div class="barra-contenuto">
+        <button type="button" matButton (click)="pippo.toggle()">Bottone </button>
+    </div>
+
+</mat-drawer-container>
