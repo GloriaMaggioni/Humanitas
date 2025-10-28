@@ -1,0 +1,8 @@
+.homePage-container{
+    /* background-color:#f5f5f5; */
+}
+
+.navbar {
+    border:1px solid green;
+    display:inline-flex;
+}

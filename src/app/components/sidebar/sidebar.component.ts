@@ -19,7 +19,7 @@ export class SidebarComponent {
 dashboard: string|readonly any[]|null|undefined;
 events: string|readonly any[]|null|undefined;
 largeLogo = '/assets/images/logo-blackGold.png';
-smallLogo = 'assets/images/logoImg.png'
+smallLogo = 'assets/images/logoImg-2.svg';
 
 
   isOpen = signal(true);

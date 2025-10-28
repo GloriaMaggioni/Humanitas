@@ -1,3 +1,5 @@
+
+ 
  .sidebar-container{
     width:9vw;
     height:100%;
@@ -5,11 +7,17 @@
     transition: width 0.3s ease-in-out;
     &.collapsed{
         width:3vw;
-        margin-left:5px;
+        padding-left:5px;
        .menu-icon{
           margin-left:58%;
           margin-top: 30px; 
        } 
+       .sections-container li {
+            margin-top:5px;
+
+       }
+       
+      
        
        
     }
@@ -25,12 +33,11 @@
 
 .logo-container{
     /* border:1px solid blue; */
-    width:90%;
+    width:100%;
     height:10%;
     background-size:contain;
     background-repeat:no-repeat;
     margin:20px auto;
-   
 }
 .logo-container img {
     width:100%;
@@ -49,7 +56,7 @@
 
 
 .sections-container{
-    border:1px solid blue;
+    /* border:1px solid blue; */
     width:90%;
     margin: auto;
 
@@ -59,10 +66,11 @@
     width:100%;
     text-align:left;
     list-style:none;
+    margin-top:5px;
     
 }
 .sections-container a {
-    border:1px solid red;
+    /* border:1px solid red; */
     width:100%;
     display:inline-flex;
     align-items:center;
@@ -73,11 +81,10 @@
 .sections-container img {
     /* margin-left:10px; */
 }
-.sections-container span {
-    width:fit-content;
-}
+
+
 .setting-log-container{
-    border:1px solid blue;
+    /* border:1px solid blue; */
      text-align:center;
     width:100%;
     margin-top:70%; 
@@ -85,7 +92,7 @@
    
 }
 .setting-log-container a{
-    border:1px solid white;
+    /* border:1px solid white; */
     display:inline-flex;
     align-items:center;
     justify-content:center;
@@ -93,7 +100,7 @@
 }
 
 .setting-container{
-   border:1px solid red;
+   /* border:1px solid red; */
     width:100%;
     display:inline-flex;
      align-items:center;
