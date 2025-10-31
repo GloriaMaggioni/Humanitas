@@ -8,35 +8,39 @@
     height:8%;
 }
 .search-bar-container{
-    border:1px solid red;
+    /* border:1px solid red; */
     position:relative;
-    width:15%;
-    height:35%;
+    width:20%;
+    height:43%;
     margin-left:20%
 
 }
 .search-input{
     padding-left:5px;
-    width:80%;
+    width:85%;
     height: 100%;
     text-align:center;
 }
+
 .search-bar-container button {
-    border:1px solid black;
-    width:15%;
+    /* border:1px solid black; */
+    width:13%;
+    margin-left: 2px;
 }
 .search-icon {
-    /* position:absolute; */
-    /* left:10px; */
     margin:auto;
 }
 .threeBtn-container{
     /* border:1px solid blue; */
     margin-right:8%;
 }
-.menuContent{
-    background-color:red;
+
+.nominativo-item {
+    border:1px solid red;
+    /* padding:3px; */
 }
+.search-btn:hover,
+.search-icon:hover,
 .favorite-icon:hover,
 .new-btn:hover,
 .user-img:hover{
