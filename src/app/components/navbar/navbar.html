@@ -12,12 +12,13 @@
         </div>
         <div class="threeBtn-container w-80 flex justify-evenly items-center h-full ">
             <!-- da sistemare stilisticamente -->
+             <!-- DA AGGIUNGERE LA PARTE LOGICA -->
                 <button matButton [matMenuTriggerFor]="menu" class="new-btn w-22 items-center text-lg border-1 border-solid border-amber-600 bg-amber-600 rounded-2xl flex text-white">
                      <img class=" w-8 mr-0.5" src="assets/images/add-icon.svg" alt="">New</button>
                    <mat-menu  #menu="matMenu">
-                      <button class="option1" mat-menu-item>Post</button>
+                      <button class="option1" mat-menu-item  >Post</button>
+                      <!-- PER LA CREAZIONE DI UN POST, USARE LE API DEL SITO FORTNITO DALLA SCUOLA -->      
                       <button mat-menu-item>Utente</button>
-                     <button mat-menu-item>Utente</button>
                    </mat-menu>
 
             <span class="favorite-icon">

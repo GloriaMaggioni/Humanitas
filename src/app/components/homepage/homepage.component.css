@@ -1,3 +1,24 @@
 .homePage-container{
     /* background-color:#f5f5f5; */
+    border:1px solid red;
+}
+
+.homePage-mainContent{
+    /* height: calc(100% - 8%); */
+}
+.carousel{
+    /* border:1px solid blue; */
+    width:50%;
+    height: 200px;
+    margin-top:10px;
+    margin-left: 5%;   
+     background-image: url('/assets/images/AldaMerini.jpg') ;
+    background-size: cover;
+    background-repeat:no-repeat;
+   background-position: 25% 45%; 
+}
+
+.carousel img {
+    margin-left:10%;
+    vertical-align:center;
 }

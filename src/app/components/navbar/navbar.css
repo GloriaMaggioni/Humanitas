@@ -46,3 +46,8 @@
 .user-img:hover{
     cursor:pointer;
 }
+
+.post{
+    border:1px solid red;
+    width: 50%;
+}
