@@ -1,16 +1,43 @@
-<!-- <div  class="homePage-container w-full  h-screen">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
+    
+ <div class="homePage-container w-full h-full  border-1 border-solid border-b-black">
+
+    <!-- CAROUSEL -->
+     <div class="carousel  flex items-center rounded-lg gap-5 overflow-hidden" >
+        <img  src="assets/images/AldaMerini.jpg" alt=""  class="carousel-image w-40 h-40 z-50 rounded-lg flex-shrink-0">
+
+        <div class="carousel-text-container  h-40 text-black z-50">
+            <!-- sistemare lo style del testo con tailwindcss -->
+            <h3 class="carousel-citazione text-3xl text-balance  text-center italic">“L’ intelligenza senza la sensibilità non serve a niente”</h3>
+            <div class="carousel-textSecondary flex flex-col">
+                <h4 class="carousel-nameCharacter text-base font-medium">Alda Merini (1931 - 2009)</h4>
+               <p class="carousel-professionText text-sm text-gray-600">Poetessa, aforista e scrittrice italiana</p>
+            </div>
+        </div>
+     </div>
+
+
+     <div class="middle-content flex h-50">
+        <div class="userList-container w-[50%] h-full ">
+         <!-- farlo dinamico:importo i nomi dalla pagina 'users-page'(?) -->
+        </div>
+        <div class="calendar-container w-[50%] h-full">
+            <!-- NON SI VEDE: APPENA MESSO è COLLASSATO TUTTO -->
+            <mat-card class="demo-inline-calendar-card">
+                 <mat-calendar [(selected)]="selected"></mat-calendar>
+            </mat-card>
+            <p>Selected date: {{selected()}}</p>
+        </div>
+     </div>
+     
 
     
- <div class="homePage-mainContent w-full h-full  border-1 border-solid border-b-black">
-     <mat-card class="carousel  flex justify-center" appearance="outlined">
-        <img mat-card-image  class="carousel-image  w-50 h-full z-50" src="assets/images/AldaMerini.jpg" alt="">
-         <mat-card-title class="text-black">“L’ intelligenza senza la sensibilità non serve a niente”</mat-card-title>
-     
-     </mat-card>
 
     
  </div>
     
-</div> -->
+
 
 

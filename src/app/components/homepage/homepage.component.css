@@ -7,9 +7,9 @@
     /* height: calc(100% - 8%); */
 }
 .carousel{
-    /* border:1px solid blue; */
+    /* border:1px solid black; */
     width:50%;
-    height: 210px;
+    height: 24%;
     margin-top:10px;
     margin-left: 5%;   
      background-image: url('/assets/images/AldaMerini.jpg') ;
@@ -17,6 +17,7 @@
     background-repeat:no-repeat;
    background-position: 25% 45%; 
    position:relative;
+   overflow:none;
 }
 .carousel::before {
   content: '';
@@ -25,17 +26,41 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(217, 217, 217, 0.2); 
+  background-color: rgba(217, 217, 217, 0.6); 
+   background-size: cover;
  
 }
-
-
 .carousel-image {
-    border:1px solid blue;
     margin-left:10%;
     vertical-align:center;
-    background-color: rgba(0, 0, 0, 0.8); 
+
 }
-.carousel h3 {
-    border:1px solid red;
+.carousel-text-container{
+    h3{
+        font-family: "Inika", serif;
+    } 
 }
+.carousel-textSecondary{
+    margin-top:8%;
+    h4{
+        margin-bottom:1%;
+    }
+   
+}
+.middle-content{
+    border:1px solid black;
+        margin-top:5%;
+}
+.userList-container{
+    border:1px solid blue;
+
+    
+}
+.calendar-container{
+    border:1px solid orange;
+}
+.demo-inline-calendar-card {
+  width: 300px;
+}
+
+
