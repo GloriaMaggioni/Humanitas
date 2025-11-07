@@ -1,11 +1,17 @@
 
-<section class="dashboard-page">
-    <div class="sidebar-container">
-                <app-sidebar></app-sidebar> 
+<section class="dashboard-page flex  w-screen h-screen  overflow-hidden ">
+  
+    <app-sidebar class="sidebar flex-shrink-0"></app-sidebar> 
+
+    <div class="flex flex-col flex-1 min-w-0">
+            <app-navbar class=" navbar   flex-shrink-0"></app-navbar>
+
+            
+        <div class="content-page flex-1 overflow-auto ">
+          <router-outlet></router-outlet>  
+        </div>
 
     </div>
-    <div class="content-page w-full h-full">
-     <router-outlet></router-outlet>
-      
-    </div>
+
+
 </section>

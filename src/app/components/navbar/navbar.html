@@ -1,23 +1,16 @@
 <!-- DA FINIRE -->
-<div class="navbar w-full">
-        <div class="search-bar-container w-fit flex">
+ <div class="navbar-container w-full h-full flex items-center justify-between px-8">
+ <!--       <div class="search-bar-container  flex">
             <input class="search-input border-1 border-solid border-gray-400 rounded-md placeholder-gray-400" type="search" placeholder="Search">
-            <!-- IMPOSTARE L'EVENTO PER LA RICERCA AL CLICK -->
             <button type="button" class="search-btn rounded-md bg-amber-600">            
-               
                 <img src="assets/images/search-icon2.svg" alt="" class="size-4 search-icon">
-
-
             </button>
         </div>
         <div class="threeBtn-container w-80 flex justify-evenly items-center h-full ">
-            <!-- da sistemare stilisticamente -->
-             <!-- DA AGGIUNGERE LA PARTE LOGICA -->
                 <button matButton [matMenuTriggerFor]="menu" class="new-btn w-22 items-center text-lg border-1 border-solid border-amber-600 bg-amber-600 rounded-2xl flex text-white">
                      <img class=" w-8 mr-0.5" src="assets/images/add-icon.svg" alt="">New</button>
                    <mat-menu  #menu="matMenu">
                       <button class="option1" mat-menu-item  >Post</button>
-                      <!-- PER LA CREAZIONE DI UN POST, USARE LE API DEL SITO FORTNITO DALLA SCUOLA -->      
                       <button mat-menu-item>Utente</button>
                    </mat-menu>
 
@@ -28,7 +21,6 @@
                <img src="assets/images/Aristotele.jpg" alt="" class="size-14 rounded-full ring-1 ring-gray-600 outline -outline-offset-1 outline-white/10" />
             </span>
             <mat-menu #menu2="matMenu">
-                <!-- VALUTARE SE MANTENERLO E SISTEMARLO O ELIMINARLO -->
                 <span mat-menu-item class="nominativo-item">
                     <img src="assets/images/Aristotele.jpg" class="size-14 rounded-full ring-1 ring-gray-100" alt="">
                    <p> Nome e Cognome </p>
@@ -39,5 +31,44 @@
             </mat-menu>
 
 
-        </div>
-    </div>
+        </div> -->
+
+    <!-- SEARCH BAR -->
+     <div class="search-bar flex ">
+        <input type="search"  placeholder="Search" class="search-input  h-full  border-1 border-solid border-gray-400 rounded-md placeholder-gray-400 ">
+        <button class="search-btn  rounded-md bg-amber-600">
+             <img src="assets/images/search-icon2.svg" alt="" class="size-4 search-icon ">
+        </button>
+      </div>
+      <!-- CONTAINER DEI TRE BOTTONI -->
+      <div class="threeBtn-container w-80 h-full flex justify-evenly items-center ">
+        <!-- NEW BUTTON -->
+        <button mat-button  [matMenuTriggerFor]="newBtnMenu" class="new-btn flex w-22 items-center text-lg border-1 border-solid border-amber-600 bg-amber-600 rounded-2xl  text-white">
+            <img class=" w-8 mr-0.5" src="assets/images/add-icon.svg" alt="">New
+        </button>
+        <mat-menu  #newBtnMenu="matMenu">
+                <button class="option1" mat-menu-item  >Post</button>
+                <button mat-menu-item>Utente</button>
+        </mat-menu>
+        <!-- FAVORITE BUTTON -->
+        <span class="favorite-icon">
+            <img class="h-8" src="assets/images/favorite-icon.svg" alt="" >
+        </span>
+        <!-- USER ICON BUTTON -->
+         <span class="userIcon-btn  w-fit h-fit" [matMenuTriggerFor]="userIconMenu">
+            <img src="assets/images/Aristotele.jpg" alt="" class="size-14 rounded-full ring-1 ring-gray-600 outline -outline-offset-1 outline-white/10" />
+         </span>
+          <mat-menu #userIconMenu="matMenu">
+                <span mat-menu-item class="nominativo-item">
+                    <img src="assets/images/Aristotele.jpg" class="size-14 rounded-full ring-1 ring-gray-100" alt="">
+                   <p> Nome e Cognome </p>
+                </span>
+                
+                <button mat-menu-item>Settings</button>
+                <button mat-menu-item>Profilo</button>
+            </mat-menu>
+         
+      </div>
+
+
+    </div> 

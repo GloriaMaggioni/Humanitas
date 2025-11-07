@@ -3,12 +3,13 @@ import { Component, ElementRef,signal } from '@angular/core';
 import {MatMenuModule} from '@angular/material/menu';
 import { CreatePostService } from '../../services/create-post.service';
 import { PostComponent } from '../post/post.component';
+import { MatAnchor } from "@angular/material/button";
 
 
 
 @Component({
   selector: 'app-navbar',
-  imports: [MatMenuModule ],
+  imports: [MatMenuModule,],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })

@@ -1,15 +1,11 @@
 
-.navbar {
-    /* border:1px solid green; */
-    display:inline-flex;
-    align-items:center;
-    justify-content: space-between;
-    margin-top:2%;
-    height:8%;
-}
+/* 
+ .navbar-container{
+    border:1px solid blue;
+ }
+
 .search-bar-container{
-    /* border:1px solid red; */
-    position:relative;
+    border:1px solid red;
     width:20%;
     height:43%;
     margin-left:20%
@@ -23,7 +19,6 @@
 }
 
 .search-bar-container button {
-    /* border:1px solid black; */
     width:13%;
     margin-left: 2px;
 }
@@ -31,13 +26,12 @@
     margin:auto;
 }
 .threeBtn-container{
-    /* border:1px solid blue; */
+    border:1px solid blue;
     margin-right:8%;
 }
 
 .nominativo-item {
     border:1px solid red;
-    /* padding:3px; */
 }
 .search-btn:hover,
 .search-icon:hover,
@@ -50,4 +44,38 @@
 .post{
     border:1px solid red;
     width: 50%;
+} */
+
+
+.search-bar {
+    /* border:1px solid red; */
+    width:20%;
+    height:43%;
+    margin-left:20%;
+}
+.search-input{
+    width:85%;
+    padding-left:2%;
+}
+.search-btn{
+    width:13%;
+    margin-left: 2px;
+}
+.search-icon {
+    margin:auto;
+}
+
+.threeBtn-container{
+    /* border:1px solid blue; */
+}
+.new-btn{
+    /* border:1px solid purple; */
+}
+
+.search-btn:hover,
+.search-icon:hover,
+.favorite-icon:hover,
+.new-btn:hover,
+.userIcon-btn:hover{
+    cursor:pointer;
 }
