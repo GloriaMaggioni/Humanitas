@@ -7,7 +7,7 @@ import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-homepage',
-  imports: [RouterModule,MatCardModule ],
+  imports: [RouterModule,Navbar,MatCardModule ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
