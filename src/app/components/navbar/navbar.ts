@@ -8,7 +8,7 @@ import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [MatMenuModule, ],
+  imports: [MatMenuModule, PostComponent],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })

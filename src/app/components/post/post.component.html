@@ -2,3 +2,12 @@
 
 <p>post works!</p>
 
+<div class="post-container" (submit)="onSubmit()">
+    <!-- input per inviare la immagine [type='file' indica che si vuole caricare un file dal computer]
+       si aggiunge poi l'evento che invia i dati della immagine 
+    -->
+    <input type="file" (change)="onFileSelected($event)">  
+
+    <textarea  placeholder="Scrivi qui la tua descrizione del post" ngModel="content"></textarea>
+    <button type="submit">Pubblica</button>
+</div>
