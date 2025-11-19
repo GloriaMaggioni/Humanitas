@@ -1,0 +1,14 @@
+
+
+
+.dinamic-carousel{
+     /* margin-top:10px;
+    margin-left: 2px; */
+}
+.calendar-container{
+    /* margin-right:2px */
+}
+.selected{
+    background-color:orange;
+    color:white;
+}

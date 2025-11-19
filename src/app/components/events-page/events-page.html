@@ -1,3 +1,34 @@
-<p>events-page works!</p>
+<section class="events-page w-full h-full border border-solid border-black">
+
+    <div class="main-contents w-full h-full  border-2 border-solid border-amber-700">
+        <div class="topContents-container w-full h-fit flex  align-middle justify-evenly border border-solid border-green-700">
+              <div class="dinamic-carousel w-1/2 h-40 mt-4  rounded-lg border border-solid border-blue-600 ">
+            <!-- PRENDO LE IMMAGINI DALLA API ESTERNA(CARICA LA LOCANDINA DEGLI EVENTI) -->
+             <p>INSERISCO IN MODO DINAMICO LA LOCANDINA DELL'EVENTO DA UN API</p>
+          </div>
+          <div class="calendar-container w-1/4 h-70 mr-10 mt-4 rounded-lg border border-solid border-purple-800  ">
+            <!-- CONTIENE IL CALENDARIO(CI SEGNO GLI EVENTI) => compopnente esterno -->
+             <p>QUI INSERISCO IL CALENDAR COMPONENT INIETTATO </p>
+          </div>
+        </div>
+      
+        <div class="eventsList-container w-[60%] max-h-[100%] mt-4 ml-[5%] border border-solid border-red-600">
+          <div class="eventList-tabsGroup w-[80%] m-auto flex justify-evenly border border-solid border-blue-600" >
+            @for(item of tabs; track $index){          
+                <button [class.selected]="selectedIndex === $index" 
+                   (click)="buttonSelected($index)"
+                >{{item.label}}</button>
+            }
+       
+        </div>
+
+
+
+            
+
+        </div>
+    </div>
+
+</section>
 
  
