@@ -1,25 +1,47 @@
 <section class="events-page w-full h-full border border-solid border-black">
 
-    <div class="main-contents w-full h-full  border-2 border-solid border-amber-700">
+    <div class="main-contents w-full h-full   border-2 border-solid border-amber-700">
         <div class="topContents-container w-full h-fit flex  align-middle justify-evenly border border-solid border-green-700">
-              <div class="dinamic-carousel w-1/2 h-40 mt-4  rounded-lg border border-solid border-blue-600 ">
+          <!-- CAROUSEL -->
+           <div class="dinamic-carousel w-1/2 h-40 mt-4 ml-20 rounded-lg border border-solid border-blue-600 ">
             <!-- PRENDO LE IMMAGINI DALLA API ESTERNA(CARICA LA LOCANDINA DEGLI EVENTI) -->
              <p>INSERISCO IN MODO DINAMICO LA LOCANDINA DELL'EVENTO DA UN API</p>
           </div>
+          <!-- CALENDAR -->
           <div class="calendar-container w-1/4 h-70 mr-10 mt-4 rounded-lg border border-solid border-purple-800  ">
-            <!-- CONTIENE IL CALENDARIO(CI SEGNO GLI EVENTI) => compopnente esterno -->
+            <!-- CONTIENE IL CALENDARIO(CI SEGNO GLI EVENTI) => componente esterno -->
              <p>QUI INSERISCO IL CALENDAR COMPONENT INIETTATO </p>
           </div>
         </div>
-      
-        <div class="eventsList-container w-[60%] max-h-[100%] mt-4 ml-[5%] border border-solid border-red-600">
-          <div class="eventList-tabsGroup w-[80%] m-auto flex justify-evenly border border-solid border-blue-600" >
-            @for(item of tabs; track $index){          
-                <button [class.selected]="selectedIndex === $index" 
+        
+        <!-- EVENTS LIST  GROUP-->
+        <div class="eventsList-container w-[60%] max-h-[100%]  ml-[8%] mt-3 border border-solid border-blue-950">
+          <!-- TABS -->
+          <div class="eventList-tabsGroup w-[70%] m-auto mt-3 flex justify-evenly " >
+             @for(item of tabs; track $index){          
+                <button class=" tabsBtn border border-solid border-gray-400  text-gray-500 w-16 min-w-fit p-1 rounded-lg" 
+                [class.selected]="selectedIndex === $index" 
                    (click)="buttonSelected($index)"
                 >{{item.label}}</button>
-            }
-       
+             }  
+        </div>
+        <!-- EVENT LIST -->
+        <div class="eventsCardList  w-[90%] m-auto mt-8">
+          <div class="eventCard border border-solid border-emerald-600  w-full h-30 items-center m-auto mt-2  flex rounded-md">
+            <img src="" alt="" class="image-event w-24 h-[94%] ml-3 roundend-lg bg-cover ">
+            
+           <!-- EVENT CARD -->
+            <div class="eventCard-texts w-full h-[94%] ml-3">
+               <h5 class=" text-lg text-balance font-medium  ">Title event</h5>
+               <div class="indicationsEvent flex items-center mt-1">
+
+                 <p class="  text-sm text-gray-700 ">Data e ora</p>
+                 <p class=" ml-1 px-1 text-sm text-gray-700 italic">Luogo</p>
+               </div> 
+               <p class=" h-[50%] mt-1 border border-solid border-red-500">Descrizione evento</p>
+
+            </div>
+          </div>
         </div>
 
 
