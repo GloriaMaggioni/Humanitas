@@ -28,19 +28,31 @@
         <!-- EVENT LIST -->
         <div class="eventsCardList  w-[90%] m-auto mt-8">
           <div class="eventCard border border-solid border-emerald-600  w-full h-30 items-center m-auto mt-2  flex rounded-md">
-            <img src="" alt="" class="image-event w-24 h-[94%] ml-3 roundend-lg bg-cover ">
-            
-           <!-- EVENT CARD -->
+            <!-- EVENT CARD -->
+             @for(item of card; track card){
+              <img [src]="item.image" alt="">
+              <h5>{{item.title}}</h5>
+              <p>{{item.date}} {{item.luogo}}</p>
+              <p>{{item.description}}</p>
+             }
+
+       <!-- DA SISTEMARE : è COLLASSATO TUTTO -->
+
+
+
+           <!-- <img src="" alt="" class="image-event w-24 h-[94%] ml-3 roundend-lg bg-cover ">
             <div class="eventCard-texts w-full h-[94%] ml-3">
-               <h5 class=" text-lg text-balance font-medium  ">Title event</h5>
+             
+                <h5 class=" text-lg text-balance font-medium  ">Title event</h5>
                <div class="indicationsEvent flex items-center mt-1">
 
                  <p class="  text-sm text-gray-700 ">Data e ora</p>
                  <p class=" ml-1 px-1 text-sm text-gray-700 italic">Luogo</p>
                </div> 
-               <p class=" h-[50%] mt-1 border border-solid border-red-500">Descrizione evento</p>
+               <p class=" h-[50%] mt-1 border border-solid border-red-500">Descrizione evento</p> 
 
-            </div>
+            </div> -->
+            <!-- FINE EVENT CARD -->
           </div>
         </div>
 
