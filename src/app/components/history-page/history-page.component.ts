@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './history-page.component.css'
 })
 export class HistoryPageComponent {
+  
 
 }

@@ -59,6 +59,10 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "proxyConfig": "./src/app/proxy.config.json"
+ 
+          },
           "configurations": {
             "production": {
               "buildTarget": "Humanitas:build:production"

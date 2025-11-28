@@ -1,17 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
-import { NgClass } from "@angular/common";
-import { Interface } from 'node:readline';
 import { EventCardService } from '../../services/event-card.service';
- export interface Card {
-    image: File,
-    title: string,
-    date: number,
-    luogo: string,
-    description: string
+import { Card } from './eventCard.model';
 
-  };
+
+
+
 @Component({
   selector: 'app-events-page',
   imports: [MatButtonModule, MatSidenavModule, ],
@@ -19,11 +14,11 @@ import { EventCardService } from '../../services/event-card.service';
   styleUrl: './events-page.css'
 })
 
-export class EventsPage {
+export class EventsPage implements OnInit{
 
+
+// tab scelta categoria ---> da collegare al cambio delle card
 selectedIndex: number = 0
-card: Card[] = [];
-constructor(private eventCard : EventCardService){}
 
   buttonSelected(index: number) {
     this.selectedIndex = index;
@@ -37,17 +32,28 @@ constructor(private eventCard : EventCardService){}
     { label: 'Social' },
     { label: 'Book' },
     { label: 'Economy' }
-  ]
-  cardData() {
-     this.eventCard.getCards().subscribe({
-     next: (data: any) =>{this.card = data}
- })
- error: (err: any) => {console.log('errore:', err)}
+  ];
 
+  
+  cards: Card[] = [];
+
+  constructor(private eventCardService: EventCardService) {}
+
+  ngOnInit(): void {
+    this.eventCardService.getCards().subscribe({
+      next: (data: Card[]) => this.cards = data,
+      error: err => console.error('Errore nel caricamento eventi:', err)
+    });
   }
 
- 
+
+  
 }
+
+  
+
+ 
+
 
 
 

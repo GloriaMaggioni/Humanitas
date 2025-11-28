@@ -1,0 +1,7 @@
+{
+    "/api": {
+        "target": "https://openagenda.openpa.opencontent.io/",
+        "secure": false,
+        "changeOrigin": true
+    }
+}
