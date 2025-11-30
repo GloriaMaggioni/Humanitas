@@ -11,51 +11,27 @@ export class HistoryPageComponent {
 
   cityCard = [
     {
-      link: 'milan',
-      img: '/assets/images/AldaMerini.jpg',
-  
+      link: '/milano',
+      img: '/assets/images/Milano.jpg',
       label:'Milano'
     },
      {
-      img: '/assets/images/AldaMerini.jpg',
-      link: 'milan',
-      label:'Milano'
+      link: '/monza',
+      img: '/assets/images/Monza.jpg',
+      label:'Monza'
+
     },
      {
-      img: '/assets/images/AldaMerini.jpg',
-      link: 'milan',
-      label:'Milano'
+      link: '/lecco',
+      img: '/assets/images/Lecco.jpg',
+      label:'Lecco'
     },
      {
-      img: '/assets/images/AldaMerini.jpg',
-      link: 'milan',
-      label:'Milano'
+      link: '/como',
+      img: '/assets/images/Como.jpg',
+      label:'Como'
     },
-     {
-      img: '/assets/images/AldaMerini.jpg',
-      link: 'milan',
-      label:'Milano'
-    },
-     {
-      img: '/assets/images/AldaMerini.jpg',
-      link: 'milan',
-      label:'Milano'
-    },
-     {
-      img: '/assets/images/AldaMerini.jpg',
-      link: 'milan',
-      label:'Milano'
-    },
-     {
-      img: '/assets/images/AldaMerini.jpg',
-      link: 'milan',
-      label:'Milano'
-    },
-     {
-      img: '/assets/images/AldaMerini.jpg',
-      link: 'milan',
-      label:'Milano'
-    }
+   
   ]
   
 
