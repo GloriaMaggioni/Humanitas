@@ -12,11 +12,11 @@ import { ProductivityAndHealthPageComponent } from './components/productivity-an
 import { UtentsPageComponent } from './components/utents-page/utents-page.component';
 import { SettingsPageComponent } from './components/settings-page/settings-page.component';
 import { MilanoComponent } from './components/citiesPages/milano/milano.component';
-import { MonzaComponent } from './citiesPages/monza/monza.component';
-import { LeccoComponent } from './citiesPages/lecco/lecco.component';
-import { ComoComponent } from './citiesPages/como/como.component';
 
 
+import { MonzaComponent } from './components/citiesPages/monza/monza.component';
+import { LeccoComponent } from './components/citiesPages/lecco/lecco.component';
+import { ComoComponent } from './components/citiesPages/como/como.component';
 
 export const routes: Routes = [    
     {path: '', component: Dashboard ,children: [

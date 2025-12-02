@@ -3,7 +3,7 @@ import { RouterLink, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-history-page',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet  ],
   templateUrl: './history-page.component.html',
   styleUrl: './history-page.component.css'
 })
