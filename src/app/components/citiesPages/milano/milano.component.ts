@@ -1,25 +1,18 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage, NgStyle } from '@angular/common';
+import { carousel } from '../../carousel.model';
 
 
- export interface carouselImg {
-  id: number,
-  img: string,
-  cit: string,
-  name: string,
-  bornDate: number;
-  deathDate: number,
-  profession: string
- }
 @Component({
   selector: 'app-milano',
-  imports: [],
+  imports: [NgStyle],
   templateUrl: './milano.component.html',
   styleUrl: './milano.component.css'
 })
 export class MilanoComponent implements OnInit, OnDestroy {
 
- carouselImg :  carouselImg [] = [
+  //CREATION CAROUSEL
+ carousel :  carousel [] = [
     { 
       id: 1,
       img :'/assets/charactersImages/AdaNegri.jpg', 
@@ -27,37 +20,42 @@ export class MilanoComponent implements OnInit, OnDestroy {
       name: 'Ada Negri ', 
       bornDate: 1870,
       deathDate:  1945,
-      profession: 'Poetessa e scrittrice, prima donna ammessa all’Accademia D’Italia'
+      profession: 'Poetessa e scrittrice, prima donna ammessa all’Accademia D’Italia',
+      background: 'assets/charactersImages/AdaNegri.jpg'
     },
      {
       id: 2,
-      img :'/assets/charactersImages/ClaraMattei.jpg', 
-      cit: '"Io scrivo per dare una voce a chi non ne ha"', 
-      name: 'Clara Mattei ', 
-      bornDate: 1870,
-      deathDate:  1945,
-      profession: 'Poetessa e scrittrice, prima donna ammessa all’Accademia D’Italia'
+      img :'/assets/charactersImages/ClaraMaffei.jpg', 
+      cit: '"Il dialogo e l\'arte sono la vera forza di un popolo"', 
+      name: 'Clara Maffei ', 
+      bornDate: 1814,
+      deathDate:  1886,
+      profession: 'Fondatrice del salotto letterario che ispirò il Risorgimento milanese',
+      background: 'assets/charactersImages/ClaraMaffei.jpg'
+
     },
      { 
       id: 3,
       img :'/assets/charactersImages/CristinaTrivulzio.jpg', 
-      cit: '"Io scrivo per dare una voce a chi non ne ha"', 
+      cit: '"La libertà è un bene che non si riceve in dono, ma si conquista"', 
       name: 'Cristina Trivulzio', 
-      bornDate: 1870,
-      deathDate:  1945,
-      profession: 'Poetessa e scrittrice, prima donna ammessa all’Accademia D’Italia'
+      bornDate: 1808,
+      deathDate:  1871,
+      profession: 'Patriota, giornalista e intellettuale',
+      background: 'assets/charactersImages/CristinaTrivulzio.jpg'
+
     }
   ]
 
+  //TRASFORM THE CAROUSEL INTO THE DINAMIC CAROUSEL
   currentId : number= 0;
   private intervalId : any;
-  //ascolta i cambiamenti
+
   constructor(private cdr: ChangeDetectorRef){}
 
 
-// prende l'elemento corrente
-  get currentImg(): carouselImg{
-   return this.carouselImg[this.currentId]
+  get currentCharacter(): carousel{
+   return this.carousel[this.currentId]
   }
   ngOnInit(): void{
     this.start()
@@ -66,7 +64,6 @@ export class MilanoComponent implements OnInit, OnDestroy {
     this.intervalId = setInterval( () => {
       this.nextImg();
       this.cdr.detectChanges()
-
     }, 3000)
   }
 
@@ -77,26 +74,30 @@ export class MilanoComponent implements OnInit, OnDestroy {
   }
 
   nextImg(): void {
-    if(this.currentId < this.carouselImg.length - 1){
+    if(this.currentId < this.carousel.length - 1){
       this.currentId++;
     } else {
       this.currentId = 0;
     }
   }
 
-  // ritorna all'inizio
+
   prevImg(): void {
     if(this.currentId > 0){
       this.currentId--;
     } else {
-      this.currentId = this.carouselImg.length -1;
+      this.currentId = this.carousel.length -1;
     }
     this.cdr.detectChanges();
-    console.log('Cambiato a:', this.currentImg.name);
+    console.log('Cambiato a:', this.currentCharacter.name);
   }
 
   ngOnDestroy(): void {
     this.stop()
   }
+
+
+
+  // API REQUEST FOR NEWS LIST
 
 }

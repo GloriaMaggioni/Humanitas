@@ -1,11 +1,11 @@
 .carousel{
+    
     width:50%;
     height: 24%;
     margin-top:10px;
-     background-image: url('/assets/images/LeonardoDaVinci2.jpg') ;
-     background-size: cover;
+     background-size: cover; 
     background-repeat:no-repeat; 
-   background-position: 20% 25%; 
+   background-position: 25% 30%; 
    position:relative;
    overflow:none;
 }
@@ -23,8 +23,6 @@
 .carousel-image {
     margin-left:10%;
     vertical-align:center;
-    
-
 }
 .carousel-text-container{
     h3{
