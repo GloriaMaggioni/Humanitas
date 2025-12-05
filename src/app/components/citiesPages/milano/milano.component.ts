@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NgOptimizedImage, NgStyle } from '@angular/common';
-import { carousel } from '../../carousel.model';
+import { carousel } from '../../carousel/carousel.model';
 
 
 @Component({

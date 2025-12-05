@@ -1,0 +1,35 @@
+.carousel{
+
+     background-size: cover; 
+    background-repeat:no-repeat; 
+   background-position: 25% 30%; 
+   position:relative;
+   overflow:none;
+}
+.carousel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(217, 217, 217, 0.6); 
+  background-size: cover;
+ 
+}
+.carousel-image {
+    /* margin-left:10%; */
+    vertical-align:center;
+}
+.carousel-text-container{
+    h3{
+        font-family: "Inika", serif;
+    } 
+}
+.carousel-textSecondary{
+    margin-top:5%;
+    h4{
+        margin-bottom:1%;
+    }
+   
+}
