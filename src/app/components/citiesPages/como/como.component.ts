@@ -41,7 +41,8 @@ export class ComoComponent {
         profession: 'Architetto,massimo esponente del razionalismo italiano',
         background: '/assets/charactersImages/GiuseppeTerragni.jpg'
   
-      }
+      },
+       
     ]
 
 }
