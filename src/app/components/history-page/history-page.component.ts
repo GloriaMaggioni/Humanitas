@@ -38,7 +38,6 @@ export class HistoryPageComponent {
 
   carousel: carousel [] = [
      { 
-      id: 1,
       img :'/assets/charactersImages/LeonardoDaVinci2.jpg', 
       cit: '"Il saper vedere è il vero motore del mondo "', 
       name: 'Leonardo Da Vinci', 
