@@ -3,7 +3,6 @@ import { RouterLink, RouterOutlet } from "@angular/router";
 import { carousel } from '../carousel/carousel.model';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { FirestoreService } from '../../services/firestore-service';
-import { Characters } from '../carousel/characters.model';
 
 @Component({
   selector: 'app-history-page',
