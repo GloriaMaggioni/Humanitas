@@ -7,13 +7,11 @@
     
     <!-- Carousel -->
     <div class=" carousel-container w-[45%] h-[24%] mx-auto  ">
-       
-                <!-- <app-carousel  [carousel]="characters " ></app-carousel> -->
-                 @if (characters.length > 0) {
-  <app-carousel [carousel]="characters"></app-carousel>
-} @else {
-  <div class="text-center text-black">Caricamento...</div>
-}
+                  @if (characters.length > 0) {
+                      <app-carousel [carousel]="characters"></app-carousel>
+                } @else {
+                   <div class="text-center mt-20 text-lg italic text-shadows-md font-small text-black">Loading...</div>
+                } 
     </div>
 
     <!-- Cities Cards Container -->

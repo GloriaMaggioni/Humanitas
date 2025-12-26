@@ -1,17 +1,31 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { carousel } from '../carousel/carousel.model';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { RouterLink, RouterOutlet } from "@angular/router";
+import { FirestoreService } from '../../services/firestore-service';
 
 
 @Component({
   selector: 'app-future-page',
   standalone:true,
-  imports: [CarouselComponent, RouterLink, RouterOutlet],
+  imports: [CarouselComponent, RouterOutlet, RouterLink],
   templateUrl: './future-page.component.html',
   styleUrl: './future-page.component.css'
 })
-export class FuturePageComponent {
+export class FuturePageComponent implements OnInit{
+  characters : any[] = []
+  private firestoreService = inject(FirestoreService);
+  private cdr = inject(ChangeDetectorRef)
+
+  ngOnInit(): void {
+    this.prendiCharacters()
+    
+  }
+  async prendiCharacters(){
+    this.characters= await this.firestoreService.getCharacters('future');
+    this.cdr.detectChanges();
+    console.log(this.characters)
+  }
   
     cityCard = [
       {
@@ -38,18 +52,8 @@ export class FuturePageComponent {
      
     ];
   
-    carousel: carousel [] = [
-      //  { 
-      //   img :'/assets/charactersImages/LeonardoDaVinci2.jpg', 
-      //   cit: '"Il saper vedere è il vero motore del mondo "', 
-      //   name: 'Leonardo Da Vinci', 
-      //   bornDate: 1452,
-      //   deathDate:  1519,
-      //   profession: 'Scienziato, inventore artista italiano',
-      //   background: '/assets/charactersImages/LeonardoDaVinci2.jpg'
-  
-      // }
-    ]
+   
+     
     
   
 

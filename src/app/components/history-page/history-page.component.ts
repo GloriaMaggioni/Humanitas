@@ -25,7 +25,6 @@ export class HistoryPageComponent implements OnInit{
    async prendiCharacters(){
    this.characters = await this.firestoreService.getCharacters('history');
    this.cdr.detectChanges()
-     console.log(this.characters)
  
    
   }
