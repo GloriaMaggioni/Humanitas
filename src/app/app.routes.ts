@@ -12,20 +12,12 @@ import { ProductivityAndHealthPageComponent } from './components/productivity-an
 import { UtentsPageComponent } from './components/utents-page/utents-page.component';
 import { SettingsPageComponent } from './components/settings-page/settings-page.component';
 
-import { MilanoComponent } from './components/citiesPages/milano/milano.component';
-import { MonzaComponent } from './components/citiesPages/monza/monza.component';
-import { LeccoComponent } from './components/citiesPages/lecco/lecco.component';
-import { ComoComponent } from './components/citiesPages/como/como.component';
 
 export const routes: Routes = [    
     {path: '', component: Dashboard ,children: [
         {path: '', component: HomepageComponent},
         {path: 'events', component: EventsPage},
         {path: 'history',  loadComponent: () => import('./components/history-page/history-page.component').then(m => m.HistoryPageComponent)},
-        {path: 'milano', loadComponent: () => import('./components/citiesPages/milano/milano.component').then(m => m.MilanoComponent)},
-        {path:'monza', loadComponent: () => import('./components/citiesPages/monza/monza.component').then(m => m.MonzaComponent)},
-        {path:'lecco', loadComponent: () => import('./components/citiesPages/lecco/lecco.component').then(m => m.LeccoComponent)},
-         {path: 'como', loadComponent: () => import('./components/citiesPages/como/como.component').then(m => m.ComoComponent)},
         {path: 'future', loadComponent: () => import('./components/future-page/future-page.component').then(m => m.FuturePageComponent)},
         {path:'placesandspaces', component: PlacesAndSpacesPageComponent},
         {path: 'productivityandhealth', component: ProductivityAndHealthPageComponent},

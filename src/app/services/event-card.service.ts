@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Card } from '../components/events-page/eventCard.model';
+import { Card } from '../models/eventCard.model';
 @Injectable({
   providedIn: 'root',
 })

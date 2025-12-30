@@ -1,13 +1,13 @@
 import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from "@angular/router";
-import { carousel } from '../carousel/carousel.model';
+import { carousel } from '../../models/carousel.model';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { FirestoreService } from '../../services/firestore-service';
 
 @Component({
   selector: 'app-history-page',
   standalone:true,
-  imports: [RouterLink, RouterOutlet, CarouselComponent],
+  imports: [ RouterOutlet, CarouselComponent],
   templateUrl: './history-page.component.html',
   styleUrl: './history-page.component.css'
 })
@@ -33,36 +33,36 @@ export class HistoryPageComponent implements OnInit{
    
 
 
-  cityCard = [
-    {
-      link: '/milano',
-      img: '/assets/images/Milano.jpg',
-      label:'Milano',
-      category: 'history'
-    },
-     {
-      link: '/monza',
-      img: '/assets/images/Monza.jpg',
-      label:'Monza',
-      category: 'history'
+  // cityCard = [
+  //   {
+  //     link: '/milano',
+  //     img: '/assets/images/Milano.jpg',
+  //     label:'Milano',
+  //     category: 'history'
+  //   },
+  //    {
+  //     link: '/monza',
+  //     img: '/assets/images/Monza.jpg',
+  //     label:'Monza',
+  //     category: 'history'
 
-    },
-     {
-      link: '/lecco',
-      img: '/assets/images/Lecco.jpg',
-      label:'Lecco',
-      category: 'history'
+  //   },
+  //    {
+  //     link: '/lecco',
+  //     img: '/assets/images/Lecco.jpg',
+  //     label:'Lecco',
+  //     category: 'history'
 
-    },
-     {
-      link: '/como',
-      img: '/assets/images/Como.jpg',
-      label:'Como',
-      category: 'history'
+  //   },
+  //    {
+  //     link: '/como',
+  //     img: '/assets/images/Como.jpg',
+  //     label:'Como',
+  //     category: 'history'
 
-    },
+  //   },
    
-  ];
+  // ];
 
 
   

@@ -2,7 +2,7 @@
  <div class="navbar-container w-full h-full flex items-center justify-between px-8">
     <!-- SEARCH BAR -->
      <div class="search-bar flex ">
-        <input type="search"  placeholder="Search" class="search-input  h-full  border-1 border-solid border-gray-400 rounded-md placeholder-gray-400 ">
+        <input type="search"  placeholder="Search" class="search-input  h-full   border-solid border-gray-400 rounded-md placeholder-gray-400 ">
         <button class="search-btn  rounded-md bg-amber-600">
              <img src="assets/images/search-icon2.svg" alt="" class="size-4 search-icon ">
         </button>
@@ -10,7 +10,7 @@
       <!-- CONTAINER DEI TRE BOTTONI -->
       <div class="threeBtn-container w-80 h-full flex justify-evenly items-center ">
         <!-- NEW BUTTON -->
-        <button mat-button  [matMenuTriggerFor]="newBtnMenu" class="new-btn flex w-22 items-center text-lg border-1 border-solid border-amber-600 bg-amber-600 rounded-2xl  text-white">
+        <button mat-button  [matMenuTriggerFor]="newBtnMenu" class="new-btn flex w-22 items-center text-lg  border-solid border-amber-600 bg-amber-600 rounded-2xl  text-white">
             <img class=" w-8 mr-0.5" src="assets/images/add-icon.svg" alt="">New
         </button>
         <mat-menu  #newBtnMenu="matMenu">
@@ -21,7 +21,7 @@
            <div class="post-form" >
            <button class="closedBtn" (click)="createPost()">Chiudi</button>
            <p>QUI PUOI CREARE IL NUOVO POST
-            <app-post></app-post>
+            <!-- <app-post></app-post> -->
            </p>
         </div>
         }

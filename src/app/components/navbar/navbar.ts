@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef,signal } from '@angular/core';
 import {MatMenuModule} from '@angular/material/menu';
-import { CreatePostService } from '../../services/create-post.service';
-import { PostComponent } from '../post/post.component';
+
 
 
 
 @Component({
   selector: 'app-navbar',
-  imports: [MatMenuModule, PostComponent],
+  imports: [MatMenuModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })

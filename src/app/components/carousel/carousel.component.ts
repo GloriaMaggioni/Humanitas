@@ -1,5 +1,5 @@
 import { Component, input, Input } from '@angular/core';
-import { carousel } from './carousel.model';
+import { carousel } from '../../models/carousel.model';
 import { ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { NgOptimizedImage, NgStyle } from '@angular/common';
 

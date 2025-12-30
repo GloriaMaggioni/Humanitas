@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { EventCardService } from '../../services/event-card.service';
-import { Card } from './eventCard.model';
+import { Card } from '../../models/eventCard.model';
 
 
 
