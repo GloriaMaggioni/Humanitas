@@ -22,15 +22,14 @@ export class NewsCityService {
       //API della Regione Lombardia
       private apiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json';   // dataset per Eventi culturali
 
-      getNewsEvents(){
-        return this.http.get<any[]>(this.apiUrl)
-      }
-
-      getNewsEventsLimit(limit: number){
-        const params = new HttpParams().set('$limit', limit.toString());
+      getNewsEvents(limit: number, offset:number = 0){
+        const params = new HttpParams()
+           .set('$limit', limit.toString())
+           .set('$offset', offset.toString())
         return this.http.get<any[]>(this.apiUrl, {params})
       }
 
+  
 }
 
    

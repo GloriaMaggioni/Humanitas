@@ -22,24 +22,30 @@ export class FuturePageComponent implements OnInit{
   
    newsCard : futureNewsCard[] = []
    private futureNewsService  = inject(NewsCityService)
-  
+   currentPage = 1;
 
   ngOnInit(): void {
     this.prendiCharacters()
-    this.futureNewsService.getNewsEventsLimit(10).subscribe({
-      next: (data: futureNewsCard[]) => this.newsCard = data,
-      error: err => console.error('Errore:', err)
-    })
-    console.log(this.newsCard)
+    this.loadNews()
+    
   }
 
   // presi i dati dei personaggi per il carousel
   async prendiCharacters(){
     this.characters= await this.firestoreService.getCharacters('future');
     this.cdr.detectChanges();
-    // console.log(this.characters)
   }
   
+  loadNews(){
+    const offset = (this.currentPage - 1) * 10;
+    const limit = 10
+
+    this.futureNewsService.getNewsEvents( limit,offset).subscribe({
+      next: (data: futureNewsCard[]) => this.newsCard = data,
+      error: err => console.error('Errore:', err)
+    })
+    console.log(this.newsCard)
+  }
 
 
 }
