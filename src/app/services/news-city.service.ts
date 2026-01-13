@@ -8,9 +8,7 @@ import { futureNewsCard } from '../models/futureNews.model';
   providedIn: 'root',
 })
 export class NewsCityService {
-      getTotaLCounts() {
-        throw new Error('Method not implemented.');
-      }
+  
   /*
     mia chiave api
      Id = 799cetvgyj7yux255fpuqrprj

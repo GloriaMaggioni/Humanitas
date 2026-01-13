@@ -25,8 +25,10 @@ export class FuturePageComponent implements OnInit{
    private futureNewsService  = inject(NewsCityService)
    @Input() currentPage: number = 1;
     limit: number = 10; // numero di news da visualizzare per pagina
- 
- 
+
+
+
+
 
 
   ngOnInit(): void {
@@ -56,8 +58,11 @@ export class FuturePageComponent implements OnInit{
      console.log(this.newsCard)
   }
 
-  changePage(page: number): void{
-     this.currentPage = page;
-  }
+  //evento click per il cambio pagina con le news nuove
+onChangePage(pageNumber : number){
+  this.currentPage = pageNumber;
+  this.loadNews()
+}
+ 
 
 }
