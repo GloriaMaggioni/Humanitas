@@ -25,6 +25,7 @@ export class FuturePageComponent implements OnInit{
    private futureNewsService  = inject(NewsCityService)
    @Input() currentPage: number = 1;
     limit: number = 10; // numero di news da visualizzare per pagina
+     offset = (this.currentPage - 1) * this.limit;
 
 
 
@@ -45,11 +46,16 @@ export class FuturePageComponent implements OnInit{
 
 
   loadNews(){
-    const offset = (this.currentPage - 1) * this.limit;
+    // const offset = (this.currentPage - 1) * this.limit;
+    let offset = this.offset
 
     this.futureNewsService.getNewsEvents(this.limit,offset).subscribe({
       next: data =>{
         this.newsCard = data;
+        console.log( 'offset dentro loadnews', this.offset)
+          console.log('currentPage dentro loadnews', this.currentPage)
+        
+
       },
       error: err =>{ 
         console.error('Errore:', err)
@@ -61,7 +67,21 @@ export class FuturePageComponent implements OnInit{
   //evento click per il cambio pagina con le news nuove
 onChangePage(pageNumber : number){
   this.currentPage = pageNumber;
-  this.loadNews()
+  if(pageNumber > this.currentPage){
+    this.offset++;
+    this.loadNews()
+    console.log('pageNumber maggiore currentPage')
+  }else if (pageNumber < this.currentPage && pageNumber > 0){
+    this.offset--
+    this.loadNews();
+        console.log('pageNumber minore currentPage')
+  } else  if(pageNumber = 0){
+     this.offset = 0;
+    console.log('pageNumber uguale a zero')
+
+   }
+
+
 }
  
 

@@ -28,7 +28,7 @@ export class Paginator implements OnInit  {
        for(let i = this.currentPage; i <= this.totalPages; i++){  // mostra i numeri delle pagine dinamicamente
           this.pages.push(i)
         }
-         console.log(this.pages)
+        //  console.log(this.pages)
      }
 
 
