@@ -34,7 +34,8 @@
      </div>
 
       <div class="paginationNav-container m-auto mt-4  border border-solid border-blue-800">
-          <app-paginator  [currentPage]="currentPage" (changePage)="onChangePage($event)" ></app-paginator>
+          <!-- <app-paginator [totalNews]="newsCard.length" [currentPage]="currentPage" [newsForPage]="10" (changePage)="onChangePage($event)" ></app-paginator> -->
+      <app-paginator [currentPage]="currentPage" [totalPages]="newsCard.length" ></app-paginator>   
       
       </div> 
      

@@ -9,29 +9,11 @@ import { NewsCityService } from '../../services/news-city.service';
   styleUrl: './paginator.css',
 })
 export class Paginator implements OnInit  {
+/*
 
-@Input() currentPage: number = 1
- @Input() newsForPage = 10;   //numero news per pagina
- @Input() totalPages : number = 20;  // numero tot di pagine
   @Output() changePage :  EventEmitter<any> = new EventEmitter()
  
 
-
-     pages: number[] = [];
-
-     ngOnInit(): void {
-      const totalPages: number = Math.ceil(this.totalPages / this.newsForPage)   // pagine tot servite per mostrare le news
-      this.numberPage()
-     
-       
-     }
-
-     numberPage() {
-       for(let i = this.currentPage; i <= this.totalPages; i++){  // mostra i numeri delle pagine dinamicamente
-          this.pages.push(i)
-        }
-          console.log(this.pages)
-     }
 
 
      //metodo che emette il numero della pagina con event emitter
@@ -41,9 +23,8 @@ export class Paginator implements OnInit  {
      }
 
     prev(){
-      
-         this.changePage.emit(this.currentPage - 1)   
-          console.log('paginacorrente', this.currentPage)
+      this.changePage.emit(this.currentPage - 1)   
+      console.log('paginacorrente', this.currentPage)
        
 
     }
@@ -55,6 +36,46 @@ export class Paginator implements OnInit  {
     }
   
   
-   
-   }
+   */
   
+
+    /*
+      ho bisogno: (segnare tutti come @Input())
+       1. currentPage  ---> corrisponde offset
+       2. totalNews 
+       3. newsPerPage ---> corrisponde al  limit
+       4. totalPages ---> calcolo start e end  ---> salso in array pages(immagazzina i dati proveniente dalla chiama api)
+    */
+
+   @Input() currentPage : number = 1;
+   @Input() totalPages: number = 0;
+   @Input() totalNews!: number;
+   @Input() newsPerPage!: number;
+   @Output() changePage : EventEmitter<any> = new EventEmitter()     // evento per cambiare la pagina al click
+  
+    pages : number[] = []    // array per immagazzinare le news dalla chiamata API
+
+
+
+
+  ngOnInit(): void {
+   if(this.totalNews > 0) {
+      this.totalPages = Math.ceil(this.totalNews / this.newsPerPage)    // calcolo del totale delle pagine
+   }
+    this.paginatorLength()
+    
+    console.log('questo è pages in ngOnInit', this.pages)
+        console.log('questo è pages in paginatorRange', this.paginatorLength())
+
+  }
+
+   // aumentare/diminuire la lunghezza del paginator dinamicamente
+    paginatorLength(){        
+      let start = 1;                                                         // da dove parte il paginator
+      let end = this.totalPages                                             // dove finisce il paginator
+       this.pages = Array.from({length: end - start + 1}, (_, i) => i + 1)  // calcolo della lunghezza dell'array delle news
+       console.log('pages:', this.pages)
+    }
+
+    
+}

@@ -8,28 +8,21 @@ import { futureNewsCard } from '../models/futureNews.model';
   providedIn: 'root',
 })
 export class NewsCityService {
-  
-  /*
-    mia chiave api
-     Id = 799cetvgyj7yux255fpuqrprj
-     Codice chiave segreto = 3wtdsq09fx149nsgn0ix96hntwq91oslv7d7tzn1fel0wiz8ts
-     App token = e5SVtvD4Ebdo4zmx942J5o1ad
-  */
-
-      private http = inject(HttpClient);
+ 
+private http = inject(HttpClient);
     
-      //API della Regione Lombardia
+     
+     //API della Regione Lombardia
       private apiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json';   // dataset per Eventi culturali 199 elementi max
 
-      getNewsEvents(limit: number, offset:number = 0): Observable<any>{
+      getNewsEvents(limit: number, offset:number = 0): Observable<any>{   // limit -->  quanti el mostrare per pagina
         const params = new HttpParams()
            .set('$limit', limit.toString())
            .set('$offset', offset.toString())
          
-         return this.http.get<any[]>(this.apiUrl, {params})
-        
+          return this.http.get<any[]>(this.apiUrl, {params})
+       
       }
-
   
 
   
