@@ -1,11 +1,15 @@
-<div class="flex items-center justify-between border-t border-gray-200  px-4 py-3 sm:px-6">
+<div class="flex items-center justify-between m:flex m:flex-1  mt-6  px-2 py-3 ">
  
-  <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+  <div class="  sm:flex sm:items-center sm:justify-between ">
     <div>
-      <nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-xs">
-        <a  class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-900 inset-ring inset-ring-gray-300 hover:cursor-pointer hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0" (click)="prev()"> Previous </a>
-             @for(page of pages; track $index){
-              <a href="javascript:void(0)" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 inset-ring inset-ring-gray-300 hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0 focus:bg-amber-600 focus:text-white"
+      <nav aria-label="Pagination" class="   isolate inline-flex -space-x-px rounded-md shadow-xs">
+        <button  class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-900 inset-ring inset-ring-gray-300 hover:cursor-pointer hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0 disabled:text-gray-600 disabled:cursor-not-allowed disabled:hover:bg-gray-50"
+           [disabled]="currentPage == 1 "
+            (click)="prev()"> 
+            Previous
+         </button>
+             @for(page of visibleBtn; track $index){
+              <a href="javascript:void(0)" class="relative  inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 inset-ring inset-ring-gray-300 hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0 focus:bg-amber-600 focus:text-white"
               (click)="changePageClick(page)"
               [ngClass]="{
                 'bg-amber-600 text-white': currentPage === page,  
@@ -15,11 +19,13 @@
               </a>
              }
 
-        <button  class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-900 inset-ring inset-ring-gray-300 hover:cursor-pointer hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0" (click)="next()" >
-          Next
-         
+        <button  class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-900 inset-ring inset-ring-gray-300 hover:cursor-pointer hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0 disabled:text-gray-600 disabled:cursor-not-allowed disabled:hover:bg-gray-50"
+          [disabled]="currentPage == pages.length "
+          (click)="next()">
+          Next   
         </button>
       </nav>
+
     </div>
   </div>
 </div>

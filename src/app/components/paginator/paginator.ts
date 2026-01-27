@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NewsCityService } from '../../services/news-city.service';
 import { NgClass } from '@angular/common';
 
@@ -19,20 +19,42 @@ export class Paginator implements OnInit, OnChanges  {
    @Output() changePage : EventEmitter<any> = new EventEmitter()     // evento per cambiare la pagina al click
   
     pages : number[] = [];    // array per immagazzinare il numero delle pagine 
+    visibleBtn : number[] = []     // array per i btn visibili sotto i 1280px di screen
 
 
 
 
 
   ngOnInit(): void {
-    this.paginatorLength()
+    this.paginatorLength();
+    this.updateVisibleBtn()
   }
 
+   // far vedere alcuni btn se la misura dello screen diminuisce
+   @HostListener('window:resize')
+   onResize(): void {
+      this.updateVisibleBtn()
+   }
 
-  ngOnChanges(changes: SimpleChanges){
-    if(changes['totalNews'] || changes['newsPerPage']){
+   updateVisibleBtn(){                     //decide quali btn del paginator far vedere sotto i 1280px di screen
+      if(typeof window !== 'undefined'){
+       const width = window.innerWidth;    // indica la dimensione dello schermo
+
+        if(width < 1280){                     //dallo scermo grande in giù
+       
+           this.visibleBtn = [1, this.currentPage, this.pages.length]
+        } else{
+           this.visibleBtn = this.pages
+        }
+
+      }   
+   }
+
+  ngOnChanges(changes: SimpleChanges):void {            // controlla se totalNews e newsPerpage cambiano
+    if(changes['totalNews'] || changes['newsPerPage']){         
        this.paginatorLength()
     }
+    this.updateVisibleBtn()
   
   }
 
@@ -47,23 +69,18 @@ export class Paginator implements OnInit, OnChanges  {
     }
 
 
-    // evento click (verso il padre)
+    // evento click  (verso il padre) per cambio pagina
      changePageClick(pageNumber: number){    
        this.changePage.emit(pageNumber)       
      }
 
-      // TODO: METTERE CONTROLLO PER DISABILITARE I BUTTTONS
-      prev(){
+     // eventi btn per cambio pagina 
+    prev(){
       this.changePage.emit(this.currentPage - 1)   
-      console.log('paginacorrente', this.currentPage)
-       
-
     }
-    next(){
-      this.changePage.emit(this.currentPage + 1)     
-      console.log('paginacorrente', this.currentPage)
-    
-    
+
+    next(){  
+      this.changePage.emit(this.currentPage + 1)      
     }
     
 }

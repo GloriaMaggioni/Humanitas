@@ -3,7 +3,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Stack+Sans+Notch:wght@200..700&display=swap" rel="stylesheet">
 
 
-<section class="future-page min-h-full flex flex-col justify-between  md:p-6 border border-solid border-amber-600">
+<section class="future-page min-h-full flex flex-col justify-between  md:p-6 ">
     
     <!-- Carousel -->
     <div class=" carousel-container w-[45%] h-[24%] mx-auto">
@@ -16,7 +16,7 @@
     </div>
 
     <!-- Events Cards Container -->
-     <div class="eventsList-container border border-solid border-red-700 w-full  m-t-6">
+     <div class="eventsList-container  w-full  m-t-6">
         @for(card of newsCard; track $index){
          <div class="evento-card border border-solid border-gray-400 w-[60%] h-fit m-auto mt-4 p-4 rounded-md">
             <div class="event-title w-fit flex justify-evenly align-middle ">
@@ -33,7 +33,7 @@
         }  
      </div>
 
-      <div class="paginationNav-container m-auto mt-4  border border-solid border-blue-800">
+      <div class="paginationNav-container m-auto mt-4 max-w-[80%]">
       <app-paginator [currentPage]="currentPage" [totalNews]="totalNews"  [newsPerPage]="limit"  (changePage)="onChangePage($event)"></app-paginator>   
       
       </div> 
