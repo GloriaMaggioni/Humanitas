@@ -27,7 +27,9 @@ export class HistoryPageComponent implements OnInit{
     characters: any[]=[];
     itemsCard : CultureItems[] = [];           // immagazzina i dati da visualizzare nelle card
 
+    el: any = null;
     isOpen = false;
+
 
  
 
@@ -57,8 +59,15 @@ export class HistoryPageComponent implements OnInit{
    }
    
 
- newWindow(){             // modificarlo in modo che si apra solo quello a cui ho cliccato
-  this.isOpen = !this.isOpen
+ newWindow(index : number){             // modificarlo in modo che si apra solo quello a cui ho cliccato
+  // this.isOpen = !this.isOpen
+   this.el = this.itemsCard[index];
+   this.isOpen = true;
+ }
+
+ chiudi(){
+  this.isOpen= false;
+  this.el= null
  }
   
 

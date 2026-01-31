@@ -30,17 +30,19 @@
                   <p>Comune:{{card.comune}}({{card.siglaprovincia}})</p>
                  
                   <p>Abstract:{{card.abstract}}</p>
-                  <button (click)="newWindow()" class="border border-red-700 bg-red-700 text-white">More details..</button>
+                  <button (click)="newWindow($index)" class="border border-red-700 bg-red-700 text-white">More details..</button>
 
                   <!-- DATI APPROFONDITI -->
                    @if(isOpen){ 
-                    <!-- domificare lo stile e la posizione -->
+                    <!-- modificare lo stile e la posizione -->
                      <div class="dati-finestraApprodondimento border-2 border-green-600 bg-gray-600 text-red-600 absolute m-auto top-0 left-0 z-200">
-                      <p>Autore: {{card.autore}}</p>
-                      <p>Epoca: {{card.epoca}}</p>
-                      <p>Indirizzo:{{card.indirizzo}}-</p> <p>Comune:{{card.comune}}({{card.siglaprovincia}})</p>
-                      <p>Descrizione:{{card.descrizione}}</p>     
-                      <p>Notizie storiche:{{card.notiziestoriche}}</p>
+                       <h3 class="text-white">Titolo details: {{el.denominazione}}</h3>
+                        <p>Autore: {{el.autore}}</p>
+                      <p>Epoca: {{el.epoca}}</p>
+                      <p>Indirizzo:{{el.indirizzo}}-</p> <p>Comune:{{el.comune}}({{el.siglaprovincia}})</p>
+                      <p class=" text-white">Descrizione:{{el.descrizione}}</p>     
+                      <p>Notizie storiche:{{el.notiziestoriche}}</p>
+                      <button (click)="chiudi()" class="border border-white bg-white text-black">Chiudi</button>
                    </div>
 
                    }
