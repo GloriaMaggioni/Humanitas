@@ -20,13 +20,14 @@ export class HistoryPageComponent implements OnInit{
    private cdr = inject(ChangeDetectorRef);
    private historyService = inject(NewsCityService)
    private historyApiUrl = 'https://www.dati.lombardia.it/resource/4mr7-hfsh.json';
-   @Input()limit : number = 20;
+   @Input() limit : number = 20;
    @Input() currentPage : number = 1
    offset :  number = (this.currentPage - 1) * this.limit
 
-    characters: any[]=[]
-    itemsCard : CultureItems[] = []
+    characters: any[]=[];
+    itemsCard : CultureItems[] = [];           // immagazzina i dati da visualizzare nelle card
 
+    isOpen = false;
 
  
 
@@ -47,15 +48,18 @@ export class HistoryPageComponent implements OnInit{
     this.historyService.fetchData(this.historyApiUrl, this.limit, this.offset).subscribe({
        next: data =>{
          this.itemsCard = data;
+         this.cdr.detectChanges();
        },
        error : err =>{
-        console.error('Errore:', err)
+        console.error('Errore nel recupero dati dalla API:', err)
        }
     })
    }
    
 
-
+ newWindow(){             // modificarlo in modo che si apra solo quello a cui ho cliccato
+  this.isOpen = !this.isOpen
+ }
   
 
 }

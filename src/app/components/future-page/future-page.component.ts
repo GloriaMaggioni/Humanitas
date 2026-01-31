@@ -19,13 +19,15 @@ export class FuturePageComponent implements OnInit{
 private firestoreService = inject(FirestoreService);
 private cdr = inject(ChangeDetectorRef)
 private futureNewsService  = inject(NewsCityService)
+private futureApiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json';   // dataset per Eventi culturali 199 elementi max (FUTURE PAGE)
+
 
 
     @Input() currentPage: number = 1  ;   
     @Input() limit: number = 10 ;           // indica le newsPerPage     
     @Input() offset: number = (this.currentPage - 1) * this.limit;
      @Input() totalNews : number = 0;     // numero totale di news di default
-   
+
 
     characters : any[] = []              // array per immagazzinare i dati per il carousel
     newsCard : futureNewsCard[] = []    // array per imagazzinare i dati per le news
@@ -49,7 +51,7 @@ private futureNewsService  = inject(NewsCityService)
   loadNews(){   
     let offset = this.offset;
 
-    this.futureNewsService.getNewsEvents(this.limit, offset).subscribe({
+    this.futureNewsService.fetchData(this.futureApiUrl, this.limit, offset).subscribe({
       next: data =>{
         this.newsCard = data;
         this.totalNews = 200;         //impostato manualmente: il backend non da questa info

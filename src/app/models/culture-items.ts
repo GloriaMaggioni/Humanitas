@@ -7,7 +7,7 @@ export class CultureItems {
     autore? : string
     epoca?: string
     provincia?: string
-    siglaProvincia?: string
+    siglaprovincia?: string
     comune?: string
     indirizzo?: string
     cap?: string             // verificare se è un numero o una stringa
@@ -16,6 +16,6 @@ export class CultureItems {
     descrizione?: string       // non è sempre presente
     dataCompilazione?: string
     tipologia?: string
-    motizieStoriche?: string
+    notiziestoriche?: string | undefined 
     
 }
