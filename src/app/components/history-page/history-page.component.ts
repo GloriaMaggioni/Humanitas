@@ -35,7 +35,7 @@ export class HistoryPageComponent implements OnInit{
 
   ngOnInit(): void {
        this.prendiCharacters();
-       this.getCultureItems()
+       this.getCultureItems();
   }
    async prendiCharacters(){
    this.characters = await this.firestoreService.getCharacters('history');
@@ -58,14 +58,13 @@ export class HistoryPageComponent implements OnInit{
     })
    }
    
-
- newWindow(index : number){             // modificarlo in modo che si apra solo quello a cui ho cliccato
-  // this.isOpen = !this.isOpen
+//  pagina dei dettagli completi degli items
+ itemDetails(index : number){             
    this.el = this.itemsCard[index];
    this.isOpen = true;
  }
 
- chiudi(){
+ chiudi(){    // evento click per chiudere la pagina dei dettagli
   this.isOpen= false;
   this.el= null
  }

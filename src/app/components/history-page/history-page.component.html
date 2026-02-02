@@ -3,7 +3,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Stack+Sans+Notch:wght@200..700&display=swap" rel="stylesheet">
 
 
-<section class="history-page min-h-screen flex flex-col justify-between p-4 md:p-6 " >
+<section class="history-page min-h-screen flex flex-col justify-between p-4 md:p-6  relative" >
     
     <!-- Carousel -->
     <div class=" carousel-container w-[45%] h-[24%] mx-auto  ">
@@ -15,34 +15,40 @@
     </div>
 
     <!-- Cities Cards Container -->
-     <div class="cultureItems-conatiner w-[80%] m-auto p-4 border border-solid border-red-600 relative">
-  <!-- CREARE UNA FINESTRA NUOVA PER I DATI APPROFONDITI -->
+     <div class="itemsCard-conatiner w-[80%] m-auto p-4 border border-solid border-red-600 ">
         @for(card of  itemsCard; track $index){
-            <div class="card m-4 border border-solid border-blue-600">   
-                <div>
-                  <h3>Titlo: {{card.denominazione}}</h3>
-                  <!-- Capire se tenere o meno la tipologia -->
-                  <h4>Caterogia: {{card.categoria}}, Tipologia: {{card.tipologia}}</h4>
+            <div class="card mb-2 m-4 p-4 border border-solid border-gray-400 rounded-md">   
+                <div class="flex w-fit  justify-evenly align-middle mb-2">
+                  <h3 class=" font-bold text-xl">Titolo: {{card.denominazione}}</h3>
+                  <h4 class=" h-fit text-sm ml-4  p-1 rounded-md border border-solid border-[#d4af37] bg-[#d4af37] text-white align-middle"> {{card.categoria}}</h4>
                 </div>
                <div>
-                 <p>Autore: {{card.autore}}</p>
-                  <p>Epoca: {{card.epoca}}</p>
-                  <p>Comune:{{card.comune}}({{card.siglaprovincia}})</p>
+                <div class="itemAuthor-Epic flex mb-2" >
+                   <p>Autore: {{card.autore}} - </p>
+                  <p class="ml-2" >Epoca: {{card.epoca}}</p>
+                </div>
+                
+                  <!-- <p>Comune:{{card.comune}}({{card.siglaprovincia}})</p> -->
                  
-                  <p>Abstract:{{card.abstract}}</p>
-                  <button (click)="newWindow($index)" class="border border-red-700 bg-red-700 text-white">More details..</button>
+                  <p class="">Abstract:{{card.abstract}}</p>
+                  <button (click)="itemDetails($index)" class=" mt-4 p-1 border border-amber-600 bg-amber-600 text-white rounded-md">More details..</button>
 
                   <!-- DATI APPROFONDITI -->
                    @if(isOpen){ 
-                    <!-- modificare lo stile e la posizione -->
-                     <div class="dati-finestraApprodondimento border-2 border-green-600 bg-gray-600 text-red-600 absolute m-auto top-0 left-0 z-200">
-                       <h3 class="text-white">Titolo details: {{el.denominazione}}</h3>
-                        <p>Autore: {{el.autore}}</p>
-                      <p>Epoca: {{el.epoca}}</p>
-                      <p>Indirizzo:{{el.indirizzo}}-</p> <p>Comune:{{el.comune}}({{el.siglaprovincia}})</p>
-                      <p class=" text-white">Descrizione:{{el.descrizione}}</p>     
-                      <p>Notizie storiche:{{el.notiziestoriche}}</p>
-                      <button (click)="chiudi()" class="border border-white bg-white text-black">Chiudi</button>
+                    <!-- modificare lo stile e la posizione #d4af37] -->
+                     <div class="detailsItem-container p-4  fixed top-[50%] left-[50%] transfom translate-x-[-50%] translate-y-[-50%] z-100 border border-gray-400  text-black rounded-sm">
+                        <button (click)="chiudi()" class=" mb-4 p-1 rounded-sm border border-amber-600 bg-amber-600 text-white">Chiudi</button>
+
+                       <h3 class=" mb-2"> <strong>Titolo: </strong>  {{el.denominazione}}</h3>
+                       <div class="item-AuthorEpic w-[50%] mb-2 flex border border-red-600">
+                        <p class="">Autore: {{el.autore}}</p>
+                        <p class="ml-4">Epoca: {{el.epoca}}</p>
+                       </div>
+                      
+                      <p class="mb-2">Indirizzo:{{el.indirizzo}}-</p> 
+                      <p class="mb-2">Comune:{{el.comune}}({{el.siglaprovincia}})</p>
+                      <p class=" mb-2 ">Descrizione:{{el.descrizione}}</p>     
+                      <p >Notizie storiche:{{el.notiziestoriche}}</p>
                    </div>
 
                    }

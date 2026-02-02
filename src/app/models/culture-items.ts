@@ -14,8 +14,8 @@ export class CultureItems {
     materia?: string          //vedere se mantenerlo
     abstract?: string         // capire la differenza con la descrizione
     descrizione?: string       // non è sempre presente
-    dataCompilazione?: string
-    tipologia?: string
+    // dataCompilazione?: string
+    // tipologia?: string
     notiziestoriche?: string | undefined 
     
 }
