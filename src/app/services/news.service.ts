@@ -5,7 +5,7 @@ import {  Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class NewsCityService {
+export class NewsService {
  
 private http = inject(HttpClient);
     

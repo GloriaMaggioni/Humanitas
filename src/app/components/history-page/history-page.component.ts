@@ -5,7 +5,7 @@ import { CarouselComponent } from '../carousel/carousel.component';
 import { FirestoreService } from '../../services/firestore-service';
 import { Paginator } from "../paginator/paginator";
 import { CultureItems } from '../../models/culture-items';
-import { NewsCityService } from '../../services/news-city.service';
+import { NewsService } from '../../services/news.service';
 
 @Component({
   selector: 'app-history-page',
@@ -18,12 +18,12 @@ export class HistoryPageComponent implements OnInit{
   
    private firestoreService =  inject(FirestoreService);
    private cdr = inject(ChangeDetectorRef);
-   private historyService = inject(NewsCityService)
-   private historyApiUrl = 'https://www.dati.lombardia.it/resource/4mr7-hfsh.json';
-   @Input() limit : number = 20;
+   private historyService = inject(NewsService)
+   private historyApiUrl = 'https://www.dati.lombardia.it/resource/4mr7-hfsh.json';  // url del dataset
+   @Input() limit : number = 20;           // items per page
    @Input() currentPage : number = 1
-   offset :  number = (this.currentPage - 1) * this.limit;
-   @Input() totalItems : number = 0;
+   offset :  number = (this.currentPage - 1) * this.limit;       // punto di inizio
+   @Input() totalItems : number = 0;                        //items totali
 
     characters: any[]=[];
     itemsCard : CultureItems[] = [];           // immagazzina i dati da visualizzare nelle card
@@ -52,7 +52,7 @@ export class HistoryPageComponent implements OnInit{
     this.historyService.fetchData(this.historyApiUrl, this.limit, this.offset).subscribe({
        next: data =>{
          this.itemsCard = data;
-          this.totalItems = 1800;
+          this.totalItems = 1800;          // impostato manualmente sul numero tot di items indicato sul sito dati.lombardia dataset 'Beni Culturali Bella Lombardia'
          this.cdr.detectChanges();
        },
        error : err =>{

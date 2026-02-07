@@ -26,19 +26,20 @@
              }  
         </div>
         <!-- EVENT LIST -->
-        <div class="eventsCardList  w-[90%] m-auto mt-8">
+        <div class="eventsCardList  w-[90%] m-auto mt-8 border border-blue-800">
           <div class="eventCard border border-solid border-emerald-600  w-full h-30 items-center m-auto mt-2  flex rounded-md">
             <!-- EVENT CARD -->
          <!-- DA SISTEMARE NON FUNZIONA -->
-    @for(item of cards; track cards){
-       <img [src]="item.image" alt="">
-      <h5>{{item.title}}</h5>
-      <!-- <p>{{item.date}} </p>
-      <p>{{item.place}}</p>
-       <p>{{item.description}}</p> -->
+              @for(item of cards; track $index ){
+               <div class="border-2 border-violet-600 ">
+                 <!-- <h3>{{item.name}}</h3>
+                <p>{{item.classifications?.genre?.name}}</p> -->
+                <h3>{{item._embedded?.venues}}</h3>
+                <!-- <h1>{{item.name}}</h1> -->
 
-    } 
-
+               </div>
+               
+              }
 
 
             <!-- FINE EVENT CARD -->

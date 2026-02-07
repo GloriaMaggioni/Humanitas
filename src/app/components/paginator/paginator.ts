@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { NewsCityService } from '../../services/news-city.service';
+import { NewsService } from '../../services/news.service';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -13,8 +13,8 @@ export class Paginator implements OnInit, OnChanges  {
 
    @Input() currentPage : any;
    @Input() totalPages: number = 0;
-   @Input() newsPerPage!: number;
-   @Input() totalNews: any;
+   @Input() newsPerPage!: number;        // news/items per pagina
+   @Input() totalNews: any;              // totali news/items
 
    @Output() changePage : EventEmitter<any> = new EventEmitter()     // evento per cambiare la pagina al click
   

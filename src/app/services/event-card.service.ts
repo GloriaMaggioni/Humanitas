@@ -6,15 +6,11 @@ import { Card } from '../models/eventCard.model';
   providedIn: 'root',
 })
 export class EventCardService {  
-  // NON PASSA IL CORS
-  private apiUrl = 'https://openagenda.openpa.opencontent.io/api/opendata/v2/content/search/classes/event';
+ 
+  // getCards(): Observable <Card[]> {
+  //   return this.http.get<Card[]>(endpoint)
 
-  constructor(private http: HttpClient) { }
-
-  getCards(): Observable <Card[]> {
-    return this.http.get<Card[]>(this.apiUrl)
-
-  }
+  // }
 
 
 

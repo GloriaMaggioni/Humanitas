@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { EventCardService } from '../../services/event-card.service';
 import { Card } from '../../models/eventCard.model';
+import { NewsService } from '../../services/news.service';
 
 
 
@@ -15,7 +16,11 @@ import { Card } from '../../models/eventCard.model';
 })
 
 export class EventsPage implements OnInit{
-
+ private eventCardService = inject(EventCardService)
+ private  callApi = inject(NewsService)
+ @Input() currentPage : number = 1;
+ @Input() limit : number = 20;
+  offset : number = (this.currentPage - 1) * this.limit
 
 // tab scelta categoria ---> da collegare al cambio delle card
 selectedIndex: number = 0
@@ -34,18 +39,35 @@ selectedIndex: number = 0
     { label: 'Economy' }
   ];
 
-  
+  private baseUrl = "https://app.ticketmaster.com/discovery/v2/events.json?6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n"  // TODO: vedere se url va bene cosi oppure no
+  // private apiKey ="6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n";
+  // private endPoint = this.baseUrl + this.apiKey;
+  private apiUrl = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n';
   cards: Card[] = [];
 
-  constructor(private eventCardService: EventCardService) {}
 
   ngOnInit(): void {
-    this.eventCardService.getCards().subscribe({
-      next: (data: Card[]) => this.cards = data,
-      error: err => console.error('Errore nel caricamento eventi:', err)
-    });
+    this.getEvents()
+   
   }
+  //TODO: Da sistemare la chiamata API, i parametri limit e offset potrebbero non funzionare in questa chiamata
 
+  getEvents(){
+    this.callApi.fetchData(this.apiUrl, this.limit, this.offset).subscribe(
+      {
+        next: data =>{
+          console.log('Dati embedded', data._embedded)
+          console.log('Dati events', data._embedded?.events)
+          this.cards = data._embedded?.events || [];
+          console.log('Primo evento', this.cards[0])
+          // console.log('Questi sono i dati di risposta', this.cards)
+        },
+        error: err => console.error('Errore nella chiamata:', err)
+      }
+    )
+    
+    
+  }
 
   
 }
@@ -58,10 +80,27 @@ selectedIndex: number = 0
 
 
 /*
-ELENCO API PER LA RACCOLTA DEGLI EVENTI
+ API PER LA RACCOLTA DEGLI EVENTI
+ 
+1.dati Regione lombardia
+2. TicketMater API ---> key API : 6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n   baseUrl: https://app.ticketmaster.com/discovery/v2/events.json? , paramsQuery: apikey=TUA_CHIAVE&countryCode=IT&city=Milano&classificationName=arte
 
-1.OpenAgenda
-2.OpenWeb Ninja --> richiede un Api Key , max 100 request/month (?)
-3.Italia/Regional OpenData Apis (non ho capito come funziona e se funziona: RICONTROLLARE)
-4.Google Events via SearpApi (DA VERIFICARE)
+
+ https://app.ticketmaster.com/discovery/v2/events.json?apiKey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n&countryCode:IT&city=Milano&classificationName=Art
+ https://app.ticketmaster.com/discovery/v2/events.json?apikey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n&countryCode=IT&region=Liguria  // funziona cambiado city con region
+*/
+
+/*
+  PARAMETRI DI FILTRO RICERCA:
+  keyword?: string,
+  source?: string,
+  startDateTime?: string,           // ISO 8601  2024-01-01T00:00:00Z   (anno-mese-giorno)
+  endDateTime?: string,            // ISO 8601  2024-01-01T00:00:00Z     (anno-mese-giorno)
+  size?: string,
+  page?:  number | string,
+  city?: string,
+  countryCode?: string,            // ISO 2166-1 (IT, GB, US)
+  stateCode?: string,              //CA, NY
+  classificationName?: string,
+  segmentName?: string,           
 */

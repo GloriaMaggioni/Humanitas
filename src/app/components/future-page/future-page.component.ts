@@ -3,7 +3,7 @@ import { carousel } from '../../models/carousel.model';
 import { CarouselComponent } from '../carousel/carousel.component';
 import {  RouterOutlet } from "@angular/router";
 import { FirestoreService } from '../../services/firestore-service';
-import { NewsCityService } from '../../services/news-city.service';
+import { NewsService } from '../../services/news.service';
 import { futureNewsCard } from '../../models/futureNews.model';
 import { Paginator } from '../paginator/paginator';
 
@@ -18,8 +18,8 @@ import { Paginator } from '../paginator/paginator';
 export class FuturePageComponent implements OnInit{
 private firestoreService = inject(FirestoreService);
 private cdr = inject(ChangeDetectorRef)
-private futureNewsService  = inject(NewsCityService)
-private futureApiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json';   // dataset per Eventi culturali 199 elementi max (FUTURE PAGE)
+private futureNewsService  = inject(NewsService)
+private futureApiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json';   // dataset per Eventi culturali 199 elementi max (' Natura da vivere')
 
 
 
@@ -54,7 +54,7 @@ private futureApiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json'; 
     this.futureNewsService.fetchData(this.futureApiUrl, this.limit, offset).subscribe({
       next: data =>{
         this.newsCard = data;
-        this.totalNews = 200;         //impostato manualmente: il backend non da questa info
+        this.totalNews = 200;         //impostato manualmente: il backend non da questa info, dataset 'Natura da vivere'
         this.cdr.detectChanges();
       },
       error: err =>{ 
