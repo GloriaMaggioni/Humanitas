@@ -13,14 +13,11 @@ export interface EventCard {
     name?: string;                  // sport
     genre?: { name?: string };      // Basket
     subgenre?: { name?: string };   // NBA
-    type?: { name?: string };       // group      //! DA ELIMINARE POI: PROBABILMENTE NON SERVE
-    subType?: { name?: string };    // Team        //! DA ELIMINARE POI: PROBABILMENTE NON SERVE
   }>;
-  images?: {
-    ratio?: string;       //! DA ELIMINARE POI: PROBABILMENTE NON SERVE
+  images?: Array<{
     url?: string;
-  };
-  date?: {     // data evento
+  }>;
+  dates?: {     // data evento
     start?: {
       dateTime?: string;
       localDate?: string;
@@ -28,8 +25,8 @@ export interface EventCard {
     };
     status?: {
       code?: string; //onsale
-      timezone?: string; //America/Phoenix
     };
+    timezone?: string; //America/Phoenix
   };
   promoters?: Array<{     // organizzatore dell'evento
       name?: string;
@@ -49,11 +46,11 @@ export interface EventCard {
       name?: string;
       city?: { name?: string };
       url?: string;
+      state?: { name?: string; stateCode?: string };
       country?: { countryCode?: string; name?: string };
       images?: { url?: string };
       location?: { latitudine?: string; longitudine?: string }; // ? vedere se serve
       postalCode?: string;
-      state?: { name?: string; stateCode?: string };
       timeZone?: string;
     }>;
     attractions?: Array<{     // artista/performer
@@ -66,13 +63,13 @@ export interface EventCard {
         subGenre?: { name?: string };    //NBA
         url?: string;
       };
-      externalLinks?: {
+      externalLinks?: Array<{
         facebook?: { url?: string };
         homepage?: { url?: string };
         instagram?: { url?: string };
         twitter?: { url?: string };
         wiki?: { url?: string };
-      };
+      }>;
     }>;
    
   };

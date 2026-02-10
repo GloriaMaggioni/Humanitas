@@ -22,7 +22,7 @@
     <div class="eventList-tabsGroup w-[60%] m-auto mt-4 flex justify-evenly">
       @for (item of tabs; track $index) {
         <button
-          class="tabsBtn border border-solid border-gray-400 text-gray-500 w-16 min-w-fit p-1 rounded-lg"
+          class="tabsBtn border border-solid border-gray-400 text-gray-500 w-16 min-w-fit p-1 rounded-lg hover:cursor-pointer"
           [class.selected]="selectedIndex === $index"
           (click)="buttonSelected($index)">
           {{ item.label }}
@@ -33,24 +33,34 @@
     <div class="eventsCardList w-full m-auto mt-8 border-2 border-blue-800">
         @for (event of cards; track $index) {
           <div class="eventCard mb-2 m-4 p-4 border border-solid border-gray-400 rounded-md">
+            <!-- TODO: sistemare la immagine :dimensioni e vedere se riesco a farlo perentrambe le squadre -->
+            <img [src]="event.images?.[0]?.url" alt="Immagine evento" class="w-[40%] h-[40%]">
+
             <div class="flex w-fit  justify-evenly align-middle mb-2">
-              <h3 class="font-bold text-xl">Titolo:{{ event.name }}</h3>
+              <h3 class="font-bold text-xl">{{ event.name }}</h3>
               <h4 class=" h-fit text-sm ml-4  p-1 rounded-md border border-solid border-[#d4af37] bg-[#d4af37] text-white align-middle">Tipo evento: {{ event.classifications?.[0]?.genre?.name }}</h4>
             </div>
+           <p> <b class="font-mono">Date:</b>{{event.dates?.start?.localDate | date:'dd/MM/yyyy' }} - {{event.dates?.start?.localTime}} ({{event.dates?.timezone}})</p>
           <p> <b class="font-mono">Promoter:</b> {{event.promoters?.[0]?.name}}</p>
           <p> <b class="font-mono">Descrizione:</b>{{event.info}}</p>
-          <p> <b class="font-mono">Link:</b> {{ event.url }}</p>
+          <p class="hover:cursor-pointer"> <b class="font-mono">Link:</b><a [href]="event.url" target="_blank">{{ event.url }}</a> </p>
           <button (click)="openDetails($index)" class=" mt-4 p-1 border border-amber-600 bg-amber-600 text-white rounded-md hover:cursor-pointer">More details...</button>
           </div>
          
         }
          @if(isOpen ){
-            <div class=" detailsEvent-container p-4  fixed top-[50%] left-[50%] sm:h-[80%] sm:overflow-scroll transfom translate-x-[-50%] translate-y-[-50%] z-100 border border-gray-400 bg-neutral-100 text-black rounded-md"> 
-             <p> DETTAGLI EVENTO</p>
-              <button (click)="closeDetails()" class="mb-4 p-1 rounded-sm border border-amber-600 bg-amber-600 text-white hover:cursor-pointer">Closed</button>
-              <h4><b>Titolo:</b>{{el.name}}</h4>
-              <!-- TODO: capire perchè con event.name me li apre tutti e non solo quello della card selezionata -->
-              <h2 class=" mb-2 font-bold text-2xl">{{el.classifications?.[0]?.genre?.name}}</h2>
+            <div class=" detailsEvent-container p-6 text-md fixed top-[50%] left-[50%] sm:h-[80%]  transfom translate-x-[-50%] translate-y-[-50%] z-100 border border-gray-400 bg-neutral-100 text-black rounded-md"> 
+              <button (click)="closeDetails()" class="mb-4 p-1 rounded-sm border border-amber-600 bg-amber-600 text-white hover:cursor-pointer">Close</button>
+              <h2 class=" mb-2 font-bold text-2xl">{{el.name}}</h2>
+              <h3 class="mb-2"><b class="font-mono">Date:</b>{{el.dates?.start?.localDate | date:'dd/MM/yyyy' }} - {{el.dates?.start?.localTime}} ({{el.dates?.timezone}})</h3>
+              <p><b class="font-mono">Location:</b>{{el._embedded?.venues?.[0].name}} - {{el._embedded?.venues?.[0]?.city?.name}} [{{el._embedded?.venues?.[0]?.state?.name}}({{el._embedded?.venues?.[0]?.country?.countryCode}})]</p>
+              <p class="mb-2"><b class="font-mono">Promoter:</b> {{el.promoters?.[0]?.name}}</p>
+              <p class="mb-2"><b class="font-mono">Artista:</b> {{el._embedded?.attractions?.[0]?.name}} - {{el._embedded?.attractions?.[1]?.name}}</p>
+               <p class="mb-2 "><b class="font-mono ">Descrizione:</b>{{el.info}}</p>
+               <p class="mb-2"><b class="font-mono">Link:</b><a [href]="el.url" target="_blank">{{el.url}}</a></p>
+                <!-- TODO: da sistemare il link per renderlo un link attivo -->
+              
+
 
             </div>
           }

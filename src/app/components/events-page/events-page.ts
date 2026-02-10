@@ -5,6 +5,7 @@ import { EventCard } from '../../models/eventCard.model';
 import { NewsService } from '../../services/news.service';
 import { Paginator } from '../paginator/paginator';
 import { ChangeDetectorRef } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -12,7 +13,7 @@ import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-events-page',
   standalone: true,
-  imports: [MatButtonModule, MatSidenavModule,Paginator ],
+  imports: [MatButtonModule, MatSidenavModule,Paginator, DatePipe ],
   templateUrl: './events-page.html',
   styleUrl: './events-page.css'
 })
