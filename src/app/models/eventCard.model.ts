@@ -10,6 +10,7 @@ export interface EventCard {
   info?: string;
   classifications?: Array<{     // tipo di evento(es. sport -Basket-NBA )
     name?: string;                  // sport
+    segment?: {name?: string}   // categoria principale
     genre?: { name?: string };      // Basket
     subgenre?: { name?: string };   // NBA
   }>;

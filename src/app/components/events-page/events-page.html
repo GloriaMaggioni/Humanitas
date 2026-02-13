@@ -39,7 +39,7 @@
               <div class="event-details ml-4 w-[90%] px-2 ">
                 <div class="titleEvent flex ">
                   <h3 class="font-bold text-xl">{{ event.name }}</h3>
-                  <h4 class=" h-fit text-sm ml-4  p-1 rounded-md border border-solid border-[#d4af37] bg-[#d4af37] text-white align-middle"> {{ event.classifications?.[0]?.genre?.name }}</h4>
+                  <h4 class=" h-fit text-sm ml-4  p-1 rounded-md border border-solid border-[#d4af37] bg-[#d4af37] text-white align-middle"> {{ event.classifications?.[0]?.segment?.name }}</h4>
                 </div>
               
                <p> <b class="font-mono">Date:</b>{{event.dates?.start?.localDate | date:'dd/MM/yyyy' }} - {{event.dates?.start?.localTime}} ({{event.dates?.timezone}})</p>
