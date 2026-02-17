@@ -25,7 +25,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideRouter(routes), provideClientHydration(withEventReplay()), 
+    provideRouter(routes), 
+    //  provideClientHydration(withEventReplay()),   // vedere se bisogna lasciarlo poi attivo oppure no
     provideHttpClient(withFetch()),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore( () => getFirestore())

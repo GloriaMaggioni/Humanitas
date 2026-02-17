@@ -4,58 +4,60 @@
 
 
 
- <div class="sidebar-container  rounded-r-xl overflow-hidden" [class.collapsed]="!isOpen()" >
-         <button class="menu-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" (click)="toggle()">
+
+<div class="sidebar-container  h-full rounded-r-xl overflow-hidden relative" [class.collapsed]="!isOpen()">
+     <button class="sidebar-toggle w-[17%] ml-[75%] mt-7  ">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w-full" (click)="toggle()">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-             </svg>
-        </button>  
-     
-        <div class="sidebar-content rounded-r-xl">
-            <div class="logo-container">
-                <img [src]="currentLogo" alt="logo" class="logo-img">
-            </div>
-               <div class="sections-container">
-                    @for(item of items; track $index){
-                        <li class="md:shrink">
-                          <a [routerLink]="item.link" routerLinkActive="active">
-                             <img [src]="item.icon" alt="" class="item-icon">
-                             @if(isOpen()){
-                               <span >{{item.label}}</span>
-                               }
-                          </a> 
-                        </li> 
+         </svg>
+     </button>
+
+     <!-- Logo -->
+      <div class="logo-container w-full h-fit flex p-1 mt-6 rounded-r-xl ">
+         <img src="/assets/images/logoImg-2.svg" alt="" class="w-2xl h-10">
+         @if(isOpen()){
+            <p class="logo-title h-fit mt-3 text-[#d4af37] text-[25px]">Humanitas</p>   
+         }
+      </div>
+
+      <!-- Sections  -->
+      <div class="sections-container w-[90%] m-auto mt-12   ">
+         @for(item of items; track $index){
+            <li class="w-full  mt-2 list-none md:shrink " >
+                <a [routerLink]="item.link" routerLinkActive="active" class="w-full  inline-flex items-center text-base rounded-md  ">
+                    <img [src]="item.icon" alt="" class="item-icon ">
+                    @if(isOpen()){
+                        <span class="ml-2 ">{{item.label}}</span>
                     }
-            </div>
-            
-            <div class="setting-log-container">
-                    <div class="setting-container" >
-                        @for(item of setting; track setting){
-                           <a [routerLink]="item.link" routerLinkActive="active">
-                              <img [src]="item.icon" alt="">
+                 </a> 
+            </li> 
+        }
+      </div>
+
+      <!-- Settind and Logout buttons -->
+      <div class="settingLog-container w-[90%] text-center text-base m-auto absolute bottom-20  ">
+          <div class="setting-container w-full  " >
+                @for(item of setting; track setting){
+                           <a [routerLink]="item.link" routerLinkActive="active" class="inline-flex items-center justify-center text-base ">
+                              <img [src]="item.icon" alt="" class="w-[30%]">
                              @if(isOpen()){                        
-                              <span >{{item.label}}</span>
+                              <span class="w-fit ml-[2%]">{{item.label}}</span>
                              }
-                          </a>
-                        }
-                    </div>
-                 <div class="logout-container">
+                          </a> 
+                 }
+        </div>
+        <div class="logout-container w-full mt-[10%] text-red-600 italic">
                      @for(item of logout; track logout){
-                         <a [routerLink]="item.link" routerLinkActive="active">
-                           <img [src]="item.icon" alt="">
+                         <a [routerLink]="item.link" routerLinkActive="active" class="inline-flex items-center justify-center text-base ">
+                           <img [src]="item.icon" alt="" class="w-[30%]">
                          @if(isOpen()){                        
-                            <span class="text-red-600" >{{item.label}}</span>
+                            <span class="" >{{item.label}}</span>
                          }
                         </a>
                     }
-                </div>
-            </div>
-         
-        </div>
- </div> 
-
-
-
+         </div> 
+      </div>
+</div>
 
 
 

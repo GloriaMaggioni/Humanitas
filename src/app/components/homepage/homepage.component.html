@@ -2,11 +2,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
 
-<section class="homePage-container w-full h-full  border-1 border-solid border-b-black">
+<section class="homePage-container w-full h-full  border border-solid border-b-black">
 
   <!-- CAROUSEL -->
   <div class="carousel  flex items-center rounded-lg gap-5 overflow-hidden" >
-    <img  src="assets/images/AldaMerini.jpg" alt=""  class="carousel-image w-40 h-40 z-50 rounded-lg flex-shrink-0">
+    <img  src="assets/images/AldaMerini.jpg" alt=""  class="carousel-image w-40 h-40 z-50 rounded-lg flex-shrink">
 
     <div class="carousel-text-container  h-40 text-black z-50">
       <h3 class="carousel-citazione text-3xl text-balance  text-center italic">“L’ intelligenza senza la sensibilità non serve a niente”</h3>
@@ -20,16 +20,14 @@
   <!-- DA SISTEMARE TUTTO> IL SISTEMA POST CON API NON FUNZIONA -->
   <div class="middle-content flex ">
     <div class="userList-container w-[60%] h-full ">
-      <!-- farlo dinamico:importo i nomi dalla pagina 'users-page'(?)
-      Li importo dal componente utents-page
-      -->
+      <!-- TODO: farlo dinamico:importo i nomi dalla pagina 'users-page'(?) Li importo dal componente utents-page-->
       LISTA DEGLI UTENTI IMPORTATI DAL COMPONENTE 'utents-page'
 
     </div>
     <div class="calendar-container w-[40%] h-full">
 
       <mat-card class="demo-inline-calendar-card">
-        <!-- L'EVENTO FUNZIONA SU QUALSIASI TASTO(INCLUDERE SOLO I NUMERI) => inserire un controllo -->
+        <!-- TODO: L'EVENTO FUNZIONA SU QUALSIASI TASTO(INCLUDERE SOLO I NUMERI) => inserire un controllo -->
         <mat-calendar [(selected)]="selected"  (click)="eventoForm()"></mat-calendar>
       </mat-card>
       @if (isOpen) {

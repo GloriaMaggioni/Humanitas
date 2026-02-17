@@ -1,4 +1,4 @@
-import { Component, ElementRef, signal, ViewChild} from '@angular/core';
+import { Component, ElementRef, signal, ViewChild, afterNextRender} from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterModule } from "@angular/router";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -8,23 +8,22 @@ import { FormsModule } from "@angular/forms";
 import {MatIconModule} from '@angular/material/icon';
 
 
-
 @Component({
   selector: 'app-sidebar',
-  imports: [MatSidenavModule, MatButtonModule, MatListModule, FormsModule, MatIconModule, RouterModule],
+  imports: [MatSidenavModule, MatButtonModule, MatListModule, FormsModule, MatIconModule, RouterModule ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
 
 
-dashboard: string|readonly any[]|null|undefined;
-events: string|readonly any[]|null|undefined;
-largeLogo = '/assets/images/logo-blackGold.png';
-smallLogo = 'assets/images/logoImg-2.svg';
-
   isOpen = signal(true);
-  currentLogo = this.largeLogo;
+
+  constructor(){           // carica la sidebar aperta solo dopo che il browser abbia completato il render
+      setTimeout(() => {
+        this.isOpen.set(true);
+      }, 0)
+  }
 
  items = [
     {
@@ -83,7 +82,6 @@ smallLogo = 'assets/images/logoImg-2.svg';
 
   toggle(){
     this.isOpen.update(open => !open)
-    this.currentLogo = this.isOpen() ? this.largeLogo : this.smallLogo;
   }
   
 }
