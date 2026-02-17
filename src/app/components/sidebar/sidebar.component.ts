@@ -47,14 +47,9 @@ export class SidebarComponent {
       label: 'Future'
     },
      {
-      link: 'placesandspaces',
+      link: 'spaziCulturali',
       icon: '/assets/images/p&s-icon2.svg',
-      label: 'Places & Spaces'
-    },
-     {
-      link: 'productivityandhealth',
-      icon: '/assets/images/p&h-icon2.svg',
-      label: 'Productivity & Health'
+      label: 'Spazi Culturali'
     },
      {
       link: 'utents',

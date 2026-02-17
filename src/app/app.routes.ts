@@ -7,20 +7,16 @@ import { EventsPage } from './components/events-page/events-page';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { HistoryPageComponent } from './components/history-page/history-page.component';
 import { FuturePageComponent } from './components/future-page/future-page.component';
-import { PlacesAndSpacesPageComponent } from './components/places-and-spaces-page/places-and-spaces-page.component';
-import { ProductivityAndHealthPageComponent } from './components/productivity-and-health-page/productivity-and-health-page.component';
 import { UtentsPageComponent } from './components/utents-page/utents-page.component';
 import { SettingsPageComponent } from './components/settings-page/settings-page.component';
-
-
+import { SpaziCulturali } from './components/spazi-culturali/spazi-culturali';
 export const routes: Routes = [    
     {path: '', component: Dashboard ,children: [
         {path: '', component: HomepageComponent},
         {path: 'events', component: EventsPage},
         {path: 'history',  loadComponent: () => import('./components/history-page/history-page.component').then(m => m.HistoryPageComponent)},
         {path: 'future', loadComponent: () => import('./components/future-page/future-page.component').then(m => m.FuturePageComponent)},
-        {path:'placesandspaces', component: PlacesAndSpacesPageComponent},
-        {path: 'productivityandhealth', component: ProductivityAndHealthPageComponent},
+        {path:'spaziCulturali', component: SpaziCulturali},
         {path: 'utents', component: UtentsPageComponent},
         {path: 'settings', component: SettingsPageComponent}
     ]},
