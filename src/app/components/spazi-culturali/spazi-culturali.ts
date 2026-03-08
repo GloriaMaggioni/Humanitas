@@ -1,8 +1,10 @@
-import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { NewsService } from '../../services/news.service';
 import { HttpParams } from '@angular/common/http';
 import { Places } from '../../models/places';
 import {NgxMapLibreGLModule} from '@maplibre/ngx-maplibre-gl'
+import { isPlatformBrowser } from '@angular/common';
+ import { Marker, Map, config } from 'maplibre-gl';
 
 @Component({
   selector: 'app-spazi-culturali',
@@ -13,12 +15,13 @@ import {NgxMapLibreGLModule} from '@maplibre/ngx-maplibre-gl'
 export class SpaziCulturali implements OnInit {
   private placesService = inject(NewsService);
   private cdr = inject(ChangeDetectorRef);
+  private platformId = inject(PLATFORM_ID);
 
   private baseUrl : string = 'https://api.geoapify.com/v2/places?';
   private apiKey : string = 'apiKey=d1ad74eafd3e488bb42a007edabf7856';
   private categories : string = '&categories=entertainment.culture,entertainment.museum';
    private endpointApi : string = `${this.baseUrl}${this.apiKey}${this.categories}` ; 
- // ? con endPoint errore 400: bad request-> 'filter[0] does not match any of the allowed types'
+   
   // latitudine e longitudine
   public latitude: number = 0;
   public longitude : number = 0;
@@ -27,9 +30,11 @@ export class SpaziCulturali implements OnInit {
   @Input() limit: number = 30 ;           // indica le newsPerPage     
   @Input() offset: number = (this.currentPage - 1) * this.limit;
   @Input() totalNews : number = 0;     // numero totale di news di default
-
+  @ViewChild('map')
+  private mapContainer! : ElementRef<HTMLElement>
 
      place : Places = {features : []}   // model: oggetto con dentro features(array )
+     mappa : Map | undefined      // mappa dei posti
 
 ngOnInit(): void {
   this.getUserPosition()
@@ -37,12 +42,14 @@ ngOnInit(): void {
   
 }
 
+  
 
   // calcolo della position dell'user
 
 
   getUserPosition(){
-    if(typeof navigator !== 'undefined' && navigator.geolocation){
+    if(isPlatformBrowser(this.platformId)) {                        //  controllo: se l'operazione è nel browser  carica tutto, altrimenti no
+         if(typeof navigator !== 'undefined' && navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position : GeolocationPosition) => {
          if(position){
            this.latitude = position.coords.latitude;
@@ -51,14 +58,28 @@ ngOnInit(): void {
              alert("Posizione dell'utente non disponibile");
          }
 
-        let param = new HttpParams()
-          .set('filter', `circle:${this.longitude},${this.latitude},5000`)
+         this.mappa =  new Map({
+          container: this.mapContainer.nativeElement,
+          style:' https://maps.geoapify.com/v1/styles/osm-carto/style.json?apiKey=d1ad74eafd3e488bb42a007edabf7856',
+          center: [this.longitude, this.latitude],
+          zoom: 12
+        }) 
 
+        let param = new HttpParams()
+          .set('filter', `circle:${this.longitude},${this.latitude},5000`);
+
+          
+
+        
         this.getPlaces(param);
-    
         })
     }
-  }
+
+    }
+ 
+  }   ;
+
+
 
 
  // chiamata API
@@ -66,8 +87,15 @@ ngOnInit(): void {
         this.placesService.fetchData((this.endpointApi + '&' + param),this.limit,this.offset).subscribe({
           next: (data : any) => {
             this.place = data;
+            this.place.features.forEach( positionPLace =>{
+               const marker = new Marker({color: 'green', anchor: 'bottom'})
+               .setLngLat([positionPLace.properties.lon, positionPLace.properties.lat])
+                .addTo(this.mappa!)
+            })
            this.cdr.detectChanges()    
-            console.log('Dati da getPlaces', data)
+           
+            console.log('Dati da getPlaces', this.place)
+            console.log('primo luogo:', this.place.features[0].properties.lon, this.place.features[0].properties.lat);
           },
           error: (error : any) => {
             console.error('Errore nel calcolo posizione utente', error)
@@ -82,10 +110,3 @@ ngOnInit(): void {
 }
 
 
-/*
-
-url completo
-
-https://api.geoapify.com/v2/places?apikey=d1ad74eafd3e488bb42a007edabf7856&categories=entertainment.culture,entertainment.museum
-
-*/
