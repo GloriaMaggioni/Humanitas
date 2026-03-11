@@ -1,11 +1,8 @@
 .carousel{
-    background-image: url("/assets/images/FabrizioCaramagna.jpg");
-     background-size: cover;
-    background-repeat:no-repeat;
+    background-image: url("/assets/images/FabrizioCaramagna.jpg"); 
    background-position: 25% 45%; 
-   position:relative;
-   overflow:none;
-}
+   
+} 
 .carousel::before {
   content: '';
   position: absolute;
@@ -17,20 +14,10 @@
   background-size: cover;
  
 }
-.carousel-image {
-    margin-left:10%;
-    vertical-align:center;
 
-}
 .carousel-text-container{
     h3{
         font-family: "Inika", serif;
     } 
 }
-.carousel-textSecondary{
-    margin-top:2%;
-    h4{
-        margin-bottom:1%;
-    }
-   
-}
+
