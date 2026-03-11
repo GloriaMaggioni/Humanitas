@@ -71,8 +71,6 @@ ngAfterViewInit(): void {
           center: [this.longitude, this.latitude],
           zoom: 8
         }) 
-          // console.log('centro mappa:', this.longitude, this.latitude);
-
 
         let param = new HttpParams()
           .set('filter', `circle:${this.longitude},${this.latitude},50000`);
@@ -101,23 +99,9 @@ ngAfterViewInit(): void {
             this.place = data;
             this.totalPlace = 100;
             this.place.features.forEach( positionPlace =>{
-              const popup = new Popup()
-                .setHTML(
-                  ` 
-                    <div class=" rounded-md  p-2">
-                       <h2 class=" font-bold"> ${positionPlace.properties.name}</h2>
-                       <p>${positionPlace.properties.address_line2}</p>
-                       <p>${positionPlace.properties.opening_hours}</p>
-                       <p>${positionPlace.properties.contact?.phone}</p>
-                       <p ><a href="${positionPlace.properties.website}" target="_blank">${positionPlace.properties.website}</a></p>
-
-                    </div>
-                     
-                  `
-                )
               this.marker = new Marker({color: 'green', anchor: 'bottom', draggable: false})
                 .setLngLat([positionPlace.properties.lon, positionPlace.properties.lat])
-                .setPopup(popup)
+                .setPopup(this.placesDetails(positionPlace))
                 .addTo(this.mappa!);
             })
            
@@ -133,8 +117,25 @@ ngAfterViewInit(): void {
       }
 
 
+ // metodo popup per vedere i dettagli di ogni posto
+ placesDetails(positionPlace: any) : Popup{
+  const details = new Popup()
+    .setHTML(
+     
+         ` 
+           <div class=" rounded-md  p-2">
+              <h2 class=" font-bold"> ${positionPlace.properties.name}</h2>
+              <p>${positionPlace.properties.address_line2}</p>
+              <p>${positionPlace.properties.opening_hours}</p>
+              <p>${positionPlace.properties.contact?.phone}</p>
+               <p class="w-full "><a href="${positionPlace.properties.website}" target="_blank">${positionPlace.properties.website}</a></p>
 
-
+           </div>
+                     
+         `
+  )
+  return details
+ }
 
            
     }
