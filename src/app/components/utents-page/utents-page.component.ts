@@ -21,8 +21,8 @@ export interface UsersTable {
 })
 export class UtentsPageComponent  implements OnInit{
 
-  
-  // TODO: RIFARE TUTTO, DB SBAGLIATO
+  //? ERRORE 500: IL SERVER DEL SITO NON FUNZIONA
+  // TODO: GLI USER  CREATI DA ME NON COMPARIVANO NELLA TABELLA. COMPAIONO SOLO QUELLI GIà PRESENTI NEL SERVER
   private service = inject(UsersService);
   private cdr = inject(ChangeDetectorRef)
    displayedColumns : string[] = ['id', 'name', 'email', 'gender']
