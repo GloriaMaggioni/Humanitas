@@ -28,7 +28,6 @@ export class UtentsPageComponent  implements OnInit{
    displayedColumns : string[] = ['id', 'name', 'email', 'gender']
 
       users: User[] = []; // immagazzinati i dati 
-      // searchUser: any[] = []  // immagazzina dati della ricerca dell'user
 
 
 

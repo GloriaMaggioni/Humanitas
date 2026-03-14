@@ -5,19 +5,25 @@ import { UsersService } from '../../services/users-service';
 import { User } from '../../models/users';
 import { Event } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
+import { Post } from "../post/post";
+import { SingleUtentPageComponent } from "../single-utent-page/single-utent-page.component";
+import { PostService } from '../../services/post-service';
+import { PostModel } from '../../models/post-model';
+import { CommonModule } from '@angular/common';
 
 
 
 
 @Component({
   selector: 'app-navbar',
-  imports: [MatMenuModule, FormsModule],
+  imports: [MatMenuModule, FormsModule, Post, SingleUtentPageComponent],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
 export class Navbar {
 
-  private userService = inject(UsersService)
+  private userService = inject(UsersService);
+  // private postService = inject(PostService);
 
 
   // da sistemare per renderlo funzionante e dinamico
@@ -27,44 +33,46 @@ userImgPanel = [  // TODO: vedere che cosa è e se serve
   {cognome: 'Cognome'},
   { profilo: '/components/single-utent-page.html'}
 ]
-  newUser : User = {   // inizializzato i parametri del model: campi obbligatori
+  newUser : User = {   // inizializzato i parametri del model user: campi obbligatori
     name: '',
     email: '',
     gender: '',
     status: 'active'      
-  }
+  } ;
+
+ 
    
 
-isOpen = false;
+isOpen = signal(false);
 isCreate = signal(false);
 testoDigitato: string = ''; // prende il testo digitato nella search bar (newText)
 
 createPost() {
-  this.isOpen = !this.isOpen;
+  this.isOpen.update(open => !open)
   if(this.isCreate() == true){
-    this.isOpen =  false;
+    this.isOpen.set(false)
   }
+  this.cleanForm();    
 }
  
 // apre/chiude il modal per creare il nuovo user
  openNewUserForm(){
      this.isCreate.update(open => !open);
-      if(this.isOpen == true){
+      if(this.isOpen() == true){
      this.isCreate.set(false);
  
      this.addUserClick()
 
   }
-   this.cleanForm()
+   this.cleanForm();     
     
 
  }
 
-// add i dati del nuovo user
+// aggiungere i dati del nuovo user
  addUserClick(){
   this.userService.addUser( this.newUser).subscribe({
     next: (data: any) =>{
-      // this.userService.getUser();
       const currentUser = this.userService.users$.getValue();
      currentUser.push(data);
       this.userService.users$.next(currentUser)
@@ -81,8 +89,8 @@ cleanForm(){
     email: '',
     gender: '',
     status: 'active'
-  }
- 
+  };
+
 }
 
 // metodo che prende il nuovo testo digitato nella search bar e aggiorna i dati
@@ -90,6 +98,8 @@ findUser(newText: string){
  this.userService.searchUser.next(newText)
 
 }
+
+
 
    
 }

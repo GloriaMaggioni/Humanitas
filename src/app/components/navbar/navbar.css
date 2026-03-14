@@ -17,15 +17,6 @@
     margin:auto;
 }
 
-.post-form{
-    border:3px solid blue;
-    background-color: grey;
-    z-index: 80;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%)
-}
 
 
 .search-btn:hover,

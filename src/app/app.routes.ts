@@ -10,6 +10,7 @@ import { FuturePageComponent } from './components/future-page/future-page.compon
 import { UtentsPageComponent } from './components/utents-page/utents-page.component';
 import { SettingsPageComponent } from './components/settings-page/settings-page.component';
 import { SpaziCulturali } from './components/spazi-culturali/spazi-culturali';
+import { SingleUtentPageComponent } from './components/single-utent-page/single-utent-page.component';
 export const routes: Routes = [    
     {path: '', component: Dashboard ,children: [
         {path: '', component: HomepageComponent},
@@ -18,13 +19,14 @@ export const routes: Routes = [
         {path: 'future', loadComponent: () => import('./components/future-page/future-page.component').then(m => m.FuturePageComponent)},
         {path:'spaziCulturali', component: SpaziCulturali},
         {path: 'utents', component: UtentsPageComponent},
+        {path: 'utentPage', component: SingleUtentPageComponent},
         {path: 'settings', component: SettingsPageComponent}
     ]},
      {path: 'sidebar', component: SidebarComponent},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
 
-    { path: '**', redirectTo: '' ,pathMatch: 'full'}
+    { path: '**', redirectTo: '' ,pathMatch: 'full'} 
 
 
 

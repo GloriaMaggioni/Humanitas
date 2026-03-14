@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PostModel } from '../models/post-model';
 import { CommentModel } from '../models/comment-model';
 import { User } from '../models/users';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class PostService {
     'Content-Type': 'Application/json',
     'Authorization': 'Bearer ' + this.myToken
   })
+  post = new  BehaviorSubject<any>  ([])
 
   // create a new post
   createPost(post : PostModel, userId: User['id']){

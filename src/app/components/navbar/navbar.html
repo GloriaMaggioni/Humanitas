@@ -17,15 +17,20 @@
                 <button class="option1" mat-menu-item  (click)="createPost()">Post</button>
                 <button mat-menu-item (click)="openNewUserForm()">Utente</button>
         </mat-menu>
-        @if(isOpen){
-           <div class="post-form" >
-           <button class="closedBtn" (click)="createPost()">Chiudi</button>
-           <p>QUI PUOI CREARE IL NUOVO POST
-            <!-- <app-post></app-post> -->
+        @if(isOpen()){
+           <div class="post-form p-6 text-md fixed top-[50%] left-[50%] w-[40%] sm:h-[40%]  transfom translate-x-[-50%] translate-y-[-50%]   z-100 border border-gray-400 bg-neutral-100 text-black rounded-md" >
+           <button class="closedBtn hover:cursor-pointer hover:text-red-700" (click)="createPost()">
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+               </svg>
+           </button>
+           <p>
+            <app-post></app-post>
            </p>
         </div>
         }
       
+        <!-- FORM PER CREARE IL NUOVO USER -->
         @if(isCreate()){
            <div class="newUser-form p-6 text-md fixed top-[50%] left-[50%] w-[40%] sm:h-[40%]  transfom translate-x-[-50%] translate-y-[-50%]   z-100 border border-gray-400 bg-neutral-100 text-black rounded-md" >
              <button class="closedBtn hover:cursor-pointer hover:text-red-700" (click)="openNewUserForm()">
@@ -87,7 +92,10 @@
                 </span>
                 
                 <button mat-menu-item>Settings</button>
-                <button mat-menu-item>Profilo</button>
+                <button mat-menu-item>
+                  <!-- TODO: DA SISTEMARE -->
+                  <app-single-utent-page></app-single-utent-page>
+                </button>
             </mat-menu>
          
       </div>
