@@ -23,7 +23,6 @@ import { CommonModule } from '@angular/common';
 export class Navbar {
 
   private userService = inject(UsersService);
-  // private postService = inject(PostService);
 
 
   // da sistemare per renderlo funzionante e dinamico
@@ -52,7 +51,6 @@ createPost() {
   if(this.isCreate() == true){
     this.isOpen.set(false)
   }
-  this.cleanForm();    
 }
  
 // apre/chiude il modal per creare il nuovo user
@@ -60,7 +58,7 @@ createPost() {
      this.isCreate.update(open => !open);
       if(this.isOpen() == true){
      this.isCreate.set(false);
- 
+    
      this.addUserClick()
 
   }
