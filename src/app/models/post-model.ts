@@ -1,10 +1,9 @@
 import { CommentModel } from "./comment-model";
 
 export interface PostModel {
-    id?: string,    //creato dal backend
-    name: string,
-    image?: string,
-    data: string,
-    description: string,
+    id?: number,    //creato dal backend
+    user_id: number,
+    title: string,
+    body: string,
     comment: CommentModel[]
 }

@@ -1,6 +1,9 @@
+import { EmailValidator } from "@angular/forms";
+
 export interface CommentModel {
-    id?: string,
-    name: string;
-    data: string,
-    description: string
+    id?: number,
+    post_id: number,
+    name: string,
+    email:  string,
+    body: string
 }
