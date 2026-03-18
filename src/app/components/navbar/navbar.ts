@@ -75,6 +75,9 @@ createPost() {
      currentUser.push(data);
       this.userService.users$.next(currentUser)
       console.log('Dati da addUserClick', data)
+      this.userService.getUser();
+      console.log('Dati da addUserClick2:', data)
+
     } ,
     error: (err: any) => console.error('Errore nel creare il nuovo user', err)    
   })
