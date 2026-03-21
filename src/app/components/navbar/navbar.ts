@@ -98,13 +98,22 @@ newUserForm : FormGroup = this.fb.group({
       },
       error: (error : any) =>{
         console.error('Errore nella creazione del nuovo utente:', error);
-        alert( error)
+       alert(error)
       }
      })
-  }
+  } 
+
  }
 
 
+
+
+  
+
+ // metodo che prende il nuovo testo digitato nella search bar e aggiorna i dati
+findUser(newText : string){
+  this.userService.searchUser$.next(newText)
+}
 
    
 }

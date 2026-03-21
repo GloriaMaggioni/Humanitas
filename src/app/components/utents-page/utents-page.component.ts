@@ -20,10 +20,10 @@ export class UtentsPageComponent  implements OnInit{
   @Input() limit : number = 30
   currentPage : number = 1
 
-
+  
 
   users$ = this.userService.users$;
-   totalUser : number = 0;
+  totalUser : number = 0;           
 
 
 ngOnInit(): void {
@@ -34,11 +34,30 @@ ngOnInit(): void {
   })
 }
 
-onChangePage(page: number){
-  if( page < 1) return 
-  this.currentPage = page
+onChangePage(pageNumber: number){
+  if( pageNumber < 1) return 
+
+  this.currentPage = pageNumber
  
   let offset = (this.currentPage - 1) * this.limit
-  this.userService.getUser(page)
+  this.userService.getUser(pageNumber)
 }
+
+
+
+
+// metodo di filtro user
+
+//  findUser(){
+//   this.userService.searchUser$.subscribe({
+//     next: (data: any) =>{
+//       this.users$.filter((user : any) => {
+//         this.users$ = user.name.include(data)
+//       })
+//     }
+//   })
+//  }
+
+
+
 }
