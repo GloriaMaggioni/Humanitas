@@ -17,10 +17,11 @@ import { AsyncPipe } from '@angular/common';
 export class UtentsPageComponent  implements OnInit{
   private userService = inject(UsersService)
   private cdr = inject(ChangeDetectorRef)
-  @Input() limit : number = 30
+  limit : number = 30
   currentPage : number = 1
+  @Input() offset : number = (this.currentPage - 1) * this.limit;
 
-  
+  // idUser : number = 0
 
   users$ = this.userService.users$;
   totalUser : number = 0;           
@@ -39,12 +40,24 @@ onChangePage(pageNumber: number){
 
   this.currentPage = pageNumber
  
-  let offset = (this.currentPage - 1) * this.limit
+   this.offset = (this.currentPage - 1) * this.limit
   this.userService.getUser(pageNumber)
 }
 
 
+onDeleteUser(userId: number | undefined ){
+ this.userService.deleteUser(userId ).subscribe({
+ next: (data : any) =>{
+    alert('Utente eliminato');
+    this.userService.getUser()
+    this.cdr.detectChanges()
+  },
+  error: (error : any) =>{
+    alert("Errore nella eliminazione dell'utente")
+  }
+ })
 
+}
 
 // metodo di filtro user
 

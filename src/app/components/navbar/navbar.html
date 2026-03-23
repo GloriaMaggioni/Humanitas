@@ -40,13 +40,13 @@
 
              </button>
 
-            <form class="max-w-md mx-auto" [formGroup]="newUserForm" (ngSubmit)="addUser()">
+            <form class="max-w-md mx-auto" [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
              <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text"name="name"  class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"  formControlName="name"/> 
                     <label for="name" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto invalid:border-red-700 invalid:text-red-700"> Name</label>
                  @if(newUserForm.get('name')?.invalid && newUserForm.get('name')?.touched){
-                  
+                    <p class="text-red-600  mt-1">Inserire un nome valido</p>
                  }
                 </div>
                   <div class=" max-w-sm mx-auto">
@@ -56,6 +56,9 @@
                         <option value="Female">Female</option>
                         <option value="Male">Male</option>
                      </select>
+                      @if(newUserForm.get('gender')?.invalid && newUserForm.get('gender')?.touched){
+                    <p class="text-red-600  mt-1">Inserire un valore valido</p>
+                    }
                   </div>
                  <div class="relative z-0 w-full mb-5 group">
                     <input type="hidden"  name="floating_status"  class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" /> 
@@ -66,10 +69,15 @@
              <div class="relative z-0 w-full mb-5 group">
                    <input type="email"  name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer invalid:border-red-700 invalid:text-red-700" formControlName="email" />
                    <label for="floating_email" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email address</label>
+                    @if(newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched){
+                    <p class="text-red-600  mt-1">Inserire una email valida</p>
+                 }
              </div>
-             <button type="submit" class="text-white bg-amber-600 box-border border border-amber-600 hover:bg-amber-500 hover:border-amber-500 hover:text-white hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none"  (click)="addUser()">Create</button>
+             <button type="submit" class="text-white bg-amber-600 box-border border border-amber-600 hover:bg-amber-500 hover:border-amber-500 hover:text-white hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none"  >Create</button>
              <button type="reset" class="text-red-600 bg-transparent ml-4 hover:bg-gray-200 hover:text-black hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none" (click)="cleanForm()">Cancel</button>
-         
+          @if(newUserForm.valid && newUserForm.get('submit')?.touched){
+            <p class="text-green-700 font bold mt-2">Nuovo utente creato</p>
+          }
           </form> 
 
         </div>

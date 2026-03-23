@@ -58,14 +58,17 @@ createPost() {
      this.isCreate.update(open => !open);
       if(this.isOpen() == true){
      this.isCreate.set(false);
-    this.addUser()
+    // this.addUser()
 
   }
    this.cleanForm();     
+   this.isOpen.set(false)
     
 
  }
-
+ onSubmit(){
+  this.addUser()
+ }
 
 
  // resetta il form per creare il nuovo user
@@ -95,13 +98,16 @@ newUserForm : FormGroup = this.fb.group({
          this.userService.getUser()
          this.newUserForm.reset()
          console.log('Dati del nuovo user', response)
+        //  alert('Nuovo utente creato')
       },
       error: (error : any) =>{
         console.error('Errore nella creazione del nuovo utente:', error);
        alert(error)
       }
      })
-  } 
+  } else {
+    alert("Inserire campi del form validi")
+  }
 
  }
 
