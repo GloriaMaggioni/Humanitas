@@ -32,6 +32,7 @@ userImgPanel = [  // TODO: vedere che cosa è e se serve
   {cognome: 'Cognome'},
   { profilo: '/components/single-utent-page.html'}
 ]
+
   newUser : User = {   // inizializzato i parametri del model user: campi obbligatori
     name: '',
     email: '',
@@ -44,7 +45,7 @@ userImgPanel = [  // TODO: vedere che cosa è e se serve
 
 isOpen = signal(false);
 isCreate = signal(false);
-testoDigitato: string = ''; // prende il testo digitato nella search bar (newText)
+testoDigitato: string = ''; // prende il testo digitato nella search bar 
 
 createPost() {
   this.isOpen.update(open => !open)
@@ -58,8 +59,6 @@ createPost() {
      this.isCreate.update(open => !open);
       if(this.isOpen() == true){
      this.isCreate.set(false);
-    // this.addUser()
-
   }
    this.cleanForm();     
    this.isOpen.set(false)
@@ -98,7 +97,6 @@ newUserForm : FormGroup = this.fb.group({
          this.userService.getUser()
          this.newUserForm.reset()
          console.log('Dati del nuovo user', response)
-        //  alert('Nuovo utente creato')
       },
       error: (error : any) =>{
         console.error('Errore nella creazione del nuovo utente:', error);
@@ -117,8 +115,8 @@ newUserForm : FormGroup = this.fb.group({
   
 
  // metodo che prende il nuovo testo digitato nella search bar e aggiorna i dati
-findUser(newText : string){
-  this.userService.searchUser$.next(newText)
+findUser( ){
+ this.userService.getUser(1, this.testoDigitato)
 }
 
    

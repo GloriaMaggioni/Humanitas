@@ -12,10 +12,8 @@ import { environment } from '../../environments/environment.development';
 export class UsersService  {
 
    private http = inject(HttpClient);
-   private apiUrl : string=  'https://gorest.co.in/public/v2/users';                                        // api url per users
-  //  private readonly myToken: string = '9f79a463da6140766583d2d2fa30e7d197680a4168d9b7bd83fb5bdf501e6dec';  
+   private apiUrl : string=  'https://gorest.co.in/public/v2/users';     // api url per users
     private myToken: string = environment.GOREST_APIKEY;
-    // private idUser :any = 8408331;    // id di prova
    // my api token
    private headers = new HttpHeaders({                                                                    // impostazione http headers
     'Content-Type': 'application/json',
@@ -24,7 +22,6 @@ export class UsersService  {
 
    users$ = new BehaviorSubject<User[]>([]);     // immagazzina i dati degli users
    totalUser$ = new BehaviorSubject<number>(0)   // totale degli users
-   searchUser$ = new BehaviorSubject<string>('')      // variabile per il testo della ricerca  degli users
 
    
    // metodo per aggiunger un nuovo user (call api)
@@ -34,8 +31,21 @@ export class UsersService  {
 
 
    // metodo per prendere i dati degli user
-   getUser(pageNumber : number = 1){
-    this.http.get(`https://gorest.co.in/public/v2/users?page=${pageNumber}&per_page=30`, {headers: this.headers, observe: 'response'}).subscribe({
+   getUser(pageNumber : number = 1, searchText?: string){
+    if(typeof searchText !== 'undefined' ){
+      const searchUserUrl : string =  `https://gorest.co.in/public/v2/users?name=${searchText}&per_page=30`
+
+      this.http.get(`${searchUserUrl}`, {headers: this.headers, observe: 'response'}).subscribe({
+        next : (response: any) =>{
+          this.users$.next(response.body);
+          console.log('users$ dal metodo per filtrare gli utenti:', this.users$)
+        },
+        error: (error : any) => {
+          console.error('Errore nella ricerca utente. Inserire testo valido', error)
+        }
+      })
+    }else {
+      this.http.get(`https://gorest.co.in/public/v2/users?page=${pageNumber}&per_page=30`, {headers: this.headers, observe: 'response'}).subscribe({
       next: (response : any) =>{
         this.users$.next(response.body)
         const total = response.headers.get('X-Pagination-Total')
@@ -47,6 +57,10 @@ export class UsersService  {
         console.error("Errore nell'inviare i dati degli utenti", error)
       }
     })
+
+    }
+   
+    
    }
 
   // metodo per eliminare un user  
@@ -54,7 +68,7 @@ export class UsersService  {
      return this.http.delete(`${this.apiUrl}/${idUser}`, {headers: this.headers})
    }
 
-
+ 
 
 
 }

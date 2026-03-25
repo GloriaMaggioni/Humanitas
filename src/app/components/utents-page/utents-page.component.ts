@@ -5,6 +5,7 @@ import { User } from '../../models/users';
 import { OnInit } from '@angular/core';
 import { Paginator } from "../paginator/paginator";
 import { AsyncPipe } from '@angular/common';
+import { catchError, map, of } from 'rxjs';
 
 
 
@@ -21,10 +22,9 @@ export class UtentsPageComponent  implements OnInit{
   currentPage : number = 1
   @Input() offset : number = (this.currentPage - 1) * this.limit;
 
-  // idUser : number = 0
 
   users$ = this.userService.users$;
-  totalUser : number = 0;           
+  totalUser : number = 0; 
 
 
 ngOnInit(): void {
@@ -48,9 +48,10 @@ onChangePage(pageNumber: number){
 onDeleteUser(userId: number | undefined ){
  this.userService.deleteUser(userId ).subscribe({
  next: (data : any) =>{
-    alert('Utente eliminato');
     this.userService.getUser()
     this.cdr.detectChanges()
+         alert('Utente eliminato');
+
   },
   error: (error : any) =>{
     alert("Errore nella eliminazione dell'utente")
@@ -58,19 +59,6 @@ onDeleteUser(userId: number | undefined ){
  })
 
 }
-
-// metodo di filtro user
-
-//  findUser(){
-//   this.userService.searchUser$.subscribe({
-//     next: (data: any) =>{
-//       this.users$.filter((user : any) => {
-//         this.users$ = user.name.include(data)
-//       })
-//     }
-//   })
-//  }
-
 
 
 }
