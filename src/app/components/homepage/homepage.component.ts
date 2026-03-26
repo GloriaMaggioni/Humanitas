@@ -1,45 +1,60 @@
-import { ChangeDetectionStrategy, Component, ElementRef, inject, Input, model, OnInit, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input,  OnInit  } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Signal } from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
-import {provideNativeDateAdapter} from '@angular/material/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
-import { UtentsPageComponent } from "../utents-page/utents-page.component";
 import { UsersService } from '../../services/users-service';
 import { User } from '../../models/users';
-import { AsyncPipe, SlicePipe } from '@angular/common';
-
+import { SlicePipe } from '@angular/common';
+import { SnackBar } from '../../services/snack-bar';
 
 @Component({
   selector: 'app-homepage',
-  imports: [RouterModule, MatCardModule, MatDatepickerModule, MatNativeDateModule, MatInputModule,RouterModule, SlicePipe],
+  imports: [RouterModule,  MatInputModule,RouterModule, SlicePipe],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
 export class HomepageComponent implements OnInit {
-  private userService = inject(UsersService)
-   limit : number = 30
-  currentPage : number = 1
+  private userService = inject(UsersService);
+  private cdr = inject(ChangeDetectorRef);
+  private snackBarService = inject(SnackBar)
+
+  limit : number = 30;
+  currentPage : number = 1;
   @Input() offset : number = (this.currentPage - 1) * this.limit;
   
-  users : User[] = []
+  
+  users : User[] = [];
+
+
   ngOnInit(): void {
-    this.showUtents()
+    this.showUtents();
   }
 
+   // metodo per mostrare gli utenti nella homepage
   showUtents(){
     this.userService.getUser(1, undefined, 6)
     this.userService.users$.subscribe({
       next: (data: any) =>{
         this.users = data;
-        console.log('Utenti dalla homepage', data)
-
+        this.cdr.detectChanges();
       }
     })
   }
+
+
+  //  metodo per eliminare gli utenti: sincronizzato con quello della utents-page
+  deleteUser(userId: number | undefined){
+    this.userService.deleteUser(userId).subscribe({
+      next : (data: any) =>{
+        this.userService.getUser();
+           this.snackBarService.openSnackBar('Utente eliminato!');
+            this.cdr.detectChanges();
+      },
+      error : (err: any) =>  this.snackBarService.openSnackBar('Eliminazione utente non riuscita:')
+    })
+    
+  }
+
+ 
  
 
 

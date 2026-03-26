@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
 
-<section class="homePage-container  min-h-screen flex flex-col justify-between  p-4 md:p-6  border border-solid border-black">
+<section class="homePage-container min-h-screen flex flex-col justify-between  p-4 md:p-6  ">
 
   <!-- CAROUSEL -->
   <div class="carousel w-[50%] h-[24%] m-auto mt-[2%]  flex items-center rounded-lg gap-5 overflow-hidden relative border border-blue-800"  >
@@ -17,13 +17,12 @@
     </div>
   </div>
 
-  <!-- DA SISTEMARE TUTTO> IL SISTEMA POST CON API NON FUNZIONA -->
-    <div class="userList-container  mt-6 w-[80%] h-screen  border border-black ">
-      <!-- TODO: farlo dinamico:importo i nomi dalla pagina 'users-page'(?) Li importo dal componente utents-page-->
-       LISTA UTENTI
+    <div class="userList-container  w-[80%] m-auto flex flex-col overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-sm border border-black/5">
+      <table class="w-full text-sm text-left rtl:text-right text-body">
+        
        <tbody>
-       @for( user of users | slice:0:6; track $index){
-       <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-black/5 ">
+        @for( user of users | slice:0:6; track $index){
+           <tr class="  odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-black/5  ">
                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap text-amber-600">
                    {{offset + $index + 1}}
                 </th>
@@ -41,13 +40,19 @@
                    {{user.status}}
                 </td>
                 <td class="px-6 py-4">
-                    <button href="" class="font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 p-2 rounded-md" >Delete</button>
+                    <button href="" class="font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 hover:cursor-pointer p-2 rounded-md" (click)="deleteUser(user.id)">Delete</button>
                 </td>
             </tr>
        
        }
        </tbody>
+      </table>
+
     </div>
+            <button type="button" class="  p-2 m-auto rounded-md border border-amber-600 hover:bg-amber-600 hover:text-white hover:curor-pointer" [routerLink]="['/utents']">See more... </button>
+
+
+
 
    
    
