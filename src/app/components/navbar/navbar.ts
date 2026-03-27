@@ -10,13 +10,14 @@ import { PostService } from '../../services/post-service';
 import { PostModel } from '../../models/post-model';
 import { CommonModule } from '@angular/common';
 import { SnackBar } from '../../services/snack-bar';
+import { RouterLink } from "@angular/router";
 
 
 
 
 @Component({
   selector: 'app-navbar',
-  imports: [MatMenuModule, FormsModule, Post, SingleUtentPageComponent, ReactiveFormsModule],
+  imports: [MatMenuModule, FormsModule, Post, ReactiveFormsModule, RouterLink],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })

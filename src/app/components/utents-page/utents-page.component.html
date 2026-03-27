@@ -27,8 +27,8 @@
                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap text-amber-600">
                    {{offset + $index + 1}}
                 </th>
-                <td class="px-6 py-4 border-b border-black/5">
-                    <a href="" target="_blank">  {{user.name}}</a>
+                <td class="px-6 py-4 hover:cursor-pointer" [routerLink]="['/utentPage']">
+                    {{user.name}}
                  
                 </td>
                 <td class="px-6 py-4">

@@ -7,7 +7,7 @@
              <img src="assets/images/search-icon2.svg" alt="" class="size-4 search-icon ">
         </button>
       </div>
-      <!-- CONTAINER DEI TRE BOTTONI -->
+      <!-- CONTAINER DEI  BOTTONI -->
       <div class="threeBtn-container w-80 h-full flex justify-evenly items-center ">
         <!-- NEW BUTTON -->
         <button mat-button  [matMenuTriggerFor]="newBtnMenu" class="new-btn flex w-22 items-center text-lg  border-solid border-amber-600 bg-amber-600 rounded-2xl  text-white">
@@ -84,12 +84,9 @@
 
         }
        
-        <!-- FAVORITE BUTTON -->
-        <span class="favorite-icon">
-            <img class="h-8" src="assets/images/favorite-icon.svg" alt="" >
-        </span>
         <!-- USER ICON BUTTON -->
          <span class="userIcon-btn  w-fit h-fit" [matMenuTriggerFor]="userIconMenu">
+            <!-- TODO: trasformare la img nelle iniziali dell'utente in base alla autenticazione -->
             <img src="assets/images/Aristotele.jpg" alt="" class="size-14 rounded-full ring-1 ring-gray-600 outline -outline-offset-1 outline-white/10" />
          </span>
           <mat-menu #userIconMenu="matMenu">
@@ -98,11 +95,8 @@
                    <p> Nome e Cognome </p>
                 </span>
                 
-                <button mat-menu-item>Settings</button>
-                <button mat-menu-item>
-                  <!-- TODO: DA SISTEMARE -->
-                  <app-single-utent-page></app-single-utent-page>
-                </button>
+                <button mat-menu-item [routerLink]="['/settings']">Settings</button>
+                <button mat-menu-item [routerLink]="['/utentPage']"> Pagina utente</button>
             </mat-menu>
          
       </div>

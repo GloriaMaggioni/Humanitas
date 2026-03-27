@@ -1,1 +1,45 @@
-<p>settings-page works!</p>
+<section class="settings-page min-h-screen flex flex-col justify-between  p-4 md:p-6 border border-red-500">
+
+<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-sm border border-black/5 flex">
+    <table class="w-[20%] text-sm m-auto rtl:text-right text-body border border-green-800">
+        <tbody class="w-fit">
+            <tr >
+                <th class="p-2 border border-amber-600 hover:cursor-pointer hover:text-red-600" (click)="panel('profilo')">Profilo utente</th>
+                <!-- dettagli dell'utente ed elenco dei suoi post -->
+            </tr>
+             <tr>
+                <th class="p-2 border border-amber-600 hover:cursor-pointer hover:text-blue-600" (click)="panel('post')">Post</th>
+                <!-- elenco di tutti i post a sistema -->
+            </tr>
+
+        </tbody>
+    </table>
+    <div class=" w-[80%]">
+        @if(isPanelOpen() === 'profilo'){
+            <div class="w-full border border-purple-700">
+              <app-single-utent-page></app-single-utent-page>
+
+
+            </div>
+        }
+        @else if(isPanelOpen() === 'post'){
+              <div class="w-full border border-purple-700">
+              <app-post></app-post>
+
+
+            </div>
+
+        }
+        <div class="w-full ">
+            <!-- <p>Puzzi</p> -->
+        </div>
+        
+
+        
+
+    </div>
+</div>
+
+
+</section>
+<!-- <app-single-utent-page></app-single-utent-page> -->

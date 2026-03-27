@@ -5,12 +5,13 @@ import { OnInit } from '@angular/core';
 import { Paginator } from "../paginator/paginator";
 import { AsyncPipe } from '@angular/common';
 import { SnackBar } from '../../services/snack-bar';
+import { RouterLink } from "@angular/router";
 
 
 
 @Component({
   selector: 'app-utents-page',
-  imports: [MatTableModule,Paginator,AsyncPipe],
+  imports: [MatTableModule, Paginator, AsyncPipe, RouterLink],
   templateUrl: './utents-page.component.html',
   styleUrl: './utents-page.component.css'
 })
