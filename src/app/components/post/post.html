@@ -6,12 +6,12 @@
     </div>
   
     <div class="post-description-container mt-4 border border-blue-600">
-        <input type="text" name="post-title" class="border border-red-600 mb-2" [ngModel]="newPost.title" required>
-        <textarea name="post-description" id="post's description" class="w-full h-16" [ngModel]="newPost.body" placeholder="Description" required></textarea>
+        <input type="text" name="post-title" class="border border-red-600 mb-2" placeholder="Titolo"  [(ngModel)]="newPost.title" required>
+        <textarea name="post-description" id="post's description" class="w-full h-16" [(ngModel)]="newPost.body" placeholder="Descrizione" required></textarea>
     </div>
     <div class="postbtn-container w-[50%] flex flex-row align-middle items-end mt-4  flex-auto border border-green-700">
          <button name="btn-cancel" class="p-1 rounded-md hover:cursor-pointer border border-green-600" (click)="postForm.reset()">Cancel</button>
-        <button name="btn-share" class="p-1 mr-2 rounded-md hover: cursor-pointer border border-orange-600"[disabled]="!newPostForm.valid" (click)="addNewPost()">Share</button>
+        <button name="btn-share" class="p-1 mr-2 rounded-md hover: cursor-pointer border border-orange-600"[disabled]="!newPostForm.valid" (click)="createNewPost()">Share</button>
     </div>
 </form>
 

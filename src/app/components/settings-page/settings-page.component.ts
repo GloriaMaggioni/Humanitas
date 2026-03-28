@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { SingleUtentPageComponent } from "../single-utent-page/single-utent-page.component";
-import { Post } from "../post/post";
+import { PostsPage } from "../posts-page/posts-page";
 
 @Component({
   selector: 'app-settings-page',
-  imports: [SingleUtentPageComponent, Post],
+  imports: [SingleUtentPageComponent, PostsPage],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.css'
 })

@@ -10,14 +10,15 @@ import { SnackBar } from './snack-bar';
 export class UsersService  {
 
    private http = inject(HttpClient);
+   private snackBar = inject(SnackBar);
+
    private apiUrl : string=  'https://gorest.co.in/public/v2/users';     // api url per users
-    private myToken: string = environment.GOREST_APIKEY;              
+   private myToken: string = environment.GOREST_APIKEY;              
    private headers = new HttpHeaders({                                  // impostazione http headers
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + this.myToken
    });
 
-   private snackBar = inject(SnackBar)
 
    users$ = new BehaviorSubject<User[]>([]);                           // immagazzina i dati degli users
    totalUser$ = new BehaviorSubject<number>(0)                        // totale degli users
