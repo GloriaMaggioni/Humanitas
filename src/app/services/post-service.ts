@@ -12,10 +12,14 @@ import { environment } from '../../environments/environment.development';
 export class PostService {
 
   private http = inject(HttpClient)
-  private baseUrl : string = 'https://gorest.co.in/public/v2/users/'
-  private postUrl: string ='https://gorest.co.in/public/v2/posts?per_page=30';
+  private baseUrl : string = 'https://gorest.co.in/public/v2/users'
+  private postUrl: string ='https://gorest.co.in/public/v2/posts';
   private commentUrl : string = 'https://gorest.co.in/public/v2/comments';
-  private myToken = environment.GOREST_APIKEY
+  private myToken = environment.GOREST_APIKEY;
+   private userId : number = 8414033;
+
+  //  /public/v2/users/8414033/posts/274998 --> struttura url per eliminare i post di un utente preciso
+
   private headers = new HttpHeaders({
     'Content-Type': 'Application/json',
     'Authorization': 'Bearer ' + this.myToken
@@ -24,8 +28,8 @@ export class PostService {
   post$ = new  BehaviorSubject<PostModel[]> ([]);
   totalPost$ = new BehaviorSubject<number>(0);
 
-  getPost(){
-    this.http.get(`${this.postUrl}`, {headers: this.headers}).subscribe({
+  getPost( perPage : number = 30){
+    this.http.get(`${this.postUrl}?${perPage}`, {headers: this.headers}).subscribe({
       next :(response : any) =>{
         this.post$.next(response)
         console.log('Dati dei post:', this.post$)
@@ -36,12 +40,12 @@ export class PostService {
 
   // create a new post
   createPost(post : PostModel, userId: User['id']){
-    return this.http.post((`${this.baseUrl}${userId}/posts`), post, {headers: this.headers})
+    return this.http.post((`${this.baseUrl}/${userId}/posts`), post, {headers: this.headers})
   }
 
   //delete a post
-  deletePost(postId : PostModel['id'], userId: User['id']){
-    return this.http.delete((`${this.baseUrl}${userId}/posts/${postId}`), {headers: this.headers})
+  deletePost(postId : PostModel['id'],){
+    return this.http.delete((`${this.postUrl}/${postId}`), {headers: this.headers})
   }
   
 }

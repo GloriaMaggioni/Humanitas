@@ -13,7 +13,8 @@ import { ChangeDetectorRef } from '@angular/core';
 export class PostsPage implements OnInit {
  private postService = inject(PostService);
  private snackBar = inject(SnackBar);
- private cdr = inject(ChangeDetectorRef)
+ private cdr = inject(ChangeDetectorRef);
+  //  private userId : number = 8414033;
 
  posts$ = this.postService.post$;
  totalPost : number = 0;
@@ -28,15 +29,18 @@ export class PostsPage implements OnInit {
 
 
  // todo: capire perchè non funziona e se userId serve
-  deletePost(postId: number | undefined, userId: number){
-    this.postService.deletePost(postId, userId).subscribe({
+  deletePost(postId: number | undefined){
+    this.postService.deletePost(postId).subscribe({
       next: (data: any)=> {
         this.postService.getPost();
         this.snackBar.openSnackBar('Post eliminato!');
         this.cdr.detectChanges();
         console.log('post eliminato:', data)
       },
-      error: () => this.snackBar.openSnackBar('Errore nella eliminazione del post')
+      error: (error : any) =>{
+         this.snackBar.openSnackBar('Errore nella eliminazione del post');
+         console.error('Errore per cancellare post:', error)
+      } 
     })
   }
 
