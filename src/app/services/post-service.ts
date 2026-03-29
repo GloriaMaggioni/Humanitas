@@ -5,6 +5,7 @@ import { CommentModel } from '../models/comment-model';
 import { User } from '../models/users';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment.development';
+import { SnackBar } from './snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class PostService {
   private postUrl: string ='https://gorest.co.in/public/v2/posts';
   private commentUrl : string = 'https://gorest.co.in/public/v2/comments';
   private myToken = environment.GOREST_APIKEY;
-   private userId : number = 8414033;
+   private userId : number = 8414033; // todo: da mettere poi in environment (?)
+   private snackBar = inject(SnackBar)
 
   //  /public/v2/users/8414033/posts/274998 --> struttura url per eliminare i post di un utente preciso
 
@@ -28,13 +30,15 @@ export class PostService {
   post$ = new  BehaviorSubject<PostModel[]> ([]);
   totalPost$ = new BehaviorSubject<number>(0);
 
-  getPost( perPage : number = 30){
-    this.http.get(`${this.postUrl}?${perPage}`, {headers: this.headers}).subscribe({
+  getPost( perPage : number = 20){
+    this.http.get(`${this.postUrl}?per_page=${perPage}`, {headers: this.headers, observe: 'response'}).subscribe({
       next :(response : any) =>{
-        this.post$.next(response)
-        console.log('Dati dei post:', this.post$)
+        this.post$.next(response.body);
+        const totalPost = response.headers.get('X-Pagination-Total')
+        this.totalPost$.next(Number(totalPost))
+        console.log('post tot:', response)
       },
-      error: (error: any) => console.error('Errore nella ricezione dei post:', error)
+      error: () => this.snackBar.openSnackBar('Errore nella ricezione dei post:')
     })
   }
 
@@ -44,7 +48,7 @@ export class PostService {
   }
 
   //delete a post
-  deletePost(postId : PostModel['id'],){
+  deletePost(postId : PostModel['id']){
     return this.http.delete((`${this.postUrl}/${postId}`), {headers: this.headers})
   }
   

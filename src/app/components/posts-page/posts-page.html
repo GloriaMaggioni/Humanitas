@@ -1,19 +1,24 @@
-<section class="post-page min-h-screen    md:p-4 border border-red-600">
+<section class="post-page min-h-screen    md:p-2 border border-black/5 roundend-md">
 
-    <div class="postList-container w-full p-4 flex align-middle flex-wrap border border-blue-700">
-         @for(post of posts$ | async; track $index){
-           <div class="bg-neutral-primary-soft block max-w-sm p-4 m-2 border border-black/5 rounded-md shadow-xs">
+    <div class="postList-container w-full   flex align-middle justify-evenly flex-wrap ">
+        @for(post of posts$ | async; track $index){
+           <div class="bg-neutral-primary-soft block w-[30%] p-4 m-2 border border-black/5 rounded-md shadow-xs">
             <p>{{post.user_id}}</p>
                <h5 class="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">{{post.title}}</h5>
                <p class="text-body mb-6">{{post.body}}</p>
                 <p class="text-body mb-6">Commento: {{post.comment}}</p>
 
                 <button href="" class="font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 hover:cursor-pointer p-2 rounded-md" (click)="deletePost(post.id)">Delete</button>
-
            </div>
-
-    }
+        }
+       
+          
 
     </div>
+    <div class="paginator-container m-auto w-fit mt-2 ">
+               <app-paginator [currentPage]="currentPage" [newsPerPage]="limit" [totalNews]="totalPost"></app-paginator>
+    </div>
+
+   
    
 </section>
