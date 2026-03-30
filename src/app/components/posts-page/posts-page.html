@@ -16,7 +16,7 @@
 
     </div>
     <div class="paginator-container m-auto w-fit mt-2 ">
-               <app-paginator [currentPage]="currentPage" [newsPerPage]="limit" [totalNews]="totalPost"></app-paginator>
+               <app-paginator [currentPage]="currentPage" [newsPerPage]="limit" [totalNews]="totalPost" (changePage)="changePage($event)"></app-paginator>
     </div>
 
    

@@ -31,6 +31,7 @@ export class PostsPage implements OnInit {
       this.totalPost = totalPage;
       this.cdr.detectChanges()
     })
+    
   }
 
 
@@ -49,4 +50,13 @@ export class PostsPage implements OnInit {
     })
   }
 
+
+  changePage(pageNumber : number){
+    if(pageNumber < 1) return;
+
+    this.currentPage = pageNumber;
+    this.offset = this.offset
+    this.postService.getPost(pageNumber)
+
+  }
 }

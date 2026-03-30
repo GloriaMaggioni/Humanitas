@@ -24,8 +24,9 @@ import { RouterLink } from "@angular/router";
 export class Navbar {
 
   private userService = inject(UsersService);
+  private postService = inject(PostService);
    private fb = inject(FormBuilder);
-  private snackBar = inject(SnackBar)
+  private snackBar = inject(SnackBar);
 
 
 
@@ -33,6 +34,7 @@ export class Navbar {
 isOpen = signal(false);
 isCreate = signal(false);
 testoDigitato: string = ''; // prende il testo digitato nella search bar 
+searchUserId: number = 0;
 
 
   // da sistemare per renderlo funzionante e dinamico
@@ -124,6 +126,14 @@ createPost() {
 findUser( ){
  this.userService.getUser(1, this.testoDigitato)
 }
+
+findPostByUserId(){
+ const utent = this.userService.users$.getValue().find(user => user.name == this.testoDigitato);
+ 
+ if(utent  && utent.id){
+  this.postService.getPostsByUserId(utent.id)
+ }else this.snackBar.openSnackBar('Errore nella ricerca dei post:')
+} 
 
    
 }

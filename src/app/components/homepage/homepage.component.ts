@@ -5,6 +5,9 @@ import { UsersService } from '../../services/users-service';
 import { User } from '../../models/users';
 import { SlicePipe } from '@angular/common';
 import { SnackBar } from '../../services/snack-bar';
+import { PostService } from '../../services/post-service';
+import { Post } from '../post/post';
+import { PostModel } from '../../models/post-model';
 
 @Component({
   selector: 'app-homepage',
@@ -14,6 +17,7 @@ import { SnackBar } from '../../services/snack-bar';
 })
 export class HomepageComponent implements OnInit {
   private userService = inject(UsersService);
+  private postService = inject(PostService);
   private cdr = inject(ChangeDetectorRef);
   private snackBarService = inject(SnackBar)
 
@@ -23,10 +27,12 @@ export class HomepageComponent implements OnInit {
   
   
   users : User[] = [];
+  posts : PostModel[] = [];
 
 
   ngOnInit(): void {
     this.showUtents();
+    this.showPosts()
   }
 
    // metodo per mostrare gli utenti nella homepage
@@ -38,6 +44,7 @@ export class HomepageComponent implements OnInit {
         this.cdr.detectChanges();
       }
     })
+    
   }
 
 
@@ -54,7 +61,27 @@ export class HomepageComponent implements OnInit {
     
   }
 
- 
+ showPosts(){
+  this.postService.getPost(1,6)
+    this.postService.post$.subscribe({
+      next: (data:any) =>{
+        this.posts = data;
+        this.cdr.detectChanges()
+      }
+    })
+
+ }
+ deletePost(postId : PostModel['id']){
+  this.postService.deletePost(postId).subscribe({
+     next : (data: any) =>{
+        this.postService.getPost();
+           this.snackBarService.openSnackBar('Post eliminato!');
+            this.cdr.detectChanges();
+      },
+      error : (err: any) =>  this.snackBarService.openSnackBar('Eliminazione post non riuscita:')
+
+  })
+ }
  
 
 

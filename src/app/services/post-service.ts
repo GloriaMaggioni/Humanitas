@@ -17,7 +17,7 @@ export class PostService {
   private postUrl: string ='https://gorest.co.in/public/v2/posts';
   private commentUrl : string = 'https://gorest.co.in/public/v2/comments';
   private myToken = environment.GOREST_APIKEY;
-   private userId : number = 8414033; // todo: da mettere poi in environment (?)
+   private userId : number = 8414033; // todo: da mettere poi in environment (?) e da agganciare alla autenticazione
    private snackBar = inject(SnackBar)
 
   //  /public/v2/users/8414033/posts/274998 --> struttura url per eliminare i post di un utente preciso
@@ -29,9 +29,10 @@ export class PostService {
 
   post$ = new  BehaviorSubject<PostModel[]> ([]);
   totalPost$ = new BehaviorSubject<number>(0);
+  filteredPost$ = new BehaviorSubject<number>(0);
 
-  getPost( perPage : number = 20){
-    this.http.get(`${this.postUrl}?per_page=${perPage}`, {headers: this.headers, observe: 'response'}).subscribe({
+  getPost(pageNumber: number = 1, perPage : number = 20){
+    this.http.get(`${this.postUrl}?page=${pageNumber}&per_page=${perPage}`, {headers: this.headers, observe: 'response'}).subscribe({
       next :(response : any) =>{
         this.post$.next(response.body);
         const totalPost = response.headers.get('X-Pagination-Total')
@@ -52,4 +53,17 @@ export class PostService {
     return this.http.delete((`${this.postUrl}/${postId}`), {headers: this.headers})
   }
   
+
+  getPostsByUserId(userId: number){
+    this.http.get(`https://gorest.co.in/public/v2/users/${userId}/posts`, {headers: this.headers, observe: 'response'}).subscribe({
+      next: (response: any) =>{
+        this.post$.next(response.body);
+        const totalFilteredPost = response.headers.get('X-Pagination-Total')
+        this.filteredPost$.next(Number(totalFilteredPost))
+        console.log('post filtrati tot:', response)
+
+      },
+      error: () => this.snackBar.openSnackBar('Errore nella ricerca dei post:')
+    })
+  }
 }
