@@ -2,9 +2,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
 
-<section class="homePage-container min-h-screen flex flex-col justify-between  p-4 md:p-6  ">
+<!-- <section class="homePage-container min-h-screen flex flex-col justify-between  p-4 md:p-6  ">
 
-  <!-- CAROUSEL -->
   <div class="carousel w-[50%] h-[24%] m-auto mt-[2%]  flex items-center rounded-lg gap-5 overflow-hidden relative border border-blue-800"  >
     <img  src="assets/images/AldaMerini.jpg" alt=""  class="carousel-image w-48 h-40 ml-[8%] align-middle z-50 rounded-lg shrink">
 
@@ -16,8 +15,8 @@
       </div>
     </div>
   </div>
-  <div class="container w-full flex border border-blue-600">
-     <div class="userList-container  w-[50%]  flex flex-col overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-sm border border-black/5">
+
+     <div class="userList-container  w-[80%] m-auto mt-6 flex flex-col overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-sm border border-black/5">
       <table class="w-full text-sm text-left rtl:text-right text-body">
         
        <tbody>
@@ -47,44 +46,91 @@
        }
        </tbody>
       </table>
-                  <button type="button" class="  p-2 m-auto mt-4 rounded-md border border-amber-600 hover:bg-amber-600 hover:text-white hover:curor-pointer" [routerLink]="['/utents']">See more... </button>
+                  <button type="button" class="  p-2 m-auto mt-4 mb-4 rounded-md border border-amber-600 hover:bg-amber-600 hover:text-white hover:cursor-pointer" [routerLink]="['/utents']">See more... </button>
     </div>
-      <div class="postList">
-     <table>
-        <tbody>
-          <tr><th>Lista dei post</th></tr>
+    
 
-          @for(post of posts | slice:0:6; track $index){
-             <div class="bg-neutral-primary-soft block w-[30%] p-4 m-2 border border-black/5 rounded-md shadow-xs">
+  <div class="postList mt-14  w-full  border border-red-600">
+    <div class="post-container w-full flex  align-middle justify-evenly overflow-x-scroll ">
+       @for(post of posts | slice:0:6; track $index){
+             <div class=" post-card bg-neutral-primary-soft  w-80 flex flex-col   p-2 m-2 border border-black/5 rounded-md shadow-xs">
               <p>{{post.user_id}}</p>
                <h5 class="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">{{post.title}}</h5>
-               <p class="text-body mb-6">{{post.body}}</p>
-                <p class="text-body mb-6">Commento: {{post.comment}}</p>
+               <p class="text-body mb-6 ">{{post.body}}</p>
+                <p class="text-body ">Commento: {{post.comment}}</p>
 
-                <button href="" class="font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 hover:cursor-pointer p-2 rounded-md" (click)="deletePost(post.id)">Delete</button>
+                <button href="" class=" w-[20%] ml-[10%] mt-4 font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 hover:cursor-pointer p-2 rounded-md" (click)="deletePost(post.id)">Delete</button>
            </div>
 
           }
-        </tbody>
-      </table>
-        <button type="button" class="  p-2 m-auto mt-4 rounded-md border border-amber-600 hover:bg-amber-600 hover:text-white hover:curor-pointer" [routerLink]="['/post-page']">See more... </button>
-        <!-- TODO: DA RIVEDERE TABELLE E BTN DELETE DEI POST -->
 
-
+    </div>
+    <button type="button" class=" block  p-2 m-auto mt-4 mb-4 rounded-md border border-amber-600 hover:bg-amber-600 hover:text-white hover:cursor-pointer" [routerLink]="['/post-page']">See more... </button>
+      
+           
    </div>
-
-  </div>
-
-   
- 
-
-
-
-
-   
-   
- 
 
 </section>
 
+ -->
 
+
+ <section class="homePage-container min-h-screen flex flex-col justify-between p-4 md:p-6">
+
+  <!-- CAROUSEL -->
+
+  <div class="carousel w-[50%] h-[24%] m-auto mt-[2%]  flex items-center rounded-lg gap-5 overflow-hidden lg:flex lg:items-center   sm:w-[40%] sm:flex sm:flex-col relative border border-blue-800"  >
+    <img  src="assets/images/AldaMerini.jpg" alt=""  class="carousel-image w-48 h-40 ml-[8%] md:mt-2 align-middle z-50 rounded-lg shrink">
+
+    <div class="carousel-text-container  h-40 text-black z-50 ">
+      <h3 class="carousel-citazione text-3xl md:text-2xl sm:text-xl md:mt-1  text-balance  md:font-bold sm:font-bold text-center italic">“L’ intelligenza senza la sensibilità non serve a niente”</h3>
+      <div class="carousel-textSecondary flex flex-col mt-[8%]  md:mt-4 md:ml-2  sm:mt-4 s:ml-2 ">
+        <h4 class="carousel-nameCharacter mb-[1%]  text-base font-medium">Alda Merini (1931 - 2009)</h4>
+        <p class="carousel-professionText text-sm text-gray-600">Poetessa, aforista e scrittrice italiana</p>
+      </div>
+    </div>
+  </div> 
+
+
+  <!-- TABELLA UTENTI -->
+  <div class="userList-container w-full md:w-[80%] m-auto mt-6 flex flex-col overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-sm border border-black/5">
+    <table class="w-full text-sm text-left rtl:text-right text-body">
+      <tbody>
+        @for(user of users | slice:0:6; track $index){
+          <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-black/5">
+            <th scope="row" class="px-3 md:px-6 py-4 font-medium text-heading whitespace-nowrap text-amber-600">
+              {{offset + $index + 1}}
+            </th>
+            <td class="px-3 md:px-6 py-4 hover:cursor-pointer" [routerLink]="['/utentPage']">
+              {{user.name}}
+            </td>
+            <td class="hidden md:table-cell px-6 py-4">{{user.email}}</td>
+            <td class="hidden md:table-cell px-6 py-4">{{user.gender}}</td>
+            <td class="hidden md:table-cell px-6 py-4">{{user.status}}</td>
+            <td class="px-3 md:px-6 py-4">
+              <button class="font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600 hover:border-red-600 hover:cursor-pointer p-2 rounded-md" (click)="deleteUser(user.id)">Delete</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <button type="button" class="p-2 m-auto mt-4 mb-4 rounded-md border border-amber-600 hover:bg-amber-600 hover:text-white hover:cursor-pointer" [routerLink]="['/utents']">See more...</button>
+  </div>
+
+  <!-- POST -->
+  <div class="postList mt-14 w-full">
+    <div class="post-container  flex flex-nowrap overflow-x-auto gap-4 p-2">
+      @for(post of posts | slice:0:6; track $index){
+        <div class="post-card bg-neutral-primary-soft flex flex-col shrink-0 w-[45%] md:w-[23%] p-2 border border-black/5 rounded-md shadow-xs">
+          <p>{{post.user_id}}</p>
+          <h5 class="mb-3 text-lg md:text-2xl font-semibold tracking-tight text-heading leading-8">{{post.title}}</h5>
+          <p class="text-body mb-6 overflow-hidden line-clamp-3">{{post.body}}</p>
+          <p class="text-body">Commento: {{post.comment}}</p>
+          <button class="mt-auto w-fit font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600 hover:border-red-600 hover:cursor-pointer p-2 rounded-md" (click)="deletePost(post.id)">Delete</button>
+        </div>
+      }
+    </div>
+    <button type="button" class="block p-2 m-auto mt-4 mb-4 rounded-md border border-amber-600 hover:bg-amber-600 hover:text-white hover:cursor-pointer" [routerLink]="['/post-page']">See more...</button>
+  </div>
+
+</section>
