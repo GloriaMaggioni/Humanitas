@@ -2,9 +2,9 @@
  <div class="navbar-container w-full h-full flex items-center justify-between px-8">
     <!-- SEARCH BAR -->
      <div class="search-bar flex ">
-        <input type="search"  placeholder="Search" class="search-input  h-full  border border-solid border-gray-400 rounded-md placeholder-gray-400 " [(ngModel)]="testoDigitato" (input)="findUser()">
-        <button type="button" class="search-btn  rounded-md bg-amber-600" >
-             <img src="assets/images/search-icon2.svg" alt="" class="size-4 search-icon ">
+        <input type="search"  placeholder="Search" class="search-input  h-full  border border-solid border-gray-400 rounded-md placeholder-gray-400 " [(ngModel)]="testoDigitato" (input)="findUser() " (input)="findPostByUserId()">
+        <button type="button" class="search-btn  rounded-md bg-amber-600">
+             <img src="assets/images/search-icon2.svg" alt="" class="size-4 search-icon " (click)="findPostByUserId()">
         </button>
       </div>
       <!-- CONTAINER DEI  BOTTONI -->

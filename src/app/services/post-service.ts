@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PostModel } from '../models/post-model';
 import { CommentModel } from '../models/comment-model';
 import { User } from '../models/users';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { SnackBar } from './snack-bar';
 
@@ -30,6 +30,7 @@ export class PostService {
   post$ = new  BehaviorSubject<PostModel[]> ([]);
   totalPost$ = new BehaviorSubject<number>(0);
   filteredPost$ = new BehaviorSubject<number>(0);
+  comment$ = new BehaviorSubject<CommentModel[]>([])
 
   getPost(pageNumber: number = 1, perPage : number = 20){
     this.http.get(`${this.postUrl}?page=${pageNumber}&per_page=${perPage}`, {headers: this.headers, observe: 'response'}).subscribe({
@@ -60,10 +61,24 @@ export class PostService {
         this.post$.next(response.body);
         const totalFilteredPost = response.headers.get('X-Pagination-Total')
         this.filteredPost$.next(Number(totalFilteredPost))
-        console.log('post filtrati tot:', response)
+        console.log('post filtrati tot:', response.body)
 
       },
-      error: () => this.snackBar.openSnackBar('Errore nella ricerca dei post:')
+      error: (error: any) =>{
+        this.snackBar.openSnackBar('Errore nella ricerca dei post:');
+        console.log('errore nel filtrtaggio:', error)
+      } 
+    })
+  }
+
+  // todo: da sistemare qui o nel componente per prendere uno solo comment per post
+
+  getComment(){
+    return this.http.get(`${this.commentUrl}`, {headers:this.headers, observe: 'response'}).subscribe({
+      next: (response: any) =>{
+        this.comment$.next(response.body);
+        console.log('dati dei commenti:', this.comment$)
+      }
     })
   }
 }

@@ -4,6 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import { SnackBar } from '../../services/snack-bar';
 import { ChangeDetectorRef } from '@angular/core';
 import { Paginator } from "../paginator/paginator";
+import { CommentModel } from '../../models/comment-model';
 
 @Component({
   selector: 'app-posts-page',
@@ -24,6 +25,7 @@ export class PostsPage implements OnInit {
 
  posts$ = this.postService.post$;
  totalPost : number = 0;
+ comment$ = this.postService.comment$;
 
   ngOnInit(): void {
     this.postService.getPost()
@@ -31,12 +33,13 @@ export class PostsPage implements OnInit {
       this.totalPost = totalPage;
       this.cdr.detectChanges()
     })
+    this.postService.getComment()
     
   }
 
 
 
- // todo: capire perchè non funziona e se userId serve
+
   deletePost(postId: number | undefined){
     this.postService.deletePost(postId).subscribe({
       next: (data: any)=> {

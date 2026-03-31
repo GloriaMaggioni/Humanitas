@@ -11,6 +11,7 @@ import { PostModel } from '../../models/post-model';
 import { CommonModule } from '@angular/common';
 import { SnackBar } from '../../services/snack-bar';
 import { RouterLink } from "@angular/router";
+import { error } from 'node:console';
 
 
 
@@ -127,12 +128,25 @@ findUser( ){
  this.userService.getUser(1, this.testoDigitato)
 }
 
+
+// TODO: NON FUNZIONA ,BISOGNA CAPIRE IL PERCHè
 findPostByUserId(){
- const utent = this.userService.users$.getValue().find(user => user.name == this.testoDigitato);
+  if(this.testoDigitato  === ''){ 
+    return  
+  }else {
+    const utent = this.userService.users$.getValue().find(user => user.name == this.testoDigitato);
  
  if(utent  && utent.id){
-  this.postService.getPostsByUserId(utent.id)
- }else this.snackBar.openSnackBar('Errore nella ricerca dei post:')
+  this.postService.getPostsByUserId(utent.id);
+  console.log('post da findPostNyUserId nella navbar:', utent.name)
+ }else{
+ console.warn('Attenzione: Nessun utente trovato o ID non disponibile per la ricerca dei post.');
+  // this.snackBar.openSnackBar('Errore nella ricerca dei post:', )
+  console.error('Errore ricerca post: Utente non trovato o ID mancante per', this.testoDigitato);
+
+ } 
+  }
+ 
 } 
 
    

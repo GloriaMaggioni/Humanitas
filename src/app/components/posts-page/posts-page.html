@@ -2,11 +2,16 @@
 
     <div class="postList-container w-full   flex align-middle justify-evenly flex-wrap ">
         @for(post of posts$ | async; track $index){
-           <div class="bg-neutral-primary-soft block w-[30%] p-4 m-2 border border-black/5 rounded-md shadow-xs">
+           <div class="bg-neutral-primary-soft block w-[40%]  sm:w-[45%] md:w-[40%] lg:w-[40%] p-4 m-2 border border-black/5 rounded-md shadow-xs">
             <p>{{post.user_id}}</p>
                <h5 class="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">{{post.title}}</h5>
                <p class="text-body mb-6">{{post.body}}</p>
-                <p class="text-body mb-6">Commento: {{post.comment}}</p>
+                <p class="text-body mb-6">Commento:
+                   @for(comment of comment$ | async; track $index){
+                        <h5>Titolo commento: {{comment.name}}</h5>
+
+                    } 
+                </p>
 
                 <button href="" class="font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 hover:cursor-pointer p-2 rounded-md" (click)="deletePost(post.id)">Delete</button>
            </div>

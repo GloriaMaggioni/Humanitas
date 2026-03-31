@@ -1,4 +1,3 @@
-import { EmailValidator } from "@angular/forms";
 
 export interface CommentModel {
     id?: number,
