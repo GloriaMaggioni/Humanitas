@@ -1,9 +1,9 @@
-import { inject, Injectable } from '@angular/core';
+import { ChangeDetectorRef, inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PostModel } from '../models/post-model';
 import { CommentModel } from '../models/comment-model';
 import { User } from '../models/users';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { SnackBar } from './snack-bar';
 
@@ -12,7 +12,9 @@ import { SnackBar } from './snack-bar';
 })
 export class PostService {
 
-  private http = inject(HttpClient)
+  private http = inject(HttpClient);
+  private cdr = inject(ChangeDetectorRef);
+
   private baseUrl : string = 'https://gorest.co.in/public/v2/users'
   private postUrl: string ='https://gorest.co.in/public/v2/posts';
   private commentUrl : string = 'https://gorest.co.in/public/v2/comments';
@@ -35,10 +37,18 @@ export class PostService {
   getPost(pageNumber: number = 1, perPage : number = 20){
     this.http.get(`${this.postUrl}?page=${pageNumber}&per_page=${perPage}`, {headers: this.headers, observe: 'response'}).subscribe({
       next :(response : any) =>{
-        this.post$.next(response.body);
+        this.post$.next(response.body)
         const totalPost = response.headers.get('X-Pagination-Total')
         this.totalPost$.next(Number(totalPost))
         console.log('post tot:', response)
+
+        response.body.forEach( (post :PostModel) => {
+          this.getComment(post.id).subscribe((comments : any) =>{
+            post.comment = comments;
+            this.cdr.detectChanges();
+            // ! VEDERE PERCHè MI DA ERRORE  NG0201 DOPO AVER AGGIUNTO cdr
+          })  
+        })
       },
       error: () => this.snackBar.openSnackBar('Errore nella ricezione dei post:')
     })
@@ -73,12 +83,9 @@ export class PostService {
 
   // todo: da sistemare qui o nel componente per prendere uno solo comment per post
 
-  getComment(){
-    return this.http.get(`${this.commentUrl}`, {headers:this.headers, observe: 'response'}).subscribe({
-      next: (response: any) =>{
-        this.comment$.next(response.body);
-        console.log('dati dei commenti:', response)
-      }
-    })
+  getComment(postId : PostModel['id']){
+    return this.http.get(`${this.postUrl}/${postId}/comments`, {headers:this.headers, observe: 'response'}).pipe(
+      map((response: any) => response.body)
+    )
   }
 }

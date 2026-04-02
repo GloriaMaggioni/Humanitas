@@ -5,6 +5,7 @@ import { SnackBar } from '../../services/snack-bar';
 import { ChangeDetectorRef } from '@angular/core';
 import { Paginator } from "../paginator/paginator";
 import { CommentModel } from '../../models/comment-model';
+import { PostModel } from '../../models/post-model';
 
 @Component({
   selector: 'app-posts-page',
@@ -25,7 +26,7 @@ export class PostsPage implements OnInit {
 
  posts$ = this.postService.post$;
  totalPost : number = 0;
- comment$ = this.postService.comment$;
+//  comments$ = this.postService.comment$
 
   ngOnInit(): void {
     this.postService.getPost()
@@ -34,8 +35,7 @@ export class PostsPage implements OnInit {
       this.cdr.detectChanges()
     })
    
-    // TODO: caapire cosa c'è di sbagliato: i dati dei commenti non si vedono anche se html li accetta
-    this.postService.getComment()
+    // this.postService.getComment()
     this.cdr.detectChanges()
     
   }

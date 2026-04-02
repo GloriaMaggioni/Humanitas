@@ -129,8 +129,7 @@ findUser( ){
  this.userService.getUser(1, this.testoDigitato)
 }
 
-
-// TODO: NON FUNZIONA ,BISOGNA CAPIRE IL PERCHè
+// filtra i post in base all'user_id
 findPostByUserId(){
   if(this.testoDigitato != ''){
      this.postService.getPostsByUserId(Number(this.testoDigitato))
@@ -138,10 +137,6 @@ findPostByUserId(){
   } else {
     this.postService.getPost()
   }
-
- 
-
- 
 } 
 
    
