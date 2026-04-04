@@ -26,7 +26,7 @@ export class PostsPage implements OnInit {
 
  posts$ = this.postService.post$;
  totalPost : number = 0;
-//  comments$ = this.postService.comment$
+//  totalComments : object = [{}]
 
   ngOnInit(): void {
     this.postService.getPost()
@@ -34,8 +34,19 @@ export class PostsPage implements OnInit {
       this.totalPost = totalPage;
       this.cdr.detectChanges()
     })
+    this.postService.post$.subscribe(posts =>{
+       posts.forEach((post:PostModel) =>{
+        this.postService.getComment(post.id).subscribe( (totalComments)=> {
+          post.comment = totalComments
+          this.cdr.detectChanges()
+          console.log('post totali:', totalComments);
+
+        })
+      });
+    
+    })
+    
    
-    // this.postService.getComment()
     this.cdr.detectChanges()
     
   }

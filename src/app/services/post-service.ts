@@ -13,7 +13,6 @@ import { SnackBar } from './snack-bar';
 export class PostService {
 
   private http = inject(HttpClient);
-  private cdr = inject(ChangeDetectorRef);
 
   private baseUrl : string = 'https://gorest.co.in/public/v2/users'
   private postUrl: string ='https://gorest.co.in/public/v2/posts';
@@ -42,13 +41,12 @@ export class PostService {
         this.totalPost$.next(Number(totalPost))
         console.log('post tot:', response)
 
-        response.body.forEach( (post :PostModel) => {
-          this.getComment(post.id).subscribe((comments : any) =>{
-            post.comment = comments;
-            this.cdr.detectChanges();
-            // ! VEDERE PERCHè MI DA ERRORE  NG0201 DOPO AVER AGGIUNTO cdr
-          })  
-        })
+        // response.body.forEach( (post :PostModel) => {
+        //   this.getComment(post.id).subscribe((comments : any) =>{
+        //     post.comment = comments;
+        //     console.log('total comment:', post.comment)
+        //   })  
+        // })
       },
       error: () => this.snackBar.openSnackBar('Errore nella ricezione dei post:')
     })

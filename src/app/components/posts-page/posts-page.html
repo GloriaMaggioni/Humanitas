@@ -8,13 +8,19 @@
                <p class="text-body mb-6">{{post.body}}</p>
                 <p class="text-body mb-6">Commento:
                    @for(comment of post.comment; track comment.id){
-                        <h5>Titolo commento: {{comment.name}}</h5>
+                    <div class="border border-black/5">
+                     <h5 class="font-bold"> {{comment.name}} </h5>
                         <p>{{comment.body}}</p>
+
+                    </div>
+                     
 
                     } 
                 </p>
 
                 <button href="" class="font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 hover:cursor-pointer p-2 rounded-md" (click)="deletePost(post.id)">Delete</button>
+                <button href="" class="font-medium text-fg-brand ml-4 hover:text-white border border-black/5 hover:bg-amber-600  hover:border-amber-600 hover:cursor-pointer p-2 rounded-md" >New comment</button>
+
            </div>
         }
        
