@@ -29,7 +29,7 @@ export class PostsPage implements OnInit {
    isOpen = signal(false);
    isCreate = signal(false);
 
-   private postId: number =  23; // TODO: DA SISTEMARE DINAMICAMENTE
+   private postId: number | undefined=  275614; // TODO: DA SISTEMARE DINAMICAMENTE
 
   newCommentForm : FormGroup = this.fb.group({
      name: ['', Validators.required],
@@ -38,10 +38,11 @@ export class PostsPage implements OnInit {
   })
 
 
-  openCommentModal(){
+  openCommentModal(postId? : number | undefined){
     console.log('isCreate prima:', this.isCreate())
     this.isCreate.update(open => !open);
-     console.log('isCreate dopo:', this.isCreate())
+     console.log('isCreate dopo:', this.isCreate());
+     this.postId = postId
     if(this.isOpen() == true){
       this.isCreate.set(false)
     }
@@ -61,7 +62,6 @@ export class PostsPage implements OnInit {
         this.postService.getComment(post?.id).subscribe( (totalComments)=> {
           post.comment = totalComments
           this.cdr.detectChanges()
-          console.log('post totali:', totalComments);
 
         })
       });
@@ -88,20 +88,24 @@ onSubmit(){
     })
   }
 
-  // TODO: VERIFICARE SE FUNZIONA
   addComment(){
     if(this.newCommentForm.valid){
       this.postService.createComment(this.newCommentForm.value as CommentModel, this.postId).subscribe({
-        next: (data :any) =>{
-          this.newCommentForm = data;
-          this.newCommentForm.reset();
-          this.cdr.detectChanges()
+        next: (response :any) =>{
+          this.postService.getComment(this.postId).subscribe(comments =>{
+            const post = this.postService.post$.getValue().find((comment) =>comment.id === this.postId)
+            if(post){
+              post.comment = comments
+            }
+          })
+           this.newCommentForm.reset();
+          this.cdr.detectChanges();
+          this.snackBar.openSnackBar('Nuovo commento creato con successo!')
         },
         error: (err: any) => this.snackBar.openSnackBar('Errore nella creazione del nuovo commento:', err)
       })
 
     }
-   alert('Form non valido')
   }
 
 

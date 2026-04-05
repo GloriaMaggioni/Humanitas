@@ -9,17 +9,20 @@
                 <p class="text-body mb-6">Comments:
                    @for(comment of post.comment; track comment.id){
                     <div class=" p-2 mt-1 rounded-md border border-black/5">
-                     <h5 class="font-bold"> {{comment.name}} </h5>
-                     <p>{{comment.body}}</p>
-
-                    </div>
-                     
+                      <div class="comment-content flex align-middle justify-between">
+                         <h5 class="font-bold"> {{comment.name}} </h5>
+                            <button class=" font-small text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 hover:cursor-pointer p-1 rounded-md">
+                               <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-48v-72h192v-48h192v48h192v72h-48v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM384-288h72v-336h-72v336Zm120 0h72v-336h-72v336ZM312-696v480-480Z"/></svg>
+                            </button>   
+                      </div>
+                       <p>{{comment.body}}</p>
+                    </div>          
 
                     } 
                 </p>
 
                 <button href="" class="font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 hover:cursor-pointer p-2 rounded-md" (click)="deletePost(post.id)">Delete</button>
-                <button href="" class="font-medium text-fg-brand ml-4 hover:text-white border border-black/5 hover:bg-amber-600  hover:border-amber-600 hover:cursor-pointer p-2 rounded-md" (click)="openCommentModal()">New comment</button>
+                <button href="" class="font-medium text-fg-brand ml-4 hover:text-white border border-black/5 hover:bg-amber-600  hover:border-amber-600 hover:cursor-pointer p-2 rounded-md" (click)="openCommentModal(post.id)">New comment</button>
 
            </div>
         }
@@ -57,9 +60,6 @@
          
                 <button type="submit" class="text-white bg-amber-600 box-border border border-amber-600 hover:bg-amber-500 hover:border-amber-500 hover:text-white hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none"  >Create</button>
              <button type="reset" class="text-red-600 bg-transparent ml-4 hover:bg-gray-200 hover:text-black hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none" (click)="newCommentForm.reset()">Cancel</button>
-              @if(newCommentForm.valid && newCommentForm.get('submit')?.touched){
-                <p class="text-green-700 font bold mt-2">Nuovo commento creato</p>
-               }
              </form>
             </div>
         }

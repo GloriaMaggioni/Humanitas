@@ -28,11 +28,12 @@ export class PostService {
     'Authorization': 'Bearer ' + this.myToken
   })
 
-  post$ = new  BehaviorSubject<PostModel[]> ([]);
-  totalPost$ = new BehaviorSubject<number>(0);
-  filteredPost$ = new BehaviorSubject<number>(0);
-  comment$ = new BehaviorSubject<CommentModel[]>([])
+  post$ = new  BehaviorSubject<PostModel[]> ([]);    // immagazzina dati dei post
+  totalPost$ = new BehaviorSubject<number>(0);      //  serve per prendere il tot dei post
+  filteredPost$ = new BehaviorSubject<number>(0);    // prende i post filtrati in base agli id degli user
+  comment$ = new BehaviorSubject<CommentModel[]>([])  // immagazzina i dati dei commenti
 
+ // metodo che prende i post dal server
   getPost(pageNumber: number = 1, perPage : number = 20){
     this.http.get(`${this.postUrl}?page=${pageNumber}&per_page=${perPage}`, {headers: this.headers, observe: 'response'}).subscribe({
       next :(response : any) =>{
@@ -55,29 +56,28 @@ export class PostService {
   }
   
 
+    // metodo che prende i post basandosi sul id degli user
   getPostsByUserId(userId: number){
     this.http.get(`https://gorest.co.in/public/v2/users/${userId}/posts`, {headers: this.headers, observe: 'response'}).subscribe({
       next: (response: any) =>{
         this.post$.next(response.body);
         const totalFilteredPost = response.headers.get('X-Pagination-Total')
         this.filteredPost$.next(Number(totalFilteredPost))
-        console.log('post filtrati tot:', response.body)
-
       },
       error: (error: any) =>{
         this.snackBar.openSnackBar('Errore nella ricerca dei post:');
-        console.log('errore nel filtrtaggio:', error)
       } 
     })
   }
 
-
-  getComment(postId : PostModel['id']){
+   // metodo che prende i commenti
+  getComment(postId : PostModel['id'] | undefined){
     return this.http.get(`${this.postUrl}/${postId}/comments`, {headers:this.headers, observe: 'response'}).pipe(
       map((response: any) => response.body)
     )
   }
 
+  // metodo che crea un nuovo commento
   createComment(comment : CommentModel, postId : PostModel['id']){
     return this.http.post((`${this.postUrl}/${postId}/comments`), comment, {headers: this.headers})
   }
