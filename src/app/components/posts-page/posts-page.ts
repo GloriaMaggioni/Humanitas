@@ -1,6 +1,6 @@
 import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { PostService } from '../../services/post-service';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { SnackBar } from '../../services/snack-bar';
 import { ChangeDetectorRef } from '@angular/core';
 import { Paginator } from "../paginator/paginator";
@@ -108,7 +108,31 @@ onSubmit(){
     }
   }
 
+  // metodo per eliminare un comment
+  deleteComment(commentId : number | undefined, postId: number | undefined){
+    this.postService.deleteComment(commentId).subscribe({
+      next: () => {
+        this.postService.getComment(postId).subscribe((totalComments) =>{
+          const post = this.postService.post$.getValue().find(post => post.id === postId);
+          if(post){
+             post.comment = totalComments;
+             this.cdr.detectChanges()
+          }
 
+        })
+         this.snackBar.openSnackBar('Eliminato  commento con successo!');
+        this.cdr.detectChanges();
+      },
+      error: (error : any) =>{ this.snackBar.openSnackBar('Errore nella eliminazione del commento:', error); 
+        console.error('Errore nella eliminazione:', error)
+      }
+    })
+    // console.log('Commento eliminato', id)
+  }
+
+
+
+  // metodo per cambio pagina con in btns del paginator
   changePage(pageNumber : number){
     if(pageNumber < 1) return;
 

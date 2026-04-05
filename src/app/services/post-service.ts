@@ -33,6 +33,13 @@ export class PostService {
   filteredPost$ = new BehaviorSubject<number>(0);    // prende i post filtrati in base agli id degli user
   comment$ = new BehaviorSubject<CommentModel[]>([])  // immagazzina i dati dei commenti
 
+ /*
+  
+              POST 
+
+  */
+
+
  // metodo che prende i post dal server
   getPost(pageNumber: number = 1, perPage : number = 20){
     this.http.get(`${this.postUrl}?page=${pageNumber}&per_page=${perPage}`, {headers: this.headers, observe: 'response'}).subscribe({
@@ -70,6 +77,15 @@ export class PostService {
     })
   }
 
+
+
+  
+/*
+
+     COMMENTI
+
+*/
+
    // metodo che prende i commenti
   getComment(postId : PostModel['id'] | undefined){
     return this.http.get(`${this.postUrl}/${postId}/comments`, {headers:this.headers, observe: 'response'}).pipe(
@@ -80,5 +96,12 @@ export class PostService {
   // metodo che crea un nuovo commento
   createComment(comment : CommentModel, postId : PostModel['id']){
     return this.http.post((`${this.postUrl}/${postId}/comments`), comment, {headers: this.headers})
+  }
+
+
+  // metodo per eliminare un commento
+
+  deleteComment(commentId : CommentModel['id']){
+    return this.http.delete(`${this.commentUrl}/${commentId}`, {headers: this.headers})
   }
 }
