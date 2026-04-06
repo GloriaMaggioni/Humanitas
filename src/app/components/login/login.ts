@@ -21,8 +21,8 @@ onSubmit(loginForm : NgForm){
   const email = loginForm.value.email;
   const password = loginForm.value.password
     this.authService.login()
-   this.router.navigate(['/homepage'])
-  console.log(loginForm)
+   this.router.navigate(['homepage'])
+  console.log(loginForm.value)
 }
 
 }

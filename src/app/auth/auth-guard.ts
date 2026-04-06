@@ -14,10 +14,10 @@ if (!isPlatformBrowser(platformId)) {
     const router = inject(Router)
 
    if(authService.isLoggedIn() ){
-    router.navigate(['/homepage']);
+  
     return true;
    }else{
-    router.navigate(['/login']);
+    router.navigate(['login']);
     return false
    }
 };

@@ -14,8 +14,8 @@ import { SingleUtentPageComponent } from './components/single-utent-page/single-
 import { PostsPage } from './components/posts-page/posts-page';
 import { authGuard } from './auth/auth-guard';
 export const routes: Routes = [    
-    {path: '', component: Dashboard, children: [
-        {path: '', component: HomepageComponent,  canActivate: [authGuard]},
+    {path: '', component: Dashboard,canActivate: [authGuard] ,children: [
+        {path: '', component: HomepageComponent},
         {path: 'events', component: EventsPage},
         {path: 'history',  loadComponent: () => import('./components/history-page/history-page.component').then(m => m.HistoryPageComponent)},
         {path: 'future', loadComponent: () => import('./components/future-page/future-page.component').then(m => m.FuturePageComponent)},
