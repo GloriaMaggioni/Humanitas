@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { Dashboard } from './components/dashboard/dashboard';
 import { Login } from './components/login/login';
-import { Register } from './components/register/register';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { EventsPage } from './components/events-page/events-page';
 import { HomepageComponent } from './components/homepage/homepage.component';
@@ -30,7 +29,6 @@ export const routes: Routes = [
 
      {path: 'sidebar', component: SidebarComponent},
     {path: 'login', component: Login},
-    {path: 'register', component: Register},
 
     { path: '**', redirectTo: '' ,pathMatch: 'full'} 
 

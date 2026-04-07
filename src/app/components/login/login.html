@@ -31,18 +31,24 @@
                    
                         <div >
                           <label for="email" class="block  text-sm/6">Email*</label>
-                         <input type="email" name="email" required autocomplete="email"  class=" block w-full h-9 rounded-md px-3 py-3  bg-white outline-1 -outlone-offset-1 outline-gray-300 text-base focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500" ngModel>
+                         <input #email="ngModel" type="email" name="email" required autocomplete="email"  class=" block w-full h-9 rounded-md px-3 py-3  bg-white outline-1 -outlone-offset-1 outline-gray-300 text-base focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500" ngModel>
+                         @if(email?.invalid && email?.touched){
+                             <p class="text-red-600 mt-1">Inserire una email valida</p>
+                         }
                        </div>
                   
                          <div >
                           <label for="password" class="block  text-sm/6">Password*</label>
-                         <input type="password" name="password" required autocomplete="current-password" class="block w-full h-9 rounded-md px-3 py-3   bg-white outline-1 -outlone-offset-1 outline-gray-300 text-base focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500" ngModel>
+                         <input #password="ngModel" type="password" name="password" required autocomplete="current-password" class="block w-full h-9 rounded-md px-3 py-3   bg-white outline-1 -outlone-offset-1 outline-gray-300 text-base focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500" ngModel>
+                           @if(password?.invalid && password?.touched){
+                             <p class="text-red-600 mt-1">Inserire una email valida</p>
+                         }
                        </div>
                      
                         <div class="space-y-3">
-                          <button type="submit" class="w-full h-9 justify-center rounded-md  px-3 py-4  bg-orange-500  text-white hover:bg-orange-400 text-sm/6 login-btn" >Login</button>
-                          <p class="text-gray-500 text-center">Oppure</p>
-                          <button type="submit" class="w-full h-9 justify-center rounded-md px-3 py-4  bg-white  text-black outline-1 -outlone-offset-1 outline-gray-300  hover:bg-gray-100 text-sm/6 register-btn" >Register</button>
+                          <button type="submit" class="w-full h-9 justify-center rounded-md  px-3 py-4  bg-orange-500  text-white hover:bg-orange-400 text-sm/6 login-btn" 
+                          [disabled]="!loginForm.valid"
+                          [ngClass]="{'opacity-50 cursor-not-allowed': !loginForm.valid}">Login</button>
                         </div>
 
 
