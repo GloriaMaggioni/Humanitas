@@ -4,7 +4,6 @@ import { HttpParams } from '@angular/common/http';
 import { Places } from '../../models/places';
 import { isPlatformBrowser } from '@angular/common';
 import { Map, MapStyle, Marker, config, Popup } from '@maptiler/sdk';
-// import '@maptiler/sdk/dist/maptiler-sdk.css'; 
 
 @Component({
   selector: 'app-spazi-culturali',
