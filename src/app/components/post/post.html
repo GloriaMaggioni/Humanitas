@@ -1,17 +1,21 @@
 
 
-<form  class="newPost-form w-full mt-2 border border-red-600" #newPostForm="ngForm">
+<form  class="newPost-form w-full mt-2 " #newPostForm="ngForm">
     <div class="header">
-       <input name="user-id" required  [attr.readonly]="true" class="border border-green-700">{{newPost.user_id}}  
+        <p>
+       <strong class="mr-1"> Id utente:</strong><input name="user-id"  required  placeholder="{{newPost.user_id}}  " [attr.readonly]="true" >
+        
+       
+       </p>
     </div>
   
-    <div class="post-description-container mt-4 border border-blue-600">
-        <input type="text" name="post-title" class="border border-red-600 mb-2" placeholder="Titolo"  [(ngModel)]="newPost.title" required>
-        <textarea name="post-description" id="post's description" class="w-full h-16" [(ngModel)]="newPost.body" placeholder="Descrizione" required></textarea>
+    <div class="post-description-container mt-4 ">
+        <input type="text" name="post-title" class=" border border-gray-500  mb-4 rounded-sm" placeholder="Titolo"  [(ngModel)]="newPost.title" required>
+        <textarea name="post-description" id="post's description" class="w-full h-40  border border-gray-500 rounded-sm" [(ngModel)]="newPost.body" placeholder="Descrizione" required></textarea>
     </div>
-    <div class="postbtn-container w-[50%] flex flex-row align-middle items-end mt-4  flex-auto border border-green-700">
-         <button name="btn-cancel" class="p-1 rounded-md hover:cursor-pointer border border-green-600" (click)="postForm.reset()">Cancel</button>
-        <button name="btn-share" class="p-1 mr-2 rounded-md hover: cursor-pointer border border-orange-600"[disabled]="!newPostForm.valid" (click)="createNewPost()">Share</button>
+    <div class="postbtn-container w-[50%] flex flex-row align-middle justify-between md:justify-center  mt-4  flex-auto">
+         <button name="btn-cancel" class="text-red-600 bg-transparent md:mr-4  hover:bg-gray-200 hover:text-black hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none" (click)="postForm.reset()">Cancel</button>
+        <button name="btn-share" class=" text-white bg-amber-600 box-border border border-amber-600 hover:bg-amber-500 hover:border-amber-500 hover:text-white hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none"[disabled]="!newPostForm.valid" (click)="createNewPost()">Share</button>
     </div>
 </form>
 
