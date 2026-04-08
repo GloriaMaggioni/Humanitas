@@ -20,9 +20,10 @@ export const routes: Routes = [
         {path: 'future', loadComponent: () => import('./components/future-page/future-page.component').then(m => m.FuturePageComponent)},
         {path:'spaziCulturali', component: SpaziCulturali},
         {path: 'utents', component: UtentsPageComponent},
-        {path: 'utentPage/:id', component: SingleUtentPageComponent},
+        //  {path: 'utentPage', component: SingleUtentPageComponent},
+          {path: 'utentPage/:id', component: SingleUtentPageComponent},
         {path: 'settings', component: SettingsPageComponent, children: [
-             {path: 'post-page', component: PostsPage}
+              {path: 'post-page', component: PostsPage}
         ]},
        
     ]},

@@ -13,7 +13,8 @@ export class UsersService  {
    private snackBar = inject(SnackBar);
 
    private apiUrl : string=  'https://gorest.co.in/public/v2/users';     // api url per users
-   private myToken: string = environment.GOREST_APIKEY;              
+   private myToken: string = environment.GOREST_APIKEY;   
+   private idUser: number = environment.USER_ID         
    private headers = new HttpHeaders({                                  // impostazione http headers
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + this.myToken
@@ -68,7 +69,7 @@ export class UsersService  {
    }
 
  // metodo per prendere i dettagli di un utente
- getUserDetails(idUser: number ){
+ getUserDetails(idUser: number | undefined  ){
   return this.http.get(`${this.apiUrl}/${idUser}`, {headers: this.headers})
  }
 

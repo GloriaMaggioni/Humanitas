@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Component,  inject,  signal } from '@angular/core';
+import { RouterLink, RouterOutlet } from "@angular/router";
 import { SingleUtentPageComponent } from "../single-utent-page/single-utent-page.component";
 import { PostsPage } from "../posts-page/posts-page";
+import { AuthService } from '../../auth/auth-service';
 
 @Component({
   selector: 'app-settings-page',
@@ -10,7 +11,9 @@ import { PostsPage } from "../posts-page/posts-page";
   styleUrl: './settings-page.component.css'
 })
 export class SettingsPageComponent {
-  isPanelOpen = signal('');
+  isPanelOpen = signal('profilo');
+ authService = inject(AuthService)
+
 
   panel(type: string){
      this.isPanelOpen.set(type)

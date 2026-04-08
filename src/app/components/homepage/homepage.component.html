@@ -28,7 +28,7 @@
             <th scope="row" class="px-3 md:px-6 py-4 font-medium text-heading whitespace-nowrap text-amber-600">
               {{offset + $index + 1}}
             </th>
-            <td class="px-3 md:px-6 py-4 hover:cursor-pointer" [routerLink]="['/utentPage']">
+            <td class="px-3 md:px-6 py-4 hover:cursor-pointer" [routerLink]="['/utentPage', user.id]">
               {{user.name}}
             </td>
             <td class="hidden md:table-cell px-6 py-4">{{user.email}}</td>
@@ -49,6 +49,7 @@
     <div class="post-container  flex flex-nowrap overflow-x-auto gap-4 p-2 ">
       @for(post of posts | slice:0:6; track $index){
         <div class="post-card bg-neutral-primary-soft flex flex-col shrink-0 w-[45%] md:w-[30%] lg:w-[23%] sm:w-[45%] p-2 border border-black/5 rounded-md shadow-xs">
+          <button >Post page</button>
           <p>{{post.user_id}}</p>
           <h5 class="mb-3 text-lg md:text-2xl font-semibold tracking-tight text-heading leading-8">{{post.title}}</h5>
           <p class="text-body mb-6 overflow-hidden line-clamp-3">{{post.body}}</p>
