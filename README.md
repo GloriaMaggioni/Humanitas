@@ -110,11 +110,6 @@ The purpose of this page is to inspire users to discover cultural experiences th
 Show the map where the users can find the cultural and interesting places near them
 
 
-## Author
-
-- [@GloriaMaggioni](https://github.com/GloriaMaggioni)
-
-
 ## Testing
 
 To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
@@ -122,3 +117,11 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ```bash
 ng test
 ```
+
+
+
+## Author
+
+- [@GloriaMaggioni](https://github.com/GloriaMaggioni)
+
+
