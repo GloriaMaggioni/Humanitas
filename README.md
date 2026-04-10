@@ -3,6 +3,8 @@
 
 A dynamic Angular dashboard application, integrating multiple REST APIs and real-time data sources for user and content management.
 The purpose of this projects is encourage people to learn something new, meet new people and to have joy and curiosity for the unknown ,especially for the culture
+<img width="3199" height="1660" alt="login" src="https://github.com/user-attachments/assets/aa6dfa1f-9096-4190-bde4-21c1c2dbffb6" />
+
 
 
 ## Features
